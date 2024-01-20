@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */; };
+		5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */; };
+		5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */; };
+		5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */; };
+		5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */; };
+		5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C3B2B5C216700E3266E /* Constants.swift */; };
 		5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804C2B5B2114003FE18D /* AppDelegate.swift */; };
 		5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */; };
 		5DB880512B5B2114003FE18D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880502B5B2114003FE18D /* ViewController.swift */; };
@@ -26,6 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
+		5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		5D3E3C3B2B5C216700E3266E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5DB880492B5B2114003FE18D /* Cookly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB8804C2B5B2114003FE18D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +69,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */,
+				5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */,
+				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
+				5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */,
+			);
+			path = MainScenes;
+			sourceTree = "<group>";
+		};
+		5D3E3C3A2B5C215500E3266E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C3B2B5C216700E3266E /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		5DB880402B5B2114003FE18D = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +111,7 @@
 				5DB880A82B5BED04003FE18D /* Scenes */,
 				5DB880A02B5BE852003FE18D /* API */,
 				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
+				5D3E3C3A2B5C215500E3266E /* Utilities */,
 				5DB8806D2B5BBDAA003FE18D /* Files */,
 				5DB8805A2B5B2115003FE18D /* Info.plist */,
 			);
@@ -127,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB880502B5B2114003FE18D /* ViewController.swift */,
+				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
+				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -212,12 +246,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */,
+				5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
 				5DB880512B5B2114003FE18D /* ViewController.swift in Sources */,
+				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
+				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,
+				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
+				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DB880AA2B5BED9F003FE18D /* NetworkProvidingProtocol.swift in Sources */,
 			);
