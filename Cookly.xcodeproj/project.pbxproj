@@ -19,6 +19,10 @@
 		5DB8806A2B5B2132003FE18D /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB880692B5B2132003FE18D /* Storage */; };
 		5DB8806C2B5B2132003FE18D /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB8806B2B5B2132003FE18D /* Supabase */; };
 		5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */; };
+		5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A12B5BE85F003FE18D /* Injected.swift */; };
+		5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A32B5BE86B003FE18D /* InjectedValues.swift */; };
+		5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A52B5BE876003FE18D /* InjectionKey.swift */; };
+		5DB880AA2B5BED9F003FE18D /* NetworkProvidingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProvidingProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		5DB880582B5B2115003FE18D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DB8805A2B5B2115003FE18D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		5DB880A12B5BE85F003FE18D /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
+		5DB880A32B5BE86B003FE18D /* InjectedValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedValues.swift; sourceTree = "<group>"; };
+		5DB880A52B5BE876003FE18D /* InjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
+		5DB880A92B5BED9F003FE18D /* NetworkProvidingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvidingProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				5DB8806E2B5BBDB5003FE18D /* App */,
-				5DB880502B5B2114003FE18D /* ViewController.swift */,
-				5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */,
+				5DB880A82B5BED04003FE18D /* Scenes */,
+				5DB880A02B5BE852003FE18D /* API */,
+				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
 				5DB8806D2B5BBDAA003FE18D /* Files */,
 				5DB8805A2B5B2115003FE18D /* Info.plist */,
 			);
@@ -93,6 +102,33 @@
 				5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		5DB880A02B5BE852003FE18D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5DB880A92B5BED9F003FE18D /* NetworkProvidingProtocol.swift */,
+				5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5DB880A72B5BEC70003FE18D /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				5DB880A52B5BE876003FE18D /* InjectionKey.swift */,
+				5DB880A12B5BE85F003FE18D /* Injected.swift */,
+				5DB880A32B5BE86B003FE18D /* InjectedValues.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		5DB880A82B5BED04003FE18D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5DB880502B5B2114003FE18D /* ViewController.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +213,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
+				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
 				5DB880512B5B2114003FE18D /* ViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
+				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
+				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
+				5DB880AA2B5BED9F003FE18D /* NetworkProvidingProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
