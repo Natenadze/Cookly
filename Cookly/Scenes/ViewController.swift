@@ -17,8 +17,12 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
+//        Task {
+//            await apiManager.register(email: "depe@nd.com", password: "asdasdasdasdsa")
+//        } 
+        
         Task {
-            await apiManager.registerUser(email: "depe@nd.com", password: "asdasdasdasdsa")
+            await apiManager.login(email: "depe@nd.com", password: "asdasdasdasdsa")
         }
     }
     
