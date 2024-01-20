@@ -10,9 +10,15 @@
 		5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804C2B5B2114003FE18D /* AppDelegate.swift */; };
 		5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */; };
 		5DB880512B5B2114003FE18D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880502B5B2114003FE18D /* ViewController.swift */; };
-		5DB880542B5B2114003FE18D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB880522B5B2114003FE18D /* Main.storyboard */; };
 		5DB880562B5B2115003FE18D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB880552B5B2115003FE18D /* Assets.xcassets */; };
 		5DB880592B5B2115003FE18D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB880572B5B2115003FE18D /* LaunchScreen.storyboard */; };
+		5DB880622B5B2132003FE18D /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB880612B5B2132003FE18D /* Auth */; };
+		5DB880642B5B2132003FE18D /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB880632B5B2132003FE18D /* Functions */; };
+		5DB880662B5B2132003FE18D /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB880652B5B2132003FE18D /* PostgREST */; };
+		5DB880682B5B2132003FE18D /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB880672B5B2132003FE18D /* Realtime */; };
+		5DB8806A2B5B2132003FE18D /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB880692B5B2132003FE18D /* Storage */; };
+		5DB8806C2B5B2132003FE18D /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB8806B2B5B2132003FE18D /* Supabase */; };
+		5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +26,10 @@
 		5DB8804C2B5B2114003FE18D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5DB880502B5B2114003FE18D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5DB880532B5B2114003FE18D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DB880552B5B2115003FE18D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DB880582B5B2115003FE18D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DB8805A2B5B2115003FE18D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DB880662B5B2132003FE18D /* PostgREST in Frameworks */,
+				5DB880642B5B2132003FE18D /* Functions in Frameworks */,
+				5DB8806C2B5B2132003FE18D /* Supabase in Frameworks */,
+				5DB880622B5B2132003FE18D /* Auth in Frameworks */,
+				5DB8806A2B5B2132003FE18D /* Storage in Frameworks */,
+				5DB880682B5B2132003FE18D /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +68,31 @@
 		5DB8804B2B5B2114003FE18D /* Cookly */ = {
 			isa = PBXGroup;
 			children = (
-				5DB8804C2B5B2114003FE18D /* AppDelegate.swift */,
-				5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */,
+				5DB8806E2B5BBDB5003FE18D /* App */,
 				5DB880502B5B2114003FE18D /* ViewController.swift */,
-				5DB880522B5B2114003FE18D /* Main.storyboard */,
-				5DB880552B5B2115003FE18D /* Assets.xcassets */,
-				5DB880572B5B2115003FE18D /* LaunchScreen.storyboard */,
+				5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */,
+				5DB8806D2B5BBDAA003FE18D /* Files */,
 				5DB8805A2B5B2115003FE18D /* Info.plist */,
 			);
 			path = Cookly;
+			sourceTree = "<group>";
+		};
+		5DB8806D2B5BBDAA003FE18D /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DB880552B5B2115003FE18D /* Assets.xcassets */,
+				5DB880572B5B2115003FE18D /* LaunchScreen.storyboard */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		5DB8806E2B5BBDB5003FE18D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5DB8804C2B5B2114003FE18D /* AppDelegate.swift */,
+				5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +111,14 @@
 			dependencies = (
 			);
 			name = Cookly;
+			packageProductDependencies = (
+				5DB880612B5B2132003FE18D /* Auth */,
+				5DB880632B5B2132003FE18D /* Functions */,
+				5DB880652B5B2132003FE18D /* PostgREST */,
+				5DB880672B5B2132003FE18D /* Realtime */,
+				5DB880692B5B2132003FE18D /* Storage */,
+				5DB8806B2B5B2132003FE18D /* Supabase */,
+			);
 			productName = Cookly;
 			productReference = 5DB880492B5B2114003FE18D /* Cookly.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +147,9 @@
 				Base,
 			);
 			mainGroup = 5DB880402B5B2114003FE18D;
+			packageReferences = (
+				5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = 5DB8804A2B5B2114003FE18D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +166,6 @@
 			files = (
 				5DB880592B5B2115003FE18D /* LaunchScreen.storyboard in Resources */,
 				5DB880562B5B2115003FE18D /* Assets.xcassets in Resources */,
-				5DB880542B5B2114003FE18D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5DB880512B5B2114003FE18D /* ViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
@@ -147,14 +186,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5DB880522B5B2114003FE18D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5DB880532B5B2114003FE18D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5DB880572B5B2115003FE18D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,9 +328,8 @@
 				INFOPLIST_FILE = Cookly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,9 +355,8 @@
 				INFOPLIST_FILE = Cookly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +392,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:supabase-community/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5DB880612B5B2132003FE18D /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		5DB880632B5B2132003FE18D /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		5DB880652B5B2132003FE18D /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		5DB880672B5B2132003FE18D /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		5DB880692B5B2132003FE18D /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		5DB8806B2B5B2132003FE18D /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DB880602B5B2132003FE18D /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5DB880412B5B2114003FE18D /* Project object */;
 }
