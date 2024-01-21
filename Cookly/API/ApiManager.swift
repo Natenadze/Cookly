@@ -12,8 +12,8 @@ struct ApiManager: NetworkProviding {
     
     // MARK: - Properties
     private let supabase = SupabaseClient(
-        supabaseURL: SUPA_URL,
-        supabaseKey: SUPA_KEY
+        supabaseURL: APIConstants.supaUrl,
+        supabaseKey: APIConstants.supaKey
     )
     
     // MARK: - Methods

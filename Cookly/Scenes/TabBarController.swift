@@ -42,6 +42,3 @@ private extension TabBarController {
         tabBar.scrollEdgeAppearance = appearance
     }
 }
-
-
-
