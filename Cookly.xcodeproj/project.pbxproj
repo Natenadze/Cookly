@@ -18,6 +18,7 @@
 		5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */; };
 		5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C472B5D1C3F00E3266E /* AuthButton.swift */; };
 		5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C4B2B5D2DE200E3266E /* LoginView.swift */; };
+		5D3E3C512B5D6D0600E3266E /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C502B5D6D0600E3266E /* Ingredients.swift */; };
 		5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804C2B5B2114003FE18D /* AppDelegate.swift */; };
 		5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */; };
 		5DB880562B5B2115003FE18D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB880552B5B2115003FE18D /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		5D3E3C472B5D1C3F00E3266E /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		5D3E3C4B2B5D2DE200E3266E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5D3E3C502B5D6D0600E3266E /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
 		5DB880492B5B2114003FE18D /* Cookly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB8804C2B5B2114003FE18D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		5D3E3C4F2B5D6CEF00E3266E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C502B5D6D0600E3266E /* Ingredients.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5DB880402B5B2114003FE18D = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				5DB8806E2B5BBDB5003FE18D /* App */,
+				5D3E3C4F2B5D6CEF00E3266E /* Model */,
 				5DB880A82B5BED04003FE18D /* Scenes */,
 				5DB880A02B5BE852003FE18D /* API */,
 				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
@@ -306,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D3E3C512B5D6D0600E3266E /* Ingredients.swift in Sources */,
 				5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */,
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
