@@ -34,7 +34,6 @@ struct AuthTextField: View {
         }
         .padding(12)
         .autocorrectionDisabled()
-        .background(.thinMaterial)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.black.opacity(0.3))

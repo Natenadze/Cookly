@@ -16,16 +16,26 @@ struct AuthButton: View {
     
     // MARK: - Body
     var body: some View {
-        Button(title) {
-            action()
-        }
-        .frame(height: 44)
-        .frame(maxWidth: .infinity)
-        .font(.system(size: 16, weight: .bold))
-        .background(isActive ? .blue : .gray)
-        .foregroundColor(isActive ? .white : .black)
-        .cornerRadius(8)
-        .padding(.bottom, 80)
-        .disabled(!isActive)
+        Button(action: action, label: {
+            Text(title)
+                .frame(maxWidth: .infinity)
+                .frame(height: 44)
+                .font(.system(size: 16, weight: .bold))
+                .background(isActive ? .blue : .gray)
+                .foregroundColor(isActive ? .white : .black)
+                .cornerRadius(8)
+                .padding(.bottom, 80)
+                .disabled(!isActive)
+        })
+        
     }
 }
+
+
+#if DEBUG
+#Preview {
+    AuthButton(title: "Login", action: {
+        print("login button tapped")
+    }, isActive: true)
+}
+#endif

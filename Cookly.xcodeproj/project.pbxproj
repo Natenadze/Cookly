@@ -101,8 +101,8 @@
 			children = (
 				5D3E3C492B5D2DBA00E3266E /* ViewModel */,
 				5D3E3C4A2B5D2DCA00E3266E /* Registration */,
-				5D3E3C402B5C30EF00E3266E /* Components */,
 				5D3E3C4D2B5D2DE500E3266E /* Login */,
+				5D3E3C402B5C30EF00E3266E /* Components */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";

@@ -14,13 +14,19 @@ final class AuthenticationViewModel: ObservableObject {
     @Published var isRegistrationSuccessful = false
    
     // MARK: - Methods
-    
     func register(email: String, password: String) throws {
-        Task {
-            await apiManager.register(email: email, password: password)
-        }
+        Task { await apiManager.register(email: email, password: password) }
+    } 
+    
+    func login(email: String, password: String) throws {
+        Task { await apiManager.login(email: email, password: password) }
     }
     
+}
+
+
+// MARK: - Extension Password Criteria Methods
+extension AuthenticationViewModel {
     func isPasswordCriteriaMet(text: String) ->  Bool {
         lengthAndNoSpaceMet(text) &&
         uppercaseMet(text) &&
