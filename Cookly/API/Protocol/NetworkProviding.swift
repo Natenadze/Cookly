@@ -1,5 +1,5 @@
 //
-//  NetworkProvidingProtocol.swift
+//  NetworkProviding.swift
 //  Cookly
 //
 //  Created by Davit Natenadze on 20.01.24.

@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// Provides access to injected dependencies.
 struct InjectedValues {
     
     /// This is only used as an accessor to the computed properties within extensions of `InjectedValues`.
@@ -32,12 +31,21 @@ extension InjectedValues {
         get { Self[NetworkProviderKey.self] }
         set { Self[NetworkProviderKey.self] = newValue }
     }
+    
+    var authViewModel: AuthenticationViewModel {
+        get { Self[ViewModel.self] }
+        set { Self[ViewModel.self] = newValue }
+    }
 }
 
-
-
+// MARK: - Injected Dependencies
 private struct NetworkProviderKey: InjectionKey {
     static var currentValue: NetworkProviding = ApiManager()
 }
+
+private struct ViewModel: InjectionKey {
+    static var currentValue: AuthenticationViewModel = AuthenticationViewModel()
+}
+
 
 
