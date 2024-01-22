@@ -62,7 +62,7 @@ extension RegistrationView {
         Task {
             do {
                 try viewModel.register(email: emailInput, password: passwordInput)
-            }catch {
+            } catch {
                 print("Registration Error")
             }
         }

@@ -34,6 +34,7 @@
 		5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A32B5BE86B003FE18D /* InjectedValues.swift */; };
 		5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A52B5BE876003FE18D /* InjectionKey.swift */; };
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
+		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		5DB880A32B5BE86B003FE18D /* InjectedValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedValues.swift; sourceTree = "<group>"; };
 		5DB880A52B5BE876003FE18D /* InjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
+		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 				5DB880A52B5BE876003FE18D /* InjectionKey.swift */,
 				5DB880A12B5BE85F003FE18D /* Injected.swift */,
 				5DB880A32B5BE86B003FE18D /* InjectedValues.swift */,
+				5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */,
 			);
 			path = DependencyInjection;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
 				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
+				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,
 				5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

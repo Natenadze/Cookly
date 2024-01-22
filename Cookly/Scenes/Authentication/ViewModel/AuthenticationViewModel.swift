@@ -27,6 +27,7 @@ final class AuthenticationViewModel: ObservableObject {
 
 // MARK: - Extension Password Criteria Methods
 extension AuthenticationViewModel {
+    
     func isPasswordCriteriaMet(text: String) ->  Bool {
         lengthAndNoSpaceMet(text) &&
         uppercaseMet(text) &&
@@ -35,7 +36,6 @@ extension AuthenticationViewModel {
         specialCharMet(text)
     }
 
-    
     // MARK: - Password Criteria Methods
     func lengthCriteriaMet(_ text: String) -> Bool {
         text.count >= 8 && text.count <= 32

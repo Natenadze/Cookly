@@ -69,7 +69,7 @@ extension LoginView {
         Task {
             do {
                 try viewModel.login(email: emailInput, password: passwordInput)
-            }catch {
+            } catch {
                 print("Login Error")
             }
         }

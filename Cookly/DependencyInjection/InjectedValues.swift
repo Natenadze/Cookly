@@ -33,19 +33,7 @@ extension InjectedValues {
     }
     
     var authViewModel: AuthenticationViewModel {
-        get { Self[ViewModel.self] }
-        set { Self[ViewModel.self] = newValue }
+        get { Self[ViewModelKey.self] }
+        set { Self[ViewModelKey.self] = newValue }
     }
 }
-
-// MARK: - Injected Dependencies
-private struct NetworkProviderKey: InjectionKey {
-    static var currentValue: NetworkProviding = ApiManager()
-}
-
-private struct ViewModel: InjectionKey {
-    static var currentValue: AuthenticationViewModel = AuthenticationViewModel()
-}
-
-
-
