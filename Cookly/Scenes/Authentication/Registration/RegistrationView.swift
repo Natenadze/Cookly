@@ -14,6 +14,7 @@ struct RegistrationView: View {
     @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
+    let coordinator: Coordinator
     
     // MARK: - Body
     var body: some View {
@@ -24,7 +25,6 @@ struct RegistrationView: View {
 
 // MARK: - Extensions
 private extension RegistrationView {
-    
     var mainContent: some View {
         VStack(alignment: .leading, spacing: 16) {
             textFieldStack
@@ -59,12 +59,14 @@ private extension RegistrationView {
 extension RegistrationView {
     
     func SignUpButtonTapped() {
-        Task {
-            do {
-                try viewModel.register(email: emailInput, password: passwordInput)
-            } catch {
-                print("Registration Error")
-            }
-        }
+        //TODO: - add dismiss logic
+        coordinator.goBackToLoginView()
+//        Task {
+//            do {
+//                try viewModel.register(email: emailInput, password: passwordInput)
+//            } catch {
+//                print("Registration Error")
+//            }
+//        }
     }
 }

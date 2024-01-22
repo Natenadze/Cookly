@@ -35,6 +35,7 @@
 		5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A52B5BE876003FE18D /* InjectionKey.swift */; };
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
 		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
+		5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		5DB880A52B5BE876003FE18D /* InjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
 		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
+		5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				5DB880A02B5BE852003FE18D /* API */,
 				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
 				5D3E3C3A2B5C215500E3266E /* Utilities */,
+				5DDA81B52B5EC49900548411 /* Coordinator */,
 				5DB8806D2B5BBDAA003FE18D /* Files */,
 				5DB8805A2B5B2115003FE18D /* Info.plist */,
 			);
@@ -237,6 +240,14 @@
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5DDA81B52B5EC49900548411 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +339,7 @@
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
+				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
 				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
 				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,

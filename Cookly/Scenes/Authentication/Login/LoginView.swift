@@ -13,6 +13,7 @@ struct LoginView: View {
     @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
+    let coordinator: Coordinator
     
     // MARK: - Body
     var body: some View {
@@ -23,19 +24,11 @@ struct LoginView: View {
 
 // MARK: - Extensions
 private extension LoginView {
-    
     var mainContent: some View {
         VStack(alignment: .leading, spacing: 16) {
             textFieldStack
-            HStack {
-                Spacer()
-                Button("Dont't have an account?") {
-                    //TODO: - Navigate to registration view
-                    print("Dont't have an account tapped")
-                }
-            }
+            dontHaveAnAccountButton
             LoginButtonView(title: "Login", action: LoginButtonTapped)
-            
         }
         .padding(.horizontal, 16)
     }
@@ -53,6 +46,15 @@ private extension LoginView {
         .padding(.top, 60)
     }
     
+    var dontHaveAnAccountButton: some View {
+        HStack {
+            Spacer()
+            Button("Dont't have an account?") {
+                coordinator.showRegistrationView()
+            }
+        }
+    }
+    
     func LoginButtonView(title: String, action: @escaping () -> Void) -> some View {
         AuthButton(
             title: title,
@@ -64,15 +66,16 @@ private extension LoginView {
 
 // MARK: - Methods Extension
 extension LoginView {
-    
     func LoginButtonTapped() {
-        Task {
-            do {
-                try viewModel.login(email: emailInput, password: passwordInput)
-            } catch {
-                print("Login Error")
-            }
-        }
+        //TODO: - add navigation logic
+        coordinator.showTabBarController()
+//        Task {
+//            do {
+//                try viewModel.login(email: emailInput, password: passwordInput)
+//            } catch {
+//                print("Login Error")
+//            }
+//        }
     }
 }
 
