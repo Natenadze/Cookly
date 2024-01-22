@@ -15,10 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-//        let authHostingController = UIHostingController(rootView: LoginView())
+        let authHostingController = UIHostingController(rootView: LoginView())
         
-//        window?.rootViewController = authHostingController
-        window?.rootViewController = TabBarController()
+        window?.rootViewController = authHostingController
+//        window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
     }
 }
