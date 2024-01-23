@@ -36,6 +36,8 @@
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
 		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
 		5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */; };
+		5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */; };
+		5DDA81CD2B60490300548411 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81CC2B60490300548411 /* PromptViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
 		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
 		5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollSection.swift; sourceTree = "<group>"; };
+		5DDA81CC2B60490300548411 /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +90,12 @@
 		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
 			isa = PBXGroup;
 			children = (
+				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
+				5DDA81CB2B6048E500548411 /* Search */,
 				5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */,
-				5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */,
 				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
 				5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */,
+				5DDA81C82B60463D00548411 /* SwiftUI  */,
 			);
 			path = MainScenes;
 			sourceTree = "<group>";
@@ -236,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C3D2B5C2F7F00E3266E /* Authentication */,
-				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
 			path = Scenes;
@@ -248,6 +253,23 @@
 				5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		5DDA81C82B60463D00548411 /* SwiftUI  */ = {
+			isa = PBXGroup;
+			children = (
+				5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */,
+			);
+			path = "SwiftUI ";
+			sourceTree = "<group>";
+		};
+		5DDA81CB2B6048E500548411 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */,
+				5DDA81CC2B60490300548411 /* PromptViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +357,8 @@
 				5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */,
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
+				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
+				5DDA81CD2B60490300548411 /* PromptViewController.swift in Sources */,
 				5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,

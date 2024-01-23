@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set }
     func start()
     func showRegistrationView()
     func goBackToLoginView()
     func showTabBarController()
+    func pushTestVC()
 }
 
 final class FlowCoordinator: ObservableObject, Coordinator {
@@ -48,10 +49,14 @@ final class FlowCoordinator: ObservableObject, Coordinator {
     }
     
     func showTabBarController() {
-        let controller = TabBarController()
-        controller.modalPresentationStyle = .fullScreen
-        controller.modalTransitionStyle = .crossDissolve
-        navigationController.present(controller, animated: true)
+        let controller = TabBarController(coordinator: self)
+        controller.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(controller, animated: true)
+    }
+    
+    func pushTestVC() {
+        let controller = PromptViewController()
+        navigationController.pushViewController(controller, animated: true)
     }
 }
 
