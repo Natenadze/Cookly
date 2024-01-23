@@ -8,6 +8,7 @@
 import SwiftUI
 
 protocol Coordinator {
+    var navigationController: UINavigationController { get set }
     func start()
     func showRegistrationView()
     func goBackToLoginView()
@@ -17,39 +18,15 @@ protocol Coordinator {
 final class FlowCoordinator: ObservableObject, Coordinator {
     
     // MARK: - Properties
-    private let window: UIWindow
+    var navigationController: UINavigationController
     
     // MARK: - Init
-    init(window: UIWindow) {
-        self.window = window
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     // MARK: - Methods
-    func showRegistrationView() {
-        let registration = RegistrationView(coordinator: self)
-        let hostingView = UIHostingController(rootView: registration)
-        if let navigationController = window.rootViewController as? UINavigationController {
-            navigationController.pushViewController(hostingView, animated: true)
-        }
-    }
     
-    func goBackToLoginView() {
-        if let navigationController = window.rootViewController as? UINavigationController {
-            navigationController.popViewController(animated: true)
-        }
-    }
-    
-    func showTabBarController() {
-        let controller = TabBarController()
-        controller.modalPresentationStyle = .fullScreen
-        controller.modalTransitionStyle = .crossDissolve
-        window.rootViewController?.present(controller, animated: true)
-    }
-}
-
-
-// MARK: - Extension
-extension FlowCoordinator {
     func start() {
         showRootView()
     }
@@ -57,7 +34,24 @@ extension FlowCoordinator {
     private func showRootView() {
         let loginView = LoginView(coordinator: self)
         let hostingView = UIHostingController(rootView: loginView)
-        let navigationController = UINavigationController(rootViewController: hostingView)
-        window.rootViewController = navigationController
+        navigationController.pushViewController(hostingView, animated: true)
+    }
+    
+    func showRegistrationView() {
+        let registration = RegistrationView(coordinator: self)
+        let hostingView = UIHostingController(rootView: registration)
+        navigationController.pushViewController(hostingView, animated: true)
+    }
+    
+    func goBackToLoginView() {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func showTabBarController() {
+        let controller = TabBarController()
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        navigationController.present(controller, animated: true)
     }
 }
+

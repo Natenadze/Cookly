@@ -14,11 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private var flowCoordinator: Coordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        flowCoordinator = FlowCoordinator(window: window!)
-        //TODO: - add logic if user is already signed in
+        let navigationController = UINavigationController()
+        flowCoordinator = FlowCoordinator(navigationController: navigationController)
         flowCoordinator?.start()
+        //TODO: - add logic if user is already signed in
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
