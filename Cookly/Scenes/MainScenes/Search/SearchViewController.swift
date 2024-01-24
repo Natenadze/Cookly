@@ -10,26 +10,17 @@ import SwiftUI
 
 final class SearchViewController: UIViewController {
     
+    // MARK: - Properties
     weak var coordinator: Coordinator?
     
-    // MARK: - Properties
-    //TODO: - ???
-    let horizontalScrollSection = UIHostingController(rootView: ScrollableSection(
-        title: "Products",
-        images: [
-            UIImage(named: "dub")!,
-            UIImage(named: "dub")!,
-            UIImage(named: "dub")!,
-            UIImage(named: "dub")!,
-            UIImage(named: "dub")!,
-            UIImage(named: "dub")!,
-            UIImage(named: "dub")!,
-   
-        ])
-    )
-    
-    
     // MARK: - UI Elements
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
     private let mainStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -66,15 +57,31 @@ final class SearchViewController: UIViewController {
         let searchIcon = UIImage(systemName: "magnifyingglass")
         searchButton.setImage(searchIcon, for: .normal)
         searchButton.imageView?.contentMode = .scaleAspectFit
-
+        
         // Set placeholder text
         searchButton.setTitle("Search", for: .normal)
         searchButton.setTitleColor(.gray, for: .normal)
-      
+        
         return searchButton
     }()
     
+    //TODO: - ???
+    private let horizontalScrollSection = UIHostingController(
+        rootView: ScrollableSection(
+            title: "Products",
+            images: [
+                UIImage(named: "dub")!,
+                UIImage(named: "dub")!,
+                UIImage(named: "dub")!,
+                UIImage(named: "dub")!,
+                UIImage(named: "dub")!,
+                UIImage(named: "dub")!,
+                UIImage(named: "dub")!,
+            ]
+        )
+    )
     
+    // MARK: - LifeCycle
     init(coordinator: Coordinator?) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -84,25 +91,23 @@ final class SearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         layout()
-        
     }
-
+    
     // MARK: - Methods
     func searchButtonTapped() {
         coordinator?.pushTestVC()
-      }
-    
+    }
 }
 
+// MARK: - Extension
 extension SearchViewController {
     
     func setup() {
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .systemPurple
         horizontalScrollSection.view.backgroundColor = .clear
         
         searchButton.addAction(UIAction(handler: { _ in
@@ -115,21 +120,29 @@ extension SearchViewController {
         mainStackView.addArrangedSubview(searchTitle)
         mainStackView.addArrangedSubview(searchButton)
         mainStackView.addArrangedSubview(horizontalScrollSection.view)
-        view.addSubview(mainStackView)
-        
+        scrollView.addSubview(mainStackView)
+        view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 4),
-            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
+            scrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 4),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            mainStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
             searchButton.heightAnchor.constraint(equalToConstant: 50),
             searchButton.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             searchButton.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
-
         ])
     }
 }
 
 
-
+// MARK: - Preview
+#Preview {
+    SearchViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+}
