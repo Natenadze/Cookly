@@ -33,14 +33,32 @@ enum MealType: String, Decodable {
     case Snack = "snack"
 }
 
-enum Diet: String, Decodable {
-    case Vegetarian = "vegetarian"
-    case Vegan = "vegan"
-    case LactoseFree = "lactose-free"
-    case GlutenFree = "gluten-free"
-    case Healthy = "healthy"
-    case HighProtein = "high-protein"
-    case LowCarb = "low-carb"
+
+enum Diet: Decodable {
+    case Vegetarian
+    case Vegan
+    case LactoseFree
+    case GlutenFree
+    case Healthy
+    case HighProtein
+    case LowCarb
+    case unknown(value: String)
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let status = try? container.decode(String.self)
+        switch status {
+        case "Vegetarian": self = .Vegetarian
+        case "Vegan": self = .Vegan
+        case "LactoseFree": self = .LactoseFree
+        case "GlutenFree": self = .GlutenFree
+        case "Healthy": self = .Healthy
+        case "HighProtein": self = .HighProtein
+        case "LowCarb": self = .LowCarb
+        default:
+            self = .unknown(value: status ?? "unknown")
+        }
+    }
 }
 
 
