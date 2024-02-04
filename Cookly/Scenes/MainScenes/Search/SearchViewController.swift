@@ -143,6 +143,6 @@ extension SearchViewController {
 
 
 // MARK: - Preview
-#Preview {
-    SearchViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
-}
+//#Preview {
+//    SearchViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+//}

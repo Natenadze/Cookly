@@ -16,7 +16,7 @@ protocol Coordinator: AnyObject {
     func pushTestVC()
 }
 
-final class FlowCoordinator: ObservableObject, Coordinator {
+final class FlowCoordinator:  Coordinator {
     
     // MARK: - Properties
     var navigationController: UINavigationController
