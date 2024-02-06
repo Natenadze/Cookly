@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         flowCoordinator?.start()
         //TODO: - add logic if user is already signed in
         window?.rootViewController = navigationController
+//        window?.rootViewController = PromptViewController()
         window?.makeKeyAndVisible()
     }
 }

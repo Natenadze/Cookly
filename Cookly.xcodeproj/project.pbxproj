@@ -18,7 +18,13 @@
 		5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */; };
 		5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C472B5D1C3F00E3266E /* AuthButton.swift */; };
 		5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C4B2B5D2DE200E3266E /* LoginView.swift */; };
-		5D3E3C512B5D6D0600E3266E /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C502B5D6D0600E3266E /* Ingredients.swift */; };
+		5D3E3C512B5D6D0600E3266E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C502B5D6D0600E3266E /* Recipe.swift */; };
+		5D4392AB2B713BD300039BCC /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4392AA2B713BD300039BCC /* Prompt.swift */; };
+		5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */; };
+		5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */; };
+		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
+		5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */; };
+		5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */; };
 		5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804C2B5B2114003FE18D /* AppDelegate.swift */; };
 		5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */; };
 		5DB880562B5B2115003FE18D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB880552B5B2115003FE18D /* Assets.xcassets */; };
@@ -34,12 +40,9 @@
 		5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A32B5BE86B003FE18D /* InjectedValues.swift */; };
 		5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A52B5BE876003FE18D /* InjectionKey.swift */; };
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
-		5DD98B9B2B6181B3009D6E83 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DD98B9A2B6181B3009D6E83 /* test.json */; };
-		5DD98B9D2B61963A009D6E83 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD98B9C2B61963A009D6E83 /* Bundle+Extension.swift */; };
 		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
 		5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */; };
 		5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */; };
-		5DDA81CD2B60490300548411 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81CC2B60490300548411 /* PromptViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +57,13 @@
 		5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		5D3E3C472B5D1C3F00E3266E /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		5D3E3C4B2B5D2DE200E3266E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		5D3E3C502B5D6D0600E3266E /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
+		5D3E3C502B5D6D0600E3266E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		5D4392AA2B713BD300039BCC /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
+		5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
+		5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecipe.swift; sourceTree = "<group>"; };
 		5DB880492B5B2114003FE18D /* Cookly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB8804C2B5B2114003FE18D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,12 +75,9 @@
 		5DB880A32B5BE86B003FE18D /* InjectedValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedValues.swift; sourceTree = "<group>"; };
 		5DB880A52B5BE876003FE18D /* InjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
-		5DD98B9A2B6181B3009D6E83 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
-		5DD98B9C2B61963A009D6E83 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
 		5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollSection.swift; sourceTree = "<group>"; };
-		5DDA81CC2B60490300548411 /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C3B2B5C216700E3266E /* Constants.swift */,
-				5DD98B9C2B61963A009D6E83 /* Bundle+Extension.swift */,
+				5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */,
+				5D8F35052B72BD8E00FDFCFD /* Extensions */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -168,9 +175,19 @@
 		5D3E3C4F2B5D6CEF00E3266E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5D3E3C502B5D6D0600E3266E /* Ingredients.swift */,
+				5D3E3C502B5D6D0600E3266E /* Recipe.swift */,
+				5D4392AA2B713BD300039BCC /* Prompt.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5D8F35052B72BD8E00FDFCFD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */,
+				5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		5DB880402B5B2114003FE18D = {
@@ -193,9 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				5DB8806E2B5BBDB5003FE18D /* App */,
+				5DB880A02B5BE852003FE18D /* API */,
 				5D3E3C4F2B5D6CEF00E3266E /* Model */,
 				5DB880A82B5BED04003FE18D /* Scenes */,
-				5DB880A02B5BE852003FE18D /* API */,
 				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
 				5DDA81B52B5EC49900548411 /* Coordinator */,
 				5D3E3C3A2B5C215500E3266E /* Utilities */,
@@ -208,7 +225,6 @@
 		5DB8806D2B5BBDAA003FE18D /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				5DD98B9A2B6181B3009D6E83 /* test.json */,
 				5DB880552B5B2115003FE18D /* Assets.xcassets */,
 				5DB880572B5B2115003FE18D /* LaunchScreen.storyboard */,
 			);
@@ -273,7 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */,
-				5DDA81CC2B60490300548411 /* PromptViewController.swift */,
+				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
+				5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -349,7 +366,6 @@
 			files = (
 				5DB880592B5B2115003FE18D /* LaunchScreen.storyboard in Resources */,
 				5DB880562B5B2115003FE18D /* Assets.xcassets in Resources */,
-				5DD98B9B2B6181B3009D6E83 /* test.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,30 +376,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D3E3C512B5D6D0600E3266E /* Ingredients.swift in Sources */,
+				5D3E3C512B5D6D0600E3266E /* Recipe.swift in Sources */,
 				5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */,
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
 				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
-				5DDA81CD2B60490300548411 /* PromptViewController.swift in Sources */,
 				5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
+				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
 				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
 				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,
+				5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */,
 				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */,
 				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
-				5DD98B9D2B61963A009D6E83 /* Bundle+Extension.swift in Sources */,
 				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
+				5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,
+				5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */,
+				5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */,
 				5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */,
+				5D4392AB2B713BD300039BCC /* Prompt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

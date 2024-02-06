@@ -10,4 +10,5 @@ import Foundation
 protocol NetworkProviding {
     func login(email: String, password: String) async
     func register(email: String, password: String) async
+    func loginWithGoogle() async
 }

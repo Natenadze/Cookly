@@ -13,7 +13,8 @@ protocol Coordinator: AnyObject {
     func showRegistrationView()
     func goBackToLoginView()
     func showTabBarController()
-    func pushTestVC()
+    func pushRecipeViewController(recipe: Recipe)
+    func pushPromptViewController()
 }
 
 final class FlowCoordinator:  Coordinator {
@@ -54,8 +55,12 @@ final class FlowCoordinator:  Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func pushTestVC() {
-        let controller = PromptViewController()
+    func pushRecipeViewController(recipe: Recipe) {
+        let controller = RecipeViewController(recipe: recipe)
+        navigationController.pushViewController(controller, animated: true)
+    }    
+    func pushPromptViewController() {
+        let controller = PromptViewController(coordinator: self)
         navigationController.pushViewController(controller, animated: true)
     }
 }

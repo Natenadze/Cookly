@@ -22,6 +22,12 @@ final class AuthenticationViewModel: ObservableObject {
         Task { await apiManager.login(email: email, password: password) }
     }
     
+    func loginWithGoogle() throws {
+        Task {
+            await apiManager.loginWithGoogle()
+        }
+    }
+    
 }
 
 

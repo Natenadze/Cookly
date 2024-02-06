@@ -12,6 +12,7 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Properties
     weak var coordinator: Coordinator?
+    let supaManager = ApiManager()
     
     // MARK: - UI Elements
     private let scrollView: UIScrollView = {
@@ -99,7 +100,15 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Methods
     func searchButtonTapped() {
-        coordinator?.pushTestVC()
+        
+//        let prompt = Prompt(mealType: .Breakfast, diet: [.Healthy, .GlutenFree], time: 30, ingredients: ["Egg", "Cheese", "Oil", "onion"], extendRecipe: false)
+        
+//        Task {
+//            if let result = try await supaManager.generateRecipe(prompt: prompt) {
+//                coordinator?.pushRecipeViewController(recipe: result)
+//            }
+//        }
+        coordinator?.pushPromptViewController()
     }
 }
 
@@ -146,3 +155,6 @@ extension SearchViewController {
 //#Preview {
 //    SearchViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
 //}
+
+
+

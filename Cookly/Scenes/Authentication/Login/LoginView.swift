@@ -69,13 +69,14 @@ extension LoginView {
     func LoginButtonTapped() {
         //TODO: - add navigation logic
         coordinator.showTabBarController()
-//        Task {
+        Task {
 //            do {
 //                try viewModel.login(email: emailInput, password: passwordInput)
+//                try viewModel.loginWithGoogle()
 //            } catch {
 //                print("Login Error")
 //            }
-//        }
+        }
     }
 }
 
