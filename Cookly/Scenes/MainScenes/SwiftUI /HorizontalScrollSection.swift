@@ -19,7 +19,6 @@ struct ScrollableSection: View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
                 .font(.title)
-                .foregroundStyle(.white)
             
             ScrollView(.horizontal) {
                 HStack {
@@ -39,7 +38,7 @@ struct ScrollableSection: View {
 
 #if DEBUG
 #Preview {
-    ScrollableSection(title: "Products", images: [
+    ScrollableSection(title: "Recent Recipes", images: [
         UIImage(named: "dish")!,
         UIImage(named: "kha")!,
         UIImage(named: "dish")!,

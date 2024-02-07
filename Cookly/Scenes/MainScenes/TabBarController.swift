@@ -34,9 +34,10 @@ private extension TabBarController {
     func setupAppearance() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemGray5
+        appearance.backgroundColor = .systemGray6
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
+        tabBar.tintColor = .orange
     }
     
     func setupTabBars() {

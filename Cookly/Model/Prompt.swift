@@ -8,9 +8,9 @@
 import Foundation
 
 struct Prompt: Encodable {
-    let mealType: MealType
-    let diet: [Diet]
-    let time: Int
-    let ingredients: [String]
-    let extendRecipe: Bool
+    var ingredients: [String]
+    var mealType: MealType
+    var time: Int
+    var diet: [Diet]
+    var extendRecipe: Bool
 }

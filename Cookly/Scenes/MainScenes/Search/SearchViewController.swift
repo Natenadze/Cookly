@@ -12,9 +12,10 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Properties
     weak var coordinator: Coordinator?
-    let supaManager = ApiManager()
     
     // MARK: - UI Elements
+    
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +36,7 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = "Welcome to Cookly"
         label.font = .boldSystemFont(ofSize: 36)
-        label.textColor = .white
+//        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -44,11 +45,12 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = "Search by ingredients"
         label.font = .systemFont(ofSize: 26)
-        label.textColor = .white
+//        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
     
+
     private let searchButton: UIButton = {
         let searchButton = UIButton(type: .system)
         searchButton.backgroundColor = .white
@@ -69,7 +71,7 @@ final class SearchViewController: UIViewController {
     //TODO: - ???
     private let horizontalScrollSection = UIHostingController(
         rootView: ScrollableSection(
-            title: "Products",
+            title: "Recent searches",
             images: [
                 UIImage(named: "dub")!,
                 UIImage(named: "dub")!,
@@ -100,14 +102,6 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Methods
     func searchButtonTapped() {
-        
-//        let prompt = Prompt(mealType: .Breakfast, diet: [.Healthy, .GlutenFree], time: 30, ingredients: ["Egg", "Cheese", "Oil", "onion"], extendRecipe: false)
-        
-//        Task {
-//            if let result = try await supaManager.generateRecipe(prompt: prompt) {
-//                coordinator?.pushRecipeViewController(recipe: result)
-//            }
-//        }
         coordinator?.pushPromptViewController()
     }
 }
@@ -116,7 +110,7 @@ final class SearchViewController: UIViewController {
 extension SearchViewController {
     
     func setup() {
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = .systemGray6
         horizontalScrollSection.view.backgroundColor = .clear
         
         searchButton.addAction(UIAction(handler: { _ in
@@ -143,7 +137,7 @@ extension SearchViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            searchButton.heightAnchor.constraint(equalToConstant: 50),
+            searchButton.heightAnchor.constraint(equalToConstant: 80),
             searchButton.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             searchButton.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
         ])

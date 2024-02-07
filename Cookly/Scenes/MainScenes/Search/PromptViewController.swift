@@ -12,8 +12,9 @@ final class PromptViewController: UIViewController {
     
     // MARK: - Properties
     weak var coordinator: Coordinator?
-    private var isRecipeExtended = false
-    private var ingredients: [String] = []
+    @Injected(\.networkProvider) var apiManager: NetworkProviding
+    
+    private var prompt = Prompt(ingredients: [], mealType: .Breakfast, time: 30, diet: [.Healthy], extendRecipe: false)
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
     
@@ -48,6 +49,8 @@ final class PromptViewController: UIViewController {
     
     private let searchButton = UIButton()
     
+    private var activityIndicator = UIActivityIndicatorView()
+    
     // MARK: - LifeCycle
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
@@ -75,6 +78,19 @@ final class PromptViewController: UIViewController {
         setupExtendRecipeToggle()
         setupGestureRecognizer()
         setupSearchButton()
+        setupActivityIndicator()
+    }
+    
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.style = .large
+        activityIndicator.color = .gray
+        activityIndicator.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func layoutUIElements() {
@@ -119,13 +135,6 @@ final class PromptViewController: UIViewController {
     }
     
     
-    private func searchButtonTapped(_ sender: UIButton) {
-        coordinator?.pushRecipeViewController(recipe: rcp)
-    }
-    
-    
-    
-    
     //TODO: - Refactor this 
     private func mealTypeSelected(_ sender: UIButton) {
         [breakfastButton, lunchButton, dinnerButton].forEach {
@@ -133,6 +142,16 @@ final class PromptViewController: UIViewController {
             $0.setTitleColor($0 == sender ? .white : .orange, for: .normal)
             $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 18) : .systemFont(ofSize: 16)
         }
+        
+        switch sender.titleLabel?.text {
+        case "Breakfast":
+            prompt.mealType = .Breakfast
+        case "Lunch":
+            prompt.mealType = .Lunch
+        default:
+            prompt.mealType = .Dinner
+        }
+        
     }
     
     private func difficultySelected(_ sender: UIButton) {
@@ -140,6 +159,15 @@ final class PromptViewController: UIViewController {
             $0.backgroundColor = $0 == sender ? .orange : .white
             $0.setTitleColor($0 == sender ? .white : .orange, for: .normal)
             $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 18) : .systemFont(ofSize: 16)
+        }
+        
+        switch sender.titleLabel?.text {
+        case "Easy":
+            prompt.time = 20
+        case "Medium":
+            prompt.time = 40
+        default:
+            prompt.time = 60
         }
     }
     
@@ -179,6 +207,7 @@ final class PromptViewController: UIViewController {
  
     
     private func addIngredient(_ ingredient: String) {
+        prompt.ingredients.append(ingredient)
         let ingredientLabel = UILabel()
         ingredientLabel.text = "\(ingredientCounter). \(ingredient)"
         ingredientLabel.font = .boldSystemFont(ofSize: 18)
@@ -187,6 +216,25 @@ final class PromptViewController: UIViewController {
         ingredientCounter += 1
         self.view.layoutIfNeeded()
     }
+   
+    private func searchButtonTapped(_ sender: UIButton) {
+        activityIndicator.startAnimating()
+        
+        //TODO: - move this task to ViewModel
+        Task {
+            if let result = await apiManager.generateRecipe(prompt: prompt) {
+                await MainActor.run {
+                    self.activityIndicator.stopAnimating()
+                    self.coordinator?.pushRecipeViewController(recipe: result)
+                }
+            } else {
+                await MainActor.run {
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+        }
+    }
+
     
     // MARK: - Selectors
     @objc func handleTapOutsideKeyboard(sender: UITapGestureRecognizer) {
@@ -196,7 +244,7 @@ final class PromptViewController: UIViewController {
     }
     
     @objc func extendRecipeToggled(_ sender: UISwitch) {
-        isRecipeExtended = sender.isOn
+        prompt.extendRecipe = sender.isOn
     }
 }
 
@@ -214,6 +262,7 @@ private extension PromptViewController {
         
         [searchButton, titleLabel, subTitleLabel, mealTypeTitleLabel, difficultyTitleLabel, extendRecipeLabel, ingredientsTextField, ingredientsStackView, mealTypeStackView, difficultyStackView, extendRecipeToggle].forEach(view.addSubview)
     }
+    
     
     func layout() {
         NSLayoutConstraint.activate([
@@ -260,8 +309,7 @@ private extension PromptViewController {
 extension PromptViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let ingredient = textField.text, !ingredient.isEmpty, ingredients.count < ingredientsLimit {
-            ingredients.append(ingredient)
+        if let ingredient = textField.text, !ingredient.isEmpty, prompt.ingredients.count < ingredientsLimit {
             addIngredient(ingredient)
             textField.text = nil
         }
@@ -270,8 +318,11 @@ extension PromptViewController: UITextFieldDelegate {
 }
 
 
-
+#if DEBUG
 // MARK: - Preview
 #Preview {
-    PromptViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    let nav = UINavigationController()
+    let coordinator = FlowCoordinator(navigationController: nav)
+    return PromptViewController(coordinator: coordinator)
 }
+#endif

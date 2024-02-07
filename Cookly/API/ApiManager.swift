@@ -19,7 +19,7 @@ class ApiManager: NetworkProviding {
     )
     
     // MARK: - Methods
-    func generateRecipe(prompt: Prompt) async throws -> Recipe? {
+    func generateRecipe(prompt: Prompt) async -> Recipe? {
         
         var result: Recipe? = nil
         
