@@ -21,10 +21,9 @@ struct AuthButton: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 44)
                 .font(.system(size: 16, weight: .bold))
-                .background(isActive ? .blue : .gray)
-                .foregroundColor(isActive ? .white : .black)
+                .background(isActive ? .orange : .orange.opacity(0.2))
+                .foregroundColor(isActive ? .white : .gray)
                 .cornerRadius(8)
-                .padding(.bottom, 80)
                 .disabled(!isActive)
         })
         

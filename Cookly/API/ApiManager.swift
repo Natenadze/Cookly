@@ -10,7 +10,7 @@ import Supabase
 import AuthenticationServices
 
 
-class ApiManager: NetworkProviding {
+class ApiManager: NSObject, NetworkProviding {
     
     // MARK: - Properties
     private let supabase = SupabaseClient(
@@ -96,69 +96,24 @@ class ApiManager: NetworkProviding {
     }
 }
 
-
 // MARK: - Extension
 extension ApiManager: ASWebAuthenticationPresentationContextProviding {
-    
-    func isEqual(_ object: Any?) -> Bool {
-        guard let other = object as? ApiManager else { return false }
-        return self === other
-    }
-    
-    var hash: Int {
-        return ObjectIdentifier(self).hashValue
-    }
-    
-    var superclass: AnyClass? {
-        return ApiManager.self
-    }
-    
-    func `self`() -> Self {
-        return self
-    }
-    
-    func perform(_ aSelector: Selector!) -> Unmanaged<AnyObject>! {
-        return Unmanaged.passUnretained(self as AnyObject)
-    }
-    
-    func perform(_ aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
-        return Unmanaged.passUnretained(self as AnyObject)
-    }
-    
-    func perform(_ aSelector: Selector!, with object1: Any!, with object2: Any!) -> Unmanaged<AnyObject>! {
-        return Unmanaged.passUnretained(self as AnyObject)
-    }
-    
-    func isProxy() -> Bool {
-        return false
-    }
-    
-    func isKind(of aClass: AnyClass) -> Bool {
-        return type(of: self) === aClass
-    }
-    
-    func isMember(of aClass: AnyClass) -> Bool {
-        return self.isKind(of: aClass)
-    }
-    
-    func conforms(to aProtocol: Protocol) -> Bool {
-        return self.conforms(to: aProtocol)
-    }
-    
-    func responds(to aSelector: Selector!) -> Bool {
-        return self.responds(to: aSelector)
-    }
-    
-    var description: String {
-        return "SupaViewModel"
-    }
-    
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        var anchor: ASPresentationAnchor?
         
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            return windowScene.windows.first!
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        DispatchQueue.main.async {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                anchor = window
+            } else {
+                fatalError("No window available for presentation.")
+            }
+            semaphore.signal()
         }
         
-        fatalError("No window available for presentation.")
+        semaphore.wait()
+        return anchor!
     }
 }
