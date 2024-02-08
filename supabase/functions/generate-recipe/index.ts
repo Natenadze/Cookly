@@ -65,13 +65,15 @@ const CORS_HEADERS = {
 }
 
 const generateRecipe = async (params: PromptParams) => {
+  const prompt = promptTransformer(params)
+  console.log('params', JSON.stringify(params), prompt)
   const requestBody = JSON.stringify({
-    model: 'gpt-4',
+    model: 'gpt-3.5-turbo',
     temperature: 0.3,
     max_tokens: 1000,
     messages: [{
       role: 'user',
-      content: [{"type": "text", "text": promptTransformer(params)},]
+      content: [{"type": "text", "text": prompt},]
     }]
   })
 
@@ -85,31 +87,35 @@ const generateRecipe = async (params: PromptParams) => {
       body: requestBody
     })
 
+    console.log('OpenAI response', res)
     const data = await res.json()
     console.log(`OpenAI response for '${JSON.stringify(params)}', ${data.choices.length}`, data.choices[0].message.content)
 
     const recipe = JSON.parse(data.choices[0].message.content)
 
-    const imageRes = await fetch('https://api.openai.com/v1/images/generations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        "model": "dall-e-3",
-        "prompt": `Super realistic image of a dish: ${recipe.name} including those ingredients ${recipe.ingredients.map((i: any) => i.name).join(', ')}.`,
-        "n": 1,
-        "size": "1024x1024"
-      })
-    })
+    // const imageRes = await fetch('https://api.openai.com/v1/images/generations', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${OPENAI_API_KEY}`
+    //   },
+    //   body: JSON.stringify({
+    //     "model": "dall-e-3",
+    //     "prompt": `Super realistic image of a dish: ${recipe.name} including those ingredients ${recipe.ingredients.map((i: any) => i.name).join(', ')}.`,
+    //     "n": 1,
+    //     "size": "1024x1024"
+    //   })
+    // })
 
-    const imageData = await imageRes.json();
+    // const imageData = await imageRes.json();
 
-    console.log('imageRes', imageRes, imageData)
+    // console.log('imageRes', imageRes, imageData)
     return {
       ...recipe,
-      image: imageData.data[0].url
+      diets: params.diet,
+      mealType: params.mealType,
+      time: params.time,
+      image: ""
     }
   } catch (err) {
     console.log('Error when fetching/parsing OpenAI request')

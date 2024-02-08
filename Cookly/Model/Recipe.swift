@@ -1,5 +1,5 @@
 //
-//  Ingredients.swift
+//  Recipe.swift
 //  Cookly
 //
 //  Created by Davit Natenadze on 21.01.24.
@@ -26,14 +26,15 @@ struct Ingredient: Decodable {
 }
 
 
-enum MealType: String, Decodable {
+enum MealType: String, Codable {
     case Breakfast = "breakfast"
     case Lunch = "lunch"
     case Dinner = "dinner"
     case Snack = "snack"
 }
 
-enum Diet: String, Decodable {
+
+enum Diet: String, Codable {
     case Vegetarian = "vegetarian"
     case Vegan = "vegan"
     case LactoseFree = "lactose-free"
@@ -42,9 +43,3 @@ enum Diet: String, Decodable {
     case HighProtein = "high-protein"
     case LowCarb = "low-carb"
 }
-
-
-
-
-
-

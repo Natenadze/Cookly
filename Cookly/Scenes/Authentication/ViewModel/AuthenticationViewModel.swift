@@ -14,12 +14,21 @@ final class AuthenticationViewModel: ObservableObject {
     @Published var isRegistrationSuccessful = false
    
     // MARK: - Methods
-    func register(email: String, password: String) throws {
-        Task { await apiManager.register(email: email, password: password) }
-    } 
+    func register(email: String, password: String) async throws {
+        try await apiManager.register(email: email, password: password)
+    }
     
-    func login(email: String, password: String) throws {
-        Task { await apiManager.login(email: email, password: password) }
+    func login(email: String, password: String) async throws {
+//        do {
+            try await apiManager.login(email: email, password: password)
+//        } catch {
+//            print("viewModel error")
+//            throw AuthError.networkError
+//        }
+    }
+    
+    func loginWithGoogle() async throws {
+        try await apiManager.loginWithGoogle()
     }
     
 }
@@ -62,7 +71,7 @@ extension AuthenticationViewModel {
     }
     
     func specialCharMet(_ text: String) -> Bool {
-        let pattern = #"[^a-zA-Z0-9]+"#   // "[@:?!()$#§%,./\\\\]+" if explicitly defined needed
+        let pattern = #"[^a-zA-Z0-9]+"#   
         return text.range(of: pattern, options: .regularExpression) != nil
     }
 }

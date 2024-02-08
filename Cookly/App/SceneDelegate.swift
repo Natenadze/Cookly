@@ -11,14 +11,18 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    private var flowCoordinator: Coordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let authHostingController = UIHostingController(rootView: LoginView())
-        
-        window?.rootViewController = authHostingController
-//        window?.rootViewController = TabBarController()
+        let navigationController = UINavigationController()
+        flowCoordinator = FlowCoordinator(navigationController: navigationController)
+        flowCoordinator?.start()
+        //TODO: - add logic if user is already signed in
+        window?.rootViewController = navigationController
+//        window?.rootViewController = PromptViewController()
         window?.makeKeyAndVisible()
     }
 }
