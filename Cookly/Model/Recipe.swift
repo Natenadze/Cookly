@@ -34,7 +34,7 @@ enum MealType: String, Codable {
 }
 
 
-enum Diet: String, Codable {
+enum Diet: String, Codable, CaseIterable {
     case Vegetarian = "vegetarian"
     case Vegan = "vegan"
     case LactoseFree = "lactose-free"

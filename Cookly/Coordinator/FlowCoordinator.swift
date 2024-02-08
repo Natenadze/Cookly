@@ -15,6 +15,8 @@ protocol Coordinator: AnyObject {
     func showTabBarController()
     func pushRecipeViewController(recipe: Recipe)
     func pushPromptViewController()
+    func showTabBarAsRoot()
+    func logoutUser()
 }
 
 final class FlowCoordinator:  Coordinator {
@@ -33,11 +35,20 @@ final class FlowCoordinator:  Coordinator {
         showRootView()
     }
     
+    func logoutUser() {
+        showRootView()
+    }
+    
     private func showRootView() {
         let loginView = LoginView(coordinator: self)
         let hostingView = UIHostingController(rootView: loginView)
-        navigationController.pushViewController(hostingView, animated: true)
+        navigationController.setViewControllers([hostingView], animated: true)
     }
+    
+    func showTabBarAsRoot() {
+        let controller = TabBarController(coordinator: self)
+          navigationController.viewControllers = [controller] 
+      }
     
     func showRegistrationView() {
         let registration = RegistrationView(coordinator: self)

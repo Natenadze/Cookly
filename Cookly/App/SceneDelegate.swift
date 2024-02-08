@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     private var flowCoordinator: Coordinator?
+    @Injected(\.networkProvider) var apiManager: NetworkProviding
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -19,10 +20,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         let navigationController = UINavigationController()
         flowCoordinator = FlowCoordinator(navigationController: navigationController)
-        flowCoordinator?.start()
-        //TODO: - add logic if user is already signed in
-        window?.rootViewController = navigationController
-//        window?.rootViewController = PromptViewController()
-        window?.makeKeyAndVisible()
+        
+        Task {
+            if await apiManager.checkIfUserIsSignedIn() {
+                flowCoordinator?.showTabBarAsRoot()
+            } else {
+                flowCoordinator?.start()
+            }
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+        }
+        
     }
 }

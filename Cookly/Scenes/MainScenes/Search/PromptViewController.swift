@@ -69,7 +69,7 @@ final class PromptViewController: UIViewController {
     // MARK: - Methods
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         layoutUIElements()
         setupTitles()
         setupIngredientsInput()
@@ -84,7 +84,7 @@ final class PromptViewController: UIViewController {
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.style = .large
-        activityIndicator.color = .gray
+        activityIndicator.color = .label
         activityIndicator.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

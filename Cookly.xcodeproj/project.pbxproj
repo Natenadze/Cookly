@@ -108,14 +108,30 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+		5D14B33C2B75719300A5063E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5D14B33D2B75719A00A5063E /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
+			);
+			path = ShoppingList;
+			sourceTree = "<group>";
+		};
 		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
 			isa = PBXGroup;
 			children = (
 				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
 				5DDA81CB2B6048E500548411 /* Search */,
 				5D14B3392B750D6400A5063E /* Favorites */,
-				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
-				5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */,
+				5D14B33D2B75719A00A5063E /* ShoppingList */,
+				5D14B33C2B75719300A5063E /* Profile */,
 				5DDA81C82B60463D00548411 /* SwiftUI  */,
 			);
 			path = MainScenes;

@@ -26,6 +26,14 @@ class ApiManager: NSObject, NetworkProviding {
         supabaseKey: APIConstants.supaKey
     )
     
+    func checkIfUserIsSignedIn() async -> Bool  {
+        if let _ = try? await supabase.auth.user() {
+            return true
+        } 
+        return false
+    }
+
+    
     // MARK: - Methods
     func generateRecipe(prompt: Prompt) async -> Recipe? {
         
@@ -112,7 +120,12 @@ class ApiManager: NSObject, NetworkProviding {
     
     
     func signOut() async {
-        try? await supabase.auth.signOut()
+        do {
+            try await supabase.auth.signOut()
+            print("successful logout")
+        } catch {
+            print("fail logout")
+        }
     }
 }
 
