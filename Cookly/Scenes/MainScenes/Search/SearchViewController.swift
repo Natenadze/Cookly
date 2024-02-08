@@ -14,8 +14,6 @@ final class SearchViewController: UIViewController {
     weak var coordinator: Coordinator?
     
     // MARK: - UI Elements
-    
-    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +34,6 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = "Welcome to Cookly"
         label.font = .boldSystemFont(ofSize: 36)
-//        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -45,7 +42,6 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = "Search by ingredients"
         label.font = .systemFont(ofSize: 26)
-//        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -61,7 +57,6 @@ final class SearchViewController: UIViewController {
         searchButton.setImage(searchIcon, for: .normal)
         searchButton.imageView?.contentMode = .scaleAspectFit
         
-        // Set placeholder text
         searchButton.setTitle("Search", for: .normal)
         searchButton.setTitleColor(.gray, for: .normal)
         
@@ -74,12 +69,9 @@ final class SearchViewController: UIViewController {
             title: "Recent searches",
             images: [
                 UIImage(named: "dub")!,
-                UIImage(named: "dub")!,
-                UIImage(named: "dub")!,
-                UIImage(named: "dub")!,
-                UIImage(named: "dub")!,
-                UIImage(named: "dub")!,
-                UIImage(named: "dub")!,
+                UIImage(named: "test")!,
+                UIImage(named: "scr")!,
+                UIImage(named: "google")!,
             ]
         )
     )

@@ -8,8 +8,8 @@
 import Foundation
 
 protocol NetworkProviding {
-    func login(email: String, password: String) async
-    func register(email: String, password: String) async
-    func loginWithGoogle() async
+    func login(email: String, password: String) async throws
+    func register(email: String, password: String) async throws
+    func loginWithGoogle() async throws
     func generateRecipe(prompt: Prompt) async -> Recipe?
 }

@@ -9,6 +9,14 @@ import Foundation
 import Supabase
 import AuthenticationServices
 
+enum AuthError: Error {
+    case invalidCredentials
+    case userNotFound
+    case networkError
+    case serverError
+    case unknownError
+}
+
 
 class ApiManager: NSObject, NetworkProviding {
     
@@ -43,7 +51,7 @@ class ApiManager: NSObject, NetworkProviding {
     }
     
     
-    func login(email: String, password: String) async {
+    func login(email: String, password: String) async throws {
         do {
             try await supabase.auth.signIn(
                 email: email,
@@ -53,31 +61,42 @@ class ApiManager: NSObject, NetworkProviding {
         } catch {
             //TODO: - Handle error
             print("login error")
+            throw AuthError.invalidCredentials
         }
     }
     
     
-    func loginWithGoogle() async {
-        guard let url = try? await supabase.auth.getOAuthSignInURL(provider: .google) else { return }
+    func loginWithGoogle() async throws {
+        let url = try await supabase.auth.getOAuthSignInURL(provider: .google)
         
-        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: "cookly") { url, error in
-            guard let url else {
-                print("no url line 50")
-                return
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: "cookly") { callbackURL, error in
+                if let error {
+                    print(error.localizedDescription)
+                    continuation.resume(throwing: AuthError.serverError)
+                    return
+                }
+                
+                guard let callbackURL else {
+                    continuation.resume(throwing: AuthError.unknownError)
+                    return
+                }
+                
+                Task {
+                    do {
+                        _ = try await self.supabase.auth.session(from: callbackURL)
+                        continuation.resume(returning: ())
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                }
             }
-            
-            Task {
-                try await self.supabase.auth.session(from: url)
-                //TODO: - handle success
-                print("success google")
-            }
+            session.presentationContextProvider = self
+            session.start()
         }
-        
-        session.presentationContextProvider = self
-        session.start()
     }
     
-    func register(email: String, password: String) async {
+    func register(email: String, password: String) async throws {
         do {
             try await supabase.auth.signUp(
                 email: email,
@@ -87,6 +106,7 @@ class ApiManager: NSObject, NetworkProviding {
         } catch {
             //TODO: - Handle error
             print("registration error")
+            throw AuthError.unknownError
         }
     }
     
@@ -100,7 +120,6 @@ class ApiManager: NSObject, NetworkProviding {
 extension ApiManager: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         var anchor: ASPresentationAnchor?
-        
         let semaphore = DispatchSemaphore(value: 0)
         
         DispatchQueue.main.async {

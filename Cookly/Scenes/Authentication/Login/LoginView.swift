@@ -13,19 +13,33 @@ struct LoginView: View {
     @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
+    @State private var isLoading: Bool = false
+    
     let coordinator: Coordinator
     
     // MARK: - Body
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            textFieldStack
-            dontHaveAnAccountButton
-            LoginButtonView(title: "Login", action: LoginButtonTapped)
-            orDivider
-            googleSignInButton
-                .padding(.top, 20)
+        ZStack {
+            VStack(alignment: .leading, spacing: 16) {
+                textFieldStack
+                dontHaveAnAccountButton
+                LoginButtonView(title: "Login", action: loginButtonTapped)
+                orDivider
+                googleSignInButton
+                    .padding(.top, 20)
+            }
+            .padding(.horizontal, 16)
+            
+            if isLoading {
+                ZStack {
+                    Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)
+                    
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .orange))
+                        .scaleEffect(2)
+                }
+            }
         }
-        .padding(.horizontal, 16)
         
     }
 }
@@ -53,11 +67,7 @@ private extension LoginView {
     
     var googleSignInButton: some View {
         Button(action: {
-            Task {
-                try await viewModel.loginWithGoogle()
-                //                    coordinator.showTabBarController()
-                
-            }
+            googleLoginButtonTapped()
         }) {
             HStack {
                 Image("google")
@@ -112,18 +122,42 @@ private extension LoginView {
 
 // MARK: - Methods Extension
 extension LoginView {
-    func LoginButtonTapped() {
-        //TODO: - add navigation logic
-        coordinator.showTabBarController()
+    //TODO: - refactor redundancy
+    func loginButtonTapped() {
         Task {
-            //            do {
-            //                try viewModel.login(email: emailInput, password: passwordInput)
-            //            } catch {
-            //                print("Login Error")
-            //            }
+            isLoading = true
+            defer { isLoading = false }
+            
+            do {
+                try await viewModel.login(email: emailInput, password: passwordInput)
+                await MainActor.run {
+                    coordinator.showTabBarController()
+                }
+            } catch {
+                //TODO: - handle error
+                print("Login Error")
+            }
+        }
+    } 
+    
+    func googleLoginButtonTapped() {
+        Task {
+            isLoading = true
+            defer { isLoading = false }
+            
+            do {
+                try await viewModel.loginWithGoogle()
+                await MainActor.run {
+                    coordinator.showTabBarController()
+                }
+            } catch {
+                //TODO: - handle error
+                print("Google Login Error")
+            }
         }
     }
 }
+
 
 
 #Preview {

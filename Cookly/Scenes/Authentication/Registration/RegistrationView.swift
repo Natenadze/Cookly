@@ -59,14 +59,16 @@ private extension RegistrationView {
 extension RegistrationView {
     
     func SignUpButtonTapped() {
-        //TODO: - add dismiss logic
-        coordinator.goBackToLoginView()
-//        Task {
-//            do {
-//                try viewModel.register(email: emailInput, password: passwordInput)
-//            } catch {
-//                print("Registration Error")
-//            }
-//        }
+        Task {
+            do {
+                try await viewModel.register(email: emailInput, password: passwordInput)
+                await MainActor.run {
+                    coordinator.goBackToLoginView()
+                }
+            } catch {
+                //TODO: - handle error
+                print("Registration Error")
+            }
+        }
     }
 }
