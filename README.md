@@ -10,13 +10,13 @@ Cookly is an innovative app designed to revolutionize the way you cook at home. 
 - **Shopping List Integration:** Easily add ingredients to your shopping list directly from the recipe suggestions, making sure you never forget a crucial ingredient again.
 - **User-Friendly Interface:** Designed with simplicity in mind, AI Chef offers a seamless and intuitive user experience, making cooking more accessible and enjoyable.
 
-Contributing
+## Contributing
 We welcome contributions to AI Chef! If you have suggestions to improve the app or want to contribute code, please feel free to make a pull request or open an issue.
 
-License
+## License
 AI Chef is open-source software licensed under the MIT license.
 
-Contact
+## Contact
 For any further questions or feedback, please contact davit.natenadze@gmail.com
 
 Enjoy cooking with Cookly – your personal kitchen assistant!
