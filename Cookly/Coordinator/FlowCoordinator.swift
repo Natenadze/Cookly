@@ -12,7 +12,6 @@ protocol Coordinator: AnyObject {
     func start()
     func showRegistrationView()
     func goBackToLoginView()
-    func showTabBarController()
     func pushRecipeViewController(recipe: Recipe)
     func pushPromptViewController()
     func showTabBarAsRoot()
@@ -47,8 +46,8 @@ final class FlowCoordinator:  Coordinator {
     
     func showTabBarAsRoot() {
         let controller = TabBarController(coordinator: self)
-          navigationController.viewControllers = [controller] 
-      }
+        navigationController.viewControllers = [controller]
+    }
     
     func showRegistrationView() {
         let registration = RegistrationView(coordinator: self)
@@ -60,16 +59,11 @@ final class FlowCoordinator:  Coordinator {
         navigationController.popViewController(animated: true)
     }
     
-    func showTabBarController() {
-        let controller = TabBarController(coordinator: self)
-        controller.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(controller, animated: true)
-    }
-    
     func pushRecipeViewController(recipe: Recipe) {
         let controller = RecipeViewController(recipe: recipe)
         navigationController.pushViewController(controller, animated: true)
-    }    
+    }
+    
     func pushPromptViewController() {
         let controller = PromptViewController(coordinator: self)
         navigationController.pushViewController(controller, animated: true)

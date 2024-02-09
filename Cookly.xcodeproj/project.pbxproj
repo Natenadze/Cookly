@@ -124,10 +124,18 @@
 			path = ShoppingList;
 			sourceTree = "<group>";
 		};
-		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
+		5D14B3402B76A6DE00A5063E /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
+			isa = PBXGroup;
+			children = (
+				5D14B3402B76A6DE00A5063E /* TabBar */,
 				5DDA81CB2B6048E500548411 /* Search */,
 				5D14B3392B750D6400A5063E /* Favorites */,
 				5D14B33D2B75719A00A5063E /* ShoppingList */,

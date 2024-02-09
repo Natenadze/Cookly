@@ -27,9 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } else {
                 flowCoordinator?.start()
             }
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
         }
         
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
     }
 }

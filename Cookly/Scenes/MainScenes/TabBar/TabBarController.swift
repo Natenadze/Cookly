@@ -23,8 +23,10 @@ final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate = self
         setupAppearance()
         setupTabBars()
+        updateNavBarTitleForSelectedTab()
     }
 }
 
@@ -52,5 +54,27 @@ private extension TabBarController {
         profileVC.tabBarItem   = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 3)
         
         viewControllers = [searchVC, favoritesVC, listVC, profileVC]
+    }
+}
+
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        updateNavBarTitleForSelectedTab()
+    }
+    
+    func updateNavBarTitleForSelectedTab() {
+        guard let selectedVC = selectedViewController else { return }
+        
+        switch selectedVC {
+        case is SearchViewController:
+            navigationItem.title = ""
+        case is FavoritesViewController:
+            navigationItem.title = "Saved Recipes"
+        case is GroceryListViewController:
+            navigationItem.title = "Grocery List"
+        default:
+            navigationItem.title = "Settings"
+        }
     }
 }

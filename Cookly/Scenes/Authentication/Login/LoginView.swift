@@ -131,7 +131,7 @@ extension LoginView {
             do {
                 try await viewModel.login(email: emailInput, password: passwordInput)
                 await MainActor.run {
-                    coordinator.showTabBarController()
+                    coordinator.showTabBarAsRoot()
                 }
             } catch {
                 //TODO: - handle error
@@ -148,7 +148,7 @@ extension LoginView {
             do {
                 try await viewModel.loginWithGoogle()
                 await MainActor.run {
-                    coordinator.showTabBarController()
+                    coordinator.showTabBarAsRoot()
                 }
             } catch {
                 //TODO: - handle error
