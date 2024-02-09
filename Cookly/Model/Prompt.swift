@@ -13,4 +13,12 @@ struct Prompt: Encodable {
     var time: Int
     var diet: [Diet]
     var extendRecipe: Bool
+    
+    init(ingredients: [String] = [], mealType: MealType = .Lunch, time: Int = 30, diet: [Diet] = [], extendRecipe: Bool = false) {
+        self.ingredients = ingredients
+        self.mealType = mealType
+        self.time = time
+        self.diet = diet
+        self.extendRecipe = extendRecipe
+    }
 }

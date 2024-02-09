@@ -14,7 +14,7 @@ final class PromptViewController: UIViewController {
     weak var coordinator: Coordinator?
     @Injected(\.networkProvider) var apiManager: NetworkProviding
     
-    private var prompt = Prompt(ingredients: [], mealType: .Breakfast, time: 30, diet: [.Healthy], extendRecipe: false)
+    private var prompt = Prompt()
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
     
@@ -34,21 +34,16 @@ final class PromptViewController: UIViewController {
     private let mealTypeTitleLabel = UILabel()
     private let difficultyTitleLabel = UILabel()
     private let extendRecipeLabel = UILabel()
-    
     private let breakfastButton = UIButton(type: .system)
     private let lunchButton = UIButton(type: .system)
     private let dinnerButton = UIButton(type: .system)
     private let mealTypeStackView = UIStackView()
-    
     private let difficultyEasyButton = UIButton(type: .system)
     private let difficultyMediumButton = UIButton(type: .system)
     private let difficultyHardButton = UIButton(type: .system)
     private let difficultyStackView = UIStackView()
-    
     private let extendRecipeToggle = UISwitch()
-    
     private let searchButton = UIButton()
-    
     private var activityIndicator = UIActivityIndicatorView()
     
     // MARK: - LifeCycle
