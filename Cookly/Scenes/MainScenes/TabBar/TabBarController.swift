@@ -68,7 +68,7 @@ extension TabBarController: UITabBarControllerDelegate {
         
         switch selectedVC {
         case is HomeViewController:
-            navigationItem.title = ""
+            navigationItem.title = "Cookly"
         case is FavoritesViewController:
             navigationItem.title = "Saved Recipes"
         case is GroceryListViewController:

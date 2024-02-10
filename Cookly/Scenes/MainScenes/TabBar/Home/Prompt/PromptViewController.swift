@@ -130,7 +130,7 @@ final class PromptViewController: UIViewController {
     }
     
     
-    //TODO: - Refactor this 
+    //TODO: - Refactor this
     private func mealTypeSelected(_ sender: UIButton) {
         [breakfastButton, lunchButton, dinnerButton].forEach {
             $0.backgroundColor = $0 == sender ? .orange : .white
@@ -169,7 +169,6 @@ final class PromptViewController: UIViewController {
     private func setupExtendRecipeToggle() {
         extendRecipeToggle.isOn = false
         extendRecipeToggle.onTintColor = .orange
-        //        extendRecipeToggle.addTarget(self, action: #selector(extendRecipeToggled), for: .valueChanged)
         extendRecipeToggle.addAction(UIAction(handler: { [weak self] _ in
             self?.extendRecipeToggled(isOn: self?.extendRecipeToggle.isOn ?? false)
         }), for: .valueChanged)
@@ -203,17 +202,6 @@ final class PromptViewController: UIViewController {
     }
     
     
-    
-    private func addIngredient(_ ingredient: String) {
-        prompt.ingredients.append(ingredient)
-        let ingredientLabel = UILabel()
-        ingredientLabel.text = "\(ingredientCounter). \(ingredient)"
-        ingredientLabel.font = .boldSystemFont(ofSize: 18)
-        ingredientLabel.textColor = .gray
-        ingredientsStackView.addArrangedSubview(ingredientLabel)
-        ingredientCounter += 1
-        self.view.layoutIfNeeded()
-    }
     
     private func searchButtonTapped(_ sender: UIButton) {
         activityIndicator.startAnimating()
@@ -268,35 +256,124 @@ private extension PromptViewController {
             subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
             ingredientsTextField.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 20),
-            ingredientsTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            ingredientsTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             ingredientsTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             ingredientsStackView.topAnchor.constraint(equalTo: ingredientsTextField.bottomAnchor, constant: 10),
-            ingredientsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            ingredientsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            ingredientsStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            ingredientsStackView.trailingAnchor.constraint(equalTo: ingredientsTextField.trailingAnchor),
             
             mealTypeTitleLabel.topAnchor.constraint(equalTo: ingredientsStackView.bottomAnchor, constant: 20),
-            mealTypeTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mealTypeTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
             mealTypeStackView.topAnchor.constraint(equalTo: mealTypeTitleLabel.bottomAnchor, constant: 10),
-            mealTypeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mealTypeStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             mealTypeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             difficultyTitleLabel.topAnchor.constraint(equalTo: mealTypeStackView.bottomAnchor, constant: 20),
-            difficultyTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            difficultyTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
             difficultyStackView.topAnchor.constraint(equalTo: difficultyTitleLabel.bottomAnchor, constant: 10),
-            difficultyStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            difficultyStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             difficultyStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             extendRecipeLabel.topAnchor.constraint(equalTo: difficultyStackView.bottomAnchor, constant: 20),
-            extendRecipeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            extendRecipeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
             searchButton.topAnchor.constraint(equalTo: extendRecipeLabel.bottomAnchor, constant: 60),
-            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
         view.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+    }
+}
+
+// MARK: - Extension Ingredient adding setup
+extension PromptViewController {
+    
+    
+    private func addIngredient(_ ingredient: String) {
+        prompt.ingredients.append(ingredient)
+        let ingredientView = createIngredientView(at: ingredientCounter, with: ingredient, index: ingredientCounter - 1)
+        ingredientsStackView.addArrangedSubview(ingredientView)
+        ingredientCounter += 1
+        self.view.layoutIfNeeded()
+    }
+    
+    private func createIngredientView(at number: Int, with ingredient: String, index: Int) -> UIView {
+        let container = UIView()
+        container.layer.cornerRadius = 15
+        container.layer.borderWidth = 2
+        container.layer.borderColor = UIColor.gray.cgColor
+        container.translatesAutoresizingMaskIntoConstraints = false
+        
+        let numberLabel = UILabel()
+        numberLabel.text = "\(number)."
+        numberLabel.font = .boldSystemFont(ofSize: 16)
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let ingredientLabel = UILabel()
+        ingredientLabel.text = ingredient
+        ingredientLabel.font = .systemFont(ofSize: 14)
+        ingredientLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let deleteButton = UIButton(type: .system)
+        deleteButton.setTitle("x", for: .normal)
+        deleteButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        deleteButton.setTitleColor(.white, for: .normal)
+        deleteButton.backgroundColor = .gray
+        deleteButton.layer.cornerRadius = 9
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        let action = UIAction { [weak self] _ in
+            if let containerView = deleteButton.superview?.superview,
+               let index = self?.ingredientsStackView.arrangedSubviews.firstIndex(of: containerView) {
+                self?.deleteIngredient(index)
+            }
+        }
+        deleteButton.addAction(action, for: .touchUpInside)
+        let horizontalStackView = UIStackView(arrangedSubviews: [numberLabel, container])
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.spacing = 9
+        horizontalStackView.alignment = .center
+        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        container.addSubview(ingredientLabel)
+        container.addSubview(deleteButton)
+        
+        NSLayoutConstraint.activate([
+            ingredientLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            ingredientLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            ingredientLabel.trailingAnchor.constraint(lessThanOrEqualTo: deleteButton.leadingAnchor, constant: -10),
+            
+            deleteButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            deleteButton.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            deleteButton.widthAnchor.constraint(equalToConstant: 18),
+            deleteButton.heightAnchor.constraint(equalToConstant: 18),
+            
+            container.heightAnchor.constraint(equalToConstant: 30),
+        ])
+        
+        return horizontalStackView
+    }
+    
+    
+    private func deleteIngredient(_ index: Int) {
+        guard index < prompt.ingredients.count else { return }
+        prompt.ingredients.remove(at: index)
+        ingredientsStackView.arrangedSubviews[index].removeFromSuperview()
+        updateIngredientViews()
+    }
+    
+    
+    private func updateIngredientViews() {
+        ingredientCounter = 1
+        for view in ingredientsStackView.arrangedSubviews {
+            if let stackView = view as? UIStackView,
+               let numberLabel = stackView.arrangedSubviews.first(where: { $0 is UILabel }) as? UILabel {
+                numberLabel.text = "\(ingredientCounter)."
+                ingredientCounter += 1
+            }
+        }
     }
 }
 
@@ -311,6 +388,8 @@ extension PromptViewController: UITextFieldDelegate {
         return false
     }
 }
+
+
 
 
 #if DEBUG

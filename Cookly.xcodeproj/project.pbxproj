@@ -12,6 +12,8 @@
 		5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3482B76DB4F00A5063E /* BackgroundView.swift */; };
 		5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */; };
 		5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */; };
+		5D14B3532B7801C200A5063E /* LogoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3522B7801C200A5063E /* LogoContainerView.swift */; };
+		5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3542B7802C000A5063E /* SearchButtonView.swift */; };
 		5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */; };
 		5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */; };
 		5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */; };
@@ -56,6 +58,8 @@
 		5D14B3482B76DB4F00A5063E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCustomTableViewCell.swift; sourceTree = "<group>"; };
+		5D14B3522B7801C200A5063E /* LogoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoContainerView.swift; sourceTree = "<group>"; };
+		5D14B3542B7802C000A5063E /* SearchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButtonView.swift; sourceTree = "<group>"; };
 		5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +364,8 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */,
+				5D14B3522B7801C200A5063E /* LogoContainerView.swift */,
+				5D14B3542B7802C000A5063E /* SearchButtonView.swift */,
 				5D14B3512B77FB9700A5063E /* Prompt */,
 				5D14B34E2B779A1F00A5063E /* Recipe */,
 			);
@@ -470,9 +476,11 @@
 				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */,
+				5D14B3532B7801C200A5063E /* LogoContainerView.swift in Sources */,
 				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
 				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
+				5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */,
 				5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,

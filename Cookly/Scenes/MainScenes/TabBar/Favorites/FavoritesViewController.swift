@@ -31,7 +31,7 @@ final class FavoritesViewController: UIViewController{
         title = "Saved Recipes"
         
         tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.register(FavoritesTableViewCell.self, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 200
@@ -60,7 +60,7 @@ extension FavoritesViewController: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.identifier, for: indexPath) as? FavoritesTableViewCell else {
             fatalError("Cell not found")
         }
         cell.delegate = self
@@ -79,8 +79,8 @@ extension FavoritesViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - CustomTableViewCellDelegate
-extension FavoritesViewController: CustomTableViewCellDelegate {
+// MARK: - FavoritesTableViewCellDelegate
+extension FavoritesViewController: FavoritesTableViewCellDelegate {
     func isSavedButtonTapped() {
         viewModel.toggleSavedRecipe(with: rcp)
         tableView.reloadData()
@@ -88,7 +88,9 @@ extension FavoritesViewController: CustomTableViewCellDelegate {
 }
 
 // MARK: - Preview
+#if DEBUG
 #Preview {
     let coordinator = FlowCoordinator(navigationController: UINavigationController())
     return FavoritesViewController(coordinator: coordinator)
 }
+#endif

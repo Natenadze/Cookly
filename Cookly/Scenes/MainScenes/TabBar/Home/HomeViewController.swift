@@ -53,47 +53,9 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
+    private let logoContainerView = LogoContainerView()
+    private let searchButton = SearchButtonView()
     
-    private let logoContainerView: UIView = {
-        let logoContainerView = UIView()
-        logoContainerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "ai1")
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 80
-        image.clipsToBounds = true
-        
-        logoContainerView.addSubview(image)
-        
-        NSLayoutConstraint.activate([
-            image.centerXAnchor.constraint(equalTo: logoContainerView.centerXAnchor),
-            image.centerYAnchor.constraint(equalTo: logoContainerView.centerYAnchor),
-            image.widthAnchor.constraint(equalToConstant: 160),
-            image.heightAnchor.constraint(equalToConstant: 160),
-        ])
-        
-        return logoContainerView
-    }()
-    
-    
-    private let searchButton: UIButton = {
-        let searchButton = UIButton(type: .system)
-        searchButton.backgroundColor = .orange
-        searchButton.layer.cornerRadius = 30
-        searchButton.contentHorizontalAlignment = .center
-        searchButton.setTitle("Start Search", for: .normal)
-        searchButton.setTitleColor(.white, for: .normal)
-        searchButton.titleLabel?.font = .boldSystemFont(ofSize: 22)
-        searchButton.layer.shadowColor = UIColor.black.cgColor
-        searchButton.layer.shadowOffset = CGSize(width: 0, height: 4)
-        searchButton.layer.shadowRadius = 5
-        searchButton.layer.shadowOpacity = 0.4
-        return searchButton
-    }()
-    
-    //TODO: - ???
     private let recentSearchesScrollView = UIHostingController(
         rootView: ScrollableSection(
             title: "Recent searches",
@@ -210,11 +172,12 @@ extension HomeViewController: ScrollViewDelegate {
 }
 
 
+#if DEBUG
 // MARK: - Preview
 #Preview {
     let coordinator = FlowCoordinator(navigationController: UINavigationController())
     return HomeViewController(coordinator: coordinator)
 }
-
+#endif
 
 

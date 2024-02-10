@@ -1,5 +1,5 @@
 //
-//  FavoriteRecipesCustomTableViewCell.swift
+//  FavoritesTableViewCell.swift
 //  Cookly
 //
 //  Created by Davit Natenadze on 08.02.24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol CustomTableViewCellDelegate: AnyObject {
+protocol FavoritesTableViewCellDelegate: AnyObject {
     func isSavedButtonTapped()
 }
 
-class CustomTableViewCell: UITableViewCell {
+class FavoritesTableViewCell: UITableViewCell {
     
     static var identifier: String {
         .init(describing: self)
@@ -23,7 +23,7 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    weak var delegate: CustomTableViewCellDelegate?
+    weak var delegate: FavoritesTableViewCellDelegate?
 
     // MARK: - UI Components
     private let backgroundImageView: UIImageView = {
@@ -144,8 +144,9 @@ class CustomTableViewCell: UITableViewCell {
 }
 
 
+#if DEBUG
 // MARK: - Preview
 #Preview {
     FavoritesViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
 }
-
+#endif
