@@ -21,9 +21,18 @@ final class MainViewModel {
         allRecipes.append(recipe)
     } 
     
-    func updateSavedRecipes(with recipe: Recipe) {
-        allRecipes.append(recipe)
+    func toggleSavedRecipe(with recipe: Recipe) {
+        // Find the index of the recipe with the same name
+        if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
+            // If found, remove the recipe from savedRecipes
+            savedRecipes.remove(at: index)
+        } else {
+            // If not found, add the recipe to savedRecipes
+            savedRecipes.append(recipe)
+        }
     }
+
+    
     
     func generateRecipe(prompt: Prompt, completion: @escaping (Recipe?) -> Void) {
         allRecipes = recipesArray
@@ -40,5 +49,6 @@ final class MainViewModel {
 //                }
 //            }
 //        }
+        
     }
 }

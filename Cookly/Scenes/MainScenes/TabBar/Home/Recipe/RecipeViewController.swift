@@ -11,6 +11,7 @@ import UIKit
 final class RecipeViewController: UIViewController {
     
     // MARK: - Properties
+    @Injected(\.mainViewModel) var viewModel: MainViewModel
     private var recipe: Recipe
     
     // MARK: -  UI Components
@@ -19,6 +20,15 @@ final class RecipeViewController: UIViewController {
     var detailLabel = UILabel()
     var tableView = UITableView()
     
+    private let favoriteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .red
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
+    }()
     
     // MARK: - Lifecycle
     init(recipe: Recipe) {
@@ -42,6 +52,7 @@ final class RecipeViewController: UIViewController {
         setupNameLabel()
         setupDetailLabel()
         setupTableView()
+        setupFavoriteButton() 
         tableView.reloadData()
     }
 }
@@ -65,6 +76,38 @@ private extension RecipeViewController {
             imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 200)
         ])
     }
+    
+    private func setupFavoriteButton() {
+        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark" // Assuming `isSaved` indicates the favorite state
+        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+        
+        // Using addAction for iOS 14 and later
+        let action = UIAction { [weak self] _ in
+            self?.favoriteButtonTapped()
+        }
+        favoriteButton.addAction(action, for: .touchUpInside)
+        
+        imageView.addSubview(favoriteButton)
+        imageView.isUserInteractionEnabled = true // Allow interaction with the button in imageView
+        
+        // Constraints for the favoriteButton
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            favoriteButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -10),
+            favoriteButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 30),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+
+    
+    func favoriteButtonTapped() {
+        recipe.isSaved.toggle()
+        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
+        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+        viewModel.toggleSavedRecipe(with: recipe)
+    }
+
     
     func setupNameLabel() {
         nameLabel.text = recipe.name

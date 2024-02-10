@@ -17,6 +17,7 @@ struct Recipe: Decodable {
     let time: Int
     let servings: Int
     let mealType: MealType
+    var isSaved: Bool = false
 }
 
 struct Ingredient: Decodable {

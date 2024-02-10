@@ -10,8 +10,7 @@ import UIKit
 final class FavoritesViewController: UIViewController{
     
     // MARK: - Properties
-//    var favoriteRecipes = [Recipe]()
-    var favoriteRecipes = recipesArray
+    @Injected(\.mainViewModel) var viewModel: MainViewModel
     weak var coordinator: Coordinator?
     
     // MARK: - UI Components
@@ -46,31 +45,35 @@ final class FavoritesViewController: UIViewController{
         ])
     }
     
- 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
 }
 
 extension FavoritesViewController: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        favoriteRecipes.count
+        viewModel.savedRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
             fatalError("Cell not found")
         }
-        
-        let recipe = favoriteRecipes[indexPath.row]
-        //TODO: - refactor
-        cell.configure(
-            with: recipe.name,
-            imageName: "test",
-            time: "\(recipe.time) min"
-        )
+        cell.delegate = self
+        let recipe = viewModel.savedRecipes[indexPath.row]
+        cell.configure(with: recipe)
         return cell
     }
 }
 
-
+extension FavoritesViewController: CustomTableViewCellDelegate {
+    func isSavedButtonTapped() {
+        viewModel.toggleSavedRecipe(with: rcp)
+        tableView.reloadData()
+    }
+}
 
 // MARK: - Preview
 #Preview {

@@ -7,18 +7,23 @@
 
 import UIKit
 
+protocol CustomTableViewCellDelegate: AnyObject {
+    func isSavedButtonTapped()
+}
+
 class CustomTableViewCell: UITableViewCell {
     
     static var identifier: String {
         .init(describing: self)
     }
     
-    var isFavorite = false {
+    private var isSaved = false {
         didSet {
             updateFavoriteButton()
         }
     }
-    var onFavoriteTapped: (() -> Void)?
+    
+    weak var delegate: CustomTableViewCellDelegate?
 
     // MARK: - UI Components
     private let backgroundImageView: UIImageView = {
@@ -89,7 +94,9 @@ class CustomTableViewCell: UITableViewCell {
         containerView.addSubview(timeLabel)
         containerView.addSubview(favoriteButton)
         
-        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
+        favoriteButton.addAction(UIAction(handler: { _ in
+            self.favoriteButtonTapped()
+        }), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
@@ -112,25 +119,26 @@ class CustomTableViewCell: UITableViewCell {
         favoriteButton.frame = CGRect(x: containerView.frame.width - 40, y: 10, width: 30, height: 30)
     }
 
-    func configure(with title: String, imageName: String, time: String) {
-        backgroundImageView.image = UIImage(named: imageName)
-        titleLabel.text = title
-        timeLabel.text = time
+    func configure(with recipe: Recipe) {
+        backgroundImageView.image = UIImage(named: recipe.image)
+        titleLabel.text = recipe.name
+        timeLabel.text = String(recipe.time)
+        isSaved = recipe.isSaved
         updateFavoriteButton()
     }
     
     private func updateFavoriteButton() {
         UIView.transition(with: favoriteButton, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
             guard let self else { return }
-            let imageName = self.isFavorite ? "bookmark.fill" : "bookmark"
+            let imageName = self.isSaved ? "bookmark.fill" : "bookmark"
             self.favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
         }, completion: nil)
     }
 
 
-    @objc private func favoriteButtonTapped() {
-        isFavorite.toggle()
-        onFavoriteTapped?()
+    private func favoriteButtonTapped() {
+        isSaved.toggle()
+        delegate?.isSavedButtonTapped()
     }
 }
 
