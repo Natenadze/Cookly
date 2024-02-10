@@ -57,7 +57,7 @@ private extension TabBarController {
     }
 }
 
-
+// MARK: - Extension
 extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         updateNavBarTitleForSelectedTab()

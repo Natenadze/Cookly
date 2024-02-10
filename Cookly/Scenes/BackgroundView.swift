@@ -42,7 +42,7 @@ final class BackgroundView: UIView {
     
     private func setupLogoImageView() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "ai1")
+        logoImageView.image = UIImage(named: "logo")
         logoImageView.contentMode = .scaleAspectFill
         logoImageView.layer.cornerRadius = 100
         logoImageView.clipsToBounds = true
