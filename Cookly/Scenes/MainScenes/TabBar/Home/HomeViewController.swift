@@ -8,6 +8,9 @@
 import UIKit
 import SwiftUI
 
+protocol ScrollViewDelegate {
+    func navigateToRecipeViewController(recipe: Recipe)
+}
 
 final class HomeViewController: UIViewController {
     
@@ -158,7 +161,11 @@ extension HomeViewController {
     func setup() {
         view.backgroundColor = .systemGray6
         horizontalScrollSection.view.backgroundColor = .clear
+        horizontalScrollSection.rootView.delegate = self
+        horizontalScrollSection2.rootView.delegate = self
         horizontalScrollSection2.view.backgroundColor = .clear
+        
+        horizontalScrollSection.rootView.recipes = viewModel.savedRecipes
         
         searchButton.addAction(UIAction(handler: { _ in
             self.searchButtonTapped()
@@ -195,6 +202,15 @@ extension HomeViewController {
             searchButton.widthAnchor.constraint(equalToConstant: 200),
         ])
     }
+}
+
+// MARK: - extension ScrollViewDelegate
+extension HomeViewController: ScrollViewDelegate {
+    func navigateToRecipeViewController(recipe: Recipe) {
+        coordinator?.pushRecipeViewController(recipe: recipe)
+    }
+    
+    
 }
 
 

@@ -13,6 +13,7 @@ struct ScrollableSection: View {
     // MARK: - Properties
     let title: String
     var recipes: [Recipe]
+    var delegate: ScrollViewDelegate?
     
     // MARK: - Body
     var body: some View {
@@ -30,6 +31,9 @@ struct ScrollableSection: View {
                                 .frame(width: 140, height: 120)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                                 .padding(4)
+                                .onTapGesture {
+                                    delegate?.navigateToRecipeViewController(recipe: recipe)
+                                }
                             
                             Text(recipe.name)
                                 .padding(.trailing)
@@ -38,8 +42,6 @@ struct ScrollableSection: View {
                                 .lineLimit(2)
                                 .frame(width: 140, alignment: .leading)
                         }
-                    
-                           
                     }
                 }
             }
