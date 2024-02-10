@@ -26,11 +26,17 @@ struct RegistrationView: View {
 // MARK: - Extensions
 private extension RegistrationView {
     var mainContent: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            textFieldStack
-            SignUpButtonView(title: "Sign Up", action: SignUpButtonTapped)
+        ZStack {
+            BackgroundViewRepresentable()
+                .ignoresSafeArea()
+         
+            VStack(alignment: .leading, spacing: 16) {
+                textFieldStack
+                SignUpButtonView(title: "Sign Up", action: SignUpButtonTapped)
+            }
+            .padding(.horizontal, 16)
         }
-        .padding(.horizontal, 16)
+        
     }
 }
 

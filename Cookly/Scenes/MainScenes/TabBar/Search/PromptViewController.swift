@@ -12,7 +12,7 @@ final class PromptViewController: UIViewController {
     
     // MARK: - Properties
     weak var coordinator: Coordinator?
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.mainViewModel) var viewModel: MainViewModel
     
     private var prompt = Prompt()
     private let ingredientsLimit = 7
@@ -169,7 +169,10 @@ final class PromptViewController: UIViewController {
     private func setupExtendRecipeToggle() {
         extendRecipeToggle.isOn = false
         extendRecipeToggle.onTintColor = .orange
-        extendRecipeToggle.addTarget(self, action: #selector(extendRecipeToggled(_:)), for: .valueChanged)
+        //        extendRecipeToggle.addTarget(self, action: #selector(extendRecipeToggled), for: .valueChanged)
+        extendRecipeToggle.addAction(UIAction(handler: { [weak self] _ in
+            self?.extendRecipeToggled(isOn: self?.extendRecipeToggle.isOn ?? false)
+        }), for: .valueChanged)
         view.addSubview(extendRecipeToggle)
         
         extendRecipeToggle.translatesAutoresizingMaskIntoConstraints = false
@@ -199,7 +202,7 @@ final class PromptViewController: UIViewController {
         difficultyHardButton.setupButton(title: "Hard", action: difficultySelected)
     }
     
- 
+    
     
     private func addIngredient(_ ingredient: String) {
         prompt.ingredients.append(ingredient)
@@ -211,25 +214,22 @@ final class PromptViewController: UIViewController {
         ingredientCounter += 1
         self.view.layoutIfNeeded()
     }
-   
+    
     private func searchButtonTapped(_ sender: UIButton) {
         activityIndicator.startAnimating()
         
-        //TODO: - move this task to ViewModel
-        Task {
-            if let result = await apiManager.generateRecipe(prompt: prompt) {
-                await MainActor.run {
-                    self.activityIndicator.stopAnimating()
-                    self.coordinator?.pushRecipeViewController(recipe: result)
-                }
+        viewModel.generateRecipe(prompt: prompt) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.activityIndicator.stopAnimating()
+            
+            if let recipe = result {
+                self.coordinator?.pushRecipeViewController(recipe: recipe)
             } else {
-                await MainActor.run {
-                    self.activityIndicator.stopAnimating()
-                }
+                //TODO: - handle error
             }
         }
     }
-
     
     // MARK: - Selectors
     @objc func handleTapOutsideKeyboard(sender: UITapGestureRecognizer) {
@@ -238,8 +238,8 @@ final class PromptViewController: UIViewController {
         }
     }
     
-    @objc func extendRecipeToggled(_ sender: UISwitch) {
-        prompt.extendRecipe = sender.isOn
+    func extendRecipeToggled(isOn: Bool) {
+        prompt.extendRecipe = isOn
     }
 }
 

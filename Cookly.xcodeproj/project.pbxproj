@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */; };
+		5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3422B76AF4A00A5063E /* MainViewModel.swift */; };
+		5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3482B76DB4F00A5063E /* BackgroundView.swift */; };
 		5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */; };
-		5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */; };
+		5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */; };
 		5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */; };
 		5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */; };
 		5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */; };
@@ -48,8 +50,10 @@
 
 /* Begin PBXFileReference section */
 		5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesCustomTableViewCell.swift; sourceTree = "<group>"; };
+		5D14B3422B76AF4A00A5063E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		5D14B3482B76DB4F00A5063E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
 		5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -128,18 +132,26 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
+				5DDA81CB2B6048E500548411 /* Search */,
+				5D14B3392B750D6400A5063E /* Favorites */,
+				5D14B33D2B75719A00A5063E /* ShoppingList */,
+				5D14B33C2B75719300A5063E /* Profile */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		5D14B3412B76AF2300A5063E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D14B3422B76AF4A00A5063E /* MainViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
 			isa = PBXGroup;
 			children = (
 				5D14B3402B76A6DE00A5063E /* TabBar */,
-				5DDA81CB2B6048E500548411 /* Search */,
-				5D14B3392B750D6400A5063E /* Favorites */,
-				5D14B33D2B75719A00A5063E /* ShoppingList */,
-				5D14B33C2B75719300A5063E /* Profile */,
 				5DDA81C82B60463D00548411 /* SwiftUI  */,
 			);
 			path = MainScenes;
@@ -247,6 +259,7 @@
 				5DB8806E2B5BBDB5003FE18D /* App */,
 				5DB880A02B5BE852003FE18D /* API */,
 				5D3E3C4F2B5D6CEF00E3266E /* Model */,
+				5D14B3412B76AF2300A5063E /* ViewModel */,
 				5DB880A82B5BED04003FE18D /* Scenes */,
 				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
 				5DDA81B52B5EC49900548411 /* Coordinator */,
@@ -323,7 +336,8 @@
 		5DDA81CB2B6048E500548411 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */,
+				5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */,
+				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
 				5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */,
 			);
@@ -416,13 +430,15 @@
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
 				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
-				5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */,
+				5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */,
+				5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
 				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
+				5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */,
 				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
 				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,
 				5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */,

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "dub.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "chik-removebg-preview.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

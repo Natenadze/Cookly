@@ -18,7 +18,7 @@ enum AuthError: Error {
 }
 
 
-class ApiManager: NSObject, NetworkProviding {
+final class ApiManager: NSObject, NetworkProviding {
     
     // MARK: - Properties
     private let supabase = SupabaseClient(
@@ -26,17 +26,18 @@ class ApiManager: NSObject, NetworkProviding {
         supabaseKey: APIConstants.supaKey
     )
     
+
+    
+    
+    // MARK: - Methods
     func checkIfUserIsSignedIn() async -> Bool  {
         if let _ = try? await supabase.auth.user() {
             return true
-        } 
+        }
         return false
     }
-
     
-    // MARK: - Methods
     func generateRecipe(prompt: Prompt) async -> Recipe? {
-        
         var result: Recipe? = nil
         
         do {

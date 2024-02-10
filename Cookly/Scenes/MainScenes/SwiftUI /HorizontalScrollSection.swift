@@ -12,20 +12,34 @@ struct ScrollableSection: View {
     
     // MARK: - Properties
     let title: String
-    let images: [UIImage]
+    var recipes: [Recipe]
     
     // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
                 .font(.title)
+                .fontWeight(.semibold)
             
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(images, id: \.self) { image in
-                        Image(uiImage: image)
-                            .resizable()
-                            .frame(width: 100, height: 100)
+                    ForEach(recipes, id: \.name) { recipe in
+                        VStack(alignment: .leading) {
+                            Image("test")
+                                .resizable()
+                                .frame(width: 140, height: 120)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .padding(4)
+                            
+                            Text(recipe.name)
+                                .padding(.trailing)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .lineLimit(2)
+                                .frame(width: 140, alignment: .leading)
+                        }
+                    
+                           
                     }
                 }
             }
@@ -38,14 +52,6 @@ struct ScrollableSection: View {
 
 #if DEBUG
 #Preview {
-    ScrollableSection(title: "Recent Recipes", images: [
-        UIImage(named: "dish")!,
-        UIImage(named: "kha")!,
-        UIImage(named: "dish")!,
-        UIImage(named: "dish")!,
-        UIImage(named: "dish")!,
-        UIImage(named: "kha")!,
-        UIImage(named: "kha")!,
-    ])
+    ScrollableSection(title: "Recent Recipes", recipes: recipesArray)
 }
 #endif

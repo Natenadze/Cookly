@@ -43,7 +43,7 @@ private extension TabBarController {
     }
     
     func setupTabBars() {
-        let searchVC    = SearchViewController(coordinator: coordinator)
+        let searchVC    = HomeViewController(coordinator: coordinator)
         let favoritesVC = FavoritesViewController(coordinator: coordinator)
         let listVC      = GroceryListViewController()
         let profileVC   = ProfileViewController(coordinator: coordinator)
@@ -67,7 +67,7 @@ extension TabBarController: UITabBarControllerDelegate {
         guard let selectedVC = selectedViewController else { return }
         
         switch selectedVC {
-        case is SearchViewController:
+        case is HomeViewController:
             navigationItem.title = ""
         case is FavoritesViewController:
             navigationItem.title = "Saved Recipes"
