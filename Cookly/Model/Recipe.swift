@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Recipe: Decodable {
+struct Recipe: Codable {
     let name: String
     let image: String
     let ingredients: [Ingredient]
@@ -20,7 +20,7 @@ struct Recipe: Decodable {
     var isSaved: Bool = false
 }
 
-struct Ingredient: Decodable {
+struct Ingredient: Codable {
     let name: String
     let quantity: String
     let emoji: String
