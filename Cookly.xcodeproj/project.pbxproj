@@ -161,11 +161,18 @@
 			path = Recipe;
 			sourceTree = "<group>";
 		};
+		5D14B3512B77FB9700A5063E /* Prompt */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
+			);
+			path = Prompt;
+			sourceTree = "<group>";
+		};
 		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
 			isa = PBXGroup;
 			children = (
 				5D14B3402B76A6DE00A5063E /* TabBar */,
-				5DDA81C82B60463D00548411 /* SwiftUI  */,
 			);
 			path = MainScenes;
 			sourceTree = "<group>";
@@ -325,6 +332,8 @@
 		5DB880A82B5BED04003FE18D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
+				5DDA81C82B60463D00548411 /* SwiftUI  */,
 				5D3E3C3D2B5C2F7F00E3266E /* Authentication */,
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
@@ -351,8 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */,
-				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
-				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
+				5D14B3512B77FB9700A5063E /* Prompt */,
 				5D14B34E2B779A1F00A5063E /* Recipe */,
 			);
 			path = Home;

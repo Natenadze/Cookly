@@ -140,6 +140,7 @@ class CustomTableViewCell: UITableViewCell {
         isSaved.toggle()
         delegate?.isSavedButtonTapped()
     }
+    
 }
 
 

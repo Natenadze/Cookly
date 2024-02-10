@@ -32,7 +32,7 @@ final class MainViewModel {
     
     
     func generateRecipe(prompt: Prompt, completion: @escaping (Recipe?) -> Void) {
-        allRecipes = recipesArray
+        allRecipes.append(rcp)
         completion(rcp)
 //        Task {
 //            if let result = await apiManager.generateRecipe(prompt: prompt) {

@@ -33,6 +33,7 @@ final class FavoritesViewController: UIViewController{
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = 200
         view.addSubview(tableView)
         
@@ -52,6 +53,7 @@ final class FavoritesViewController: UIViewController{
     
 }
 
+// MARK: - UITableViewDataSource
 extension FavoritesViewController: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.savedRecipes.count
@@ -66,8 +68,18 @@ extension FavoritesViewController: UITableViewDataSource  {
         cell.configure(with: recipe)
         return cell
     }
+    
 }
 
+// MARK: - UITableViewDelegate
+extension FavoritesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipe = viewModel.savedRecipes[indexPath.row]
+        coordinator?.pushRecipeViewController(recipe: recipe)
+    }
+}
+
+// MARK: - CustomTableViewCellDelegate
 extension FavoritesViewController: CustomTableViewCellDelegate {
     func isSavedButtonTapped() {
         viewModel.toggleSavedRecipe(with: rcp)

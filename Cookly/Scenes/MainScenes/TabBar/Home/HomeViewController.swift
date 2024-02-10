@@ -94,14 +94,14 @@ final class HomeViewController: UIViewController {
     }()
     
     //TODO: - ???
-    private let horizontalScrollSection = UIHostingController(
+    private let recentSearchesScrollView = UIHostingController(
         rootView: ScrollableSection(
             title: "Recent searches",
             recipes: []
         )
     )
     
-    private let horizontalScrollSection2 = UIHostingController(
+    private let popularRecipesScrollView = UIHostingController(
         rootView: ScrollableSection(
             title: "Popular",
             recipes: recipesArray
@@ -134,9 +134,8 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Methods
     func updateUI() {
-        
-        horizontalScrollSection.rootView.recipes = viewModel.allRecipes
-        horizontalScrollSection.view.invalidateIntrinsicContentSize()
+        recentSearchesScrollView.rootView.recipes = viewModel.allRecipes
+        recentSearchesScrollView.view.invalidateIntrinsicContentSize()
     }
     
     func searchButtonTapped() {
@@ -160,12 +159,11 @@ extension HomeViewController {
     
     func setup() {
         view.backgroundColor = .systemGray6
-        horizontalScrollSection.view.backgroundColor = .clear
-        horizontalScrollSection.rootView.delegate = self
-        horizontalScrollSection2.rootView.delegate = self
-        horizontalScrollSection2.view.backgroundColor = .clear
-        
-        horizontalScrollSection.rootView.recipes = viewModel.savedRecipes
+        recentSearchesScrollView.view.backgroundColor = .clear
+        recentSearchesScrollView.rootView.delegate = self
+       
+        popularRecipesScrollView.view.backgroundColor = .clear
+        popularRecipesScrollView.rootView.delegate = self
         
         searchButton.addAction(UIAction(handler: { _ in
             self.searchButtonTapped()
@@ -177,8 +175,8 @@ extension HomeViewController {
         centeredStackView.addArrangedSubview(logoContainerView)
         centeredStackView.addArrangedSubview(searchButton)
         mainStackView.addArrangedSubview(centeredStackView)
-        mainStackView.addArrangedSubview(horizontalScrollSection.view)
-        mainStackView.addArrangedSubview(horizontalScrollSection2.view)
+        mainStackView.addArrangedSubview(recentSearchesScrollView.view)
+        mainStackView.addArrangedSubview(popularRecipesScrollView.view)
         scrollView.addSubview(mainStackView)
         view.addSubview(scrollView)
         
@@ -186,7 +184,7 @@ extension HomeViewController {
             scrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 4),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
             
             mainStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -209,8 +207,6 @@ extension HomeViewController: ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe) {
         coordinator?.pushRecipeViewController(recipe: recipe)
     }
-    
-    
 }
 
 

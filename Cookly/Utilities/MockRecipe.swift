@@ -36,7 +36,7 @@ let rcp = Recipe(
 
 let rcp1 = Recipe(
     name: "Classic Margherita Pizza",
-    image: "pizza_image",
+    image: "pizza",
     ingredients: [
         Ingredient(name: "Pizza Dough", quantity: "1 ball", emoji: "🍕"),
         Ingredient(name: "Tomato Sauce", quantity: "1/2 cup", emoji: "🍅"),
@@ -62,7 +62,7 @@ let rcp1 = Recipe(
 
 let rcp2 = Recipe(
     name: "Grilled Lemon Herb Chicken",
-    image: "chicken_image",
+    image: "chicken",
     ingredients: [
         Ingredient(name: "Chicken Breasts", quantity: "4", emoji: "🍗"),
         Ingredient(name: "Lemon", quantity: "1", emoji: "🍋"),
