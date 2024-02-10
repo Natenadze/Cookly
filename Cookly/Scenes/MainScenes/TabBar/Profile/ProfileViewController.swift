@@ -161,5 +161,6 @@ private extension ProfileViewController {
 
 // MARK: - Preview
 #Preview {
-    ProfileViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    let coordinator = FlowCoordinator(navigationController: UINavigationController())
+    return ProfileViewController(coordinator: coordinator)
 }

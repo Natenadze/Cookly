@@ -30,7 +30,6 @@ enum MealType: String, Codable {
     case Breakfast = "breakfast"
     case Lunch = "lunch"
     case Dinner = "dinner"
-    case Snack = "snack"
 }
 
 

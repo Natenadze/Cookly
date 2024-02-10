@@ -106,6 +106,8 @@ private extension RecipeViewController {
         ])
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: "IngredientCell")
+        
     }
 }
 
@@ -133,19 +135,24 @@ extension RecipeViewController: UITableViewDataSource {
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
         if indexPath.section == 0 {
+            let ingredientCell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as! IngredientTableViewCell
             let ingredient = recipe.ingredients[indexPath.row]
-            cell.textLabel?.text = "\(ingredient.emoji)  \(ingredient.name) - \(ingredient.quantity)"
-        } else {
+            ingredientCell.configure(with: ingredient)
+            return ingredientCell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            var content = cell.defaultContentConfiguration()
+            
             let instruction = recipe.instructions[indexPath.row]
-            cell.textLabel?.text = "Step \(indexPath.row + 1): \(instruction)"
-            cell.textLabel?.numberOfLines = 0
+            content.attributedText = NSAttributedString.attributedStringForInstruction(stepNumber: indexPath.row + 1, instruction: instruction)
+            content.textProperties.numberOfLines = 0
+            cell.contentConfiguration = content
+            return cell
         }
-        
-        return cell
     }
 }
 
@@ -154,3 +161,5 @@ extension RecipeViewController: UITableViewDataSource {
 #Preview {
     RecipeViewController(recipe: rcp)
 }
+
+

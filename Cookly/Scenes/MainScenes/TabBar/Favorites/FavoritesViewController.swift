@@ -74,5 +74,6 @@ extension FavoritesViewController: UITableViewDataSource  {
 
 // MARK: - Preview
 #Preview {
-    FavoritesViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    let coordinator = FlowCoordinator(navigationController: UINavigationController())
+    return FavoritesViewController(coordinator: coordinator)
 }

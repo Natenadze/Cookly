@@ -122,7 +122,7 @@ class CustomTableViewCell: UITableViewCell {
     private func updateFavoriteButton() {
         UIView.transition(with: favoriteButton, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
             guard let self else { return }
-            let imageName = self.isFavorite ? "heart.fill" : "heart"
+            let imageName = self.isFavorite ? "bookmark.fill" : "bookmark"
             self.favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
         }, completion: nil)
     }

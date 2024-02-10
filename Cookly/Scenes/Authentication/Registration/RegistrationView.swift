@@ -78,3 +78,8 @@ extension RegistrationView {
         }
     }
 }
+
+// MARK: - Preview
+#Preview {
+    RegistrationView(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+}

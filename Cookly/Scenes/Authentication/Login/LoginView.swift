@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct BackgroundViewRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> BackgroundView {
         BackgroundView()
@@ -45,6 +43,7 @@ struct LoginView: View {
                     
             }
             .padding(.horizontal, 16)
+            .padding(.top,80)
             
             if isLoading {
                 ZStack {

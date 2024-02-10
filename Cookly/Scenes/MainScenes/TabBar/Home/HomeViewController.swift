@@ -80,17 +80,13 @@ final class HomeViewController: UIViewController {
         searchButton.backgroundColor = .orange
         searchButton.layer.cornerRadius = 30
         searchButton.contentHorizontalAlignment = .center
-        
         searchButton.setTitle("Start Search", for: .normal)
         searchButton.setTitleColor(.white, for: .normal)
         searchButton.titleLabel?.font = .boldSystemFont(ofSize: 22)
-        
         searchButton.layer.shadowColor = UIColor.black.cgColor
         searchButton.layer.shadowOffset = CGSize(width: 0, height: 4)
         searchButton.layer.shadowRadius = 5
         searchButton.layer.shadowOpacity = 0.4
-        
-        
         return searchButton
     }()
     
@@ -99,6 +95,13 @@ final class HomeViewController: UIViewController {
         rootView: ScrollableSection(
             title: "Recent searches",
             recipes: []
+        )
+    )
+    
+    private let horizontalScrollSection2 = UIHostingController(
+        rootView: ScrollableSection(
+            title: "Popular",
+            recipes: recipesArray
         )
     )
     
@@ -117,8 +120,6 @@ final class HomeViewController: UIViewController {
         setup()
         layout()
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -140,6 +141,7 @@ final class HomeViewController: UIViewController {
     }
     
     func animateSearchButton() {
+        searchButton.transform = CGAffineTransform.identity
         UIView.animate(withDuration: 0.8,
                        delay: 0,
                        options: [.repeat, .autoreverse, .allowUserInteraction],
@@ -147,6 +149,7 @@ final class HomeViewController: UIViewController {
             self.searchButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }, completion: nil)
     }
+
 }
 
 // MARK: - Extension
@@ -155,6 +158,7 @@ extension HomeViewController {
     func setup() {
         view.backgroundColor = .systemGray6
         horizontalScrollSection.view.backgroundColor = .clear
+        horizontalScrollSection2.view.backgroundColor = .clear
         
         searchButton.addAction(UIAction(handler: { _ in
             self.searchButtonTapped()
@@ -167,6 +171,7 @@ extension HomeViewController {
         centeredStackView.addArrangedSubview(searchButton)
         mainStackView.addArrangedSubview(centeredStackView)
         mainStackView.addArrangedSubview(horizontalScrollSection.view)
+        mainStackView.addArrangedSubview(horizontalScrollSection2.view)
         scrollView.addSubview(mainStackView)
         view.addSubview(scrollView)
         
@@ -195,7 +200,8 @@ extension HomeViewController {
 
 // MARK: - Preview
 #Preview {
-    HomeViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    let coordinator = FlowCoordinator(navigationController: UINavigationController())
+    return HomeViewController(coordinator: coordinator)
 }
 
 

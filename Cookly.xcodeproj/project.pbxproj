@@ -10,6 +10,8 @@
 		5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */; };
 		5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3422B76AF4A00A5063E /* MainViewModel.swift */; };
 		5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3482B76DB4F00A5063E /* BackgroundView.swift */; };
+		5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */; };
+		5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */; };
 		5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */; };
 		5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */; };
 		5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */; };
@@ -52,6 +54,8 @@
 		5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesCustomTableViewCell.swift; sourceTree = "<group>"; };
 		5D14B3422B76AF4A00A5063E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5D14B3482B76DB4F00A5063E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCustomTableViewCell.swift; sourceTree = "<group>"; };
 		5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
@@ -132,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
-				5DDA81CB2B6048E500548411 /* Search */,
+				5DDA81CB2B6048E500548411 /* Home */,
 				5D14B3392B750D6400A5063E /* Favorites */,
 				5D14B33D2B75719A00A5063E /* ShoppingList */,
 				5D14B33C2B75719300A5063E /* Profile */,
@@ -146,6 +150,15 @@
 				5D14B3422B76AF4A00A5063E /* MainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5D14B34E2B779A1F00A5063E /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */,
+				5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */,
+			);
+			path = Recipe;
 			sourceTree = "<group>";
 		};
 		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
@@ -233,6 +246,7 @@
 			children = (
 				5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */,
 				5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */,
+				5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,15 +347,15 @@
 			path = "SwiftUI ";
 			sourceTree = "<group>";
 		};
-		5DDA81CB2B6048E500548411 /* Search */ = {
+		5DDA81CB2B6048E500548411 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */,
 				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
-				5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */,
+				5D14B34E2B779A1F00A5063E /* Recipe */,
 			);
-			path = Search;
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +448,7 @@
 				5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
+				5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
 				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
@@ -443,6 +458,7 @@
 				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,
 				5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */,
 				5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */,
+				5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */,
 				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */,

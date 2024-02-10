@@ -36,7 +36,7 @@ struct AuthTextField: View {
         .autocorrectionDisabled()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(.white.opacity(0.8))
+                .fill(.white)
                 .stroke(Color.gray.opacity(0.3))
         )
     }
