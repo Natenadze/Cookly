@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Recipe: Decodable {
+struct Recipe: Codable {
     let name: String
     let image: String
     let ingredients: [Ingredient]
@@ -17,9 +17,10 @@ struct Recipe: Decodable {
     let time: Int
     let servings: Int
     let mealType: MealType
+    var isSaved: Bool = false
 }
 
-struct Ingredient: Decodable {
+struct Ingredient: Codable {
     let name: String
     let quantity: String
     let emoji: String
@@ -30,11 +31,10 @@ enum MealType: String, Codable {
     case Breakfast = "breakfast"
     case Lunch = "lunch"
     case Dinner = "dinner"
-    case Snack = "snack"
 }
 
 
-enum Diet: String, Codable {
+enum Diet: String, Codable, CaseIterable {
     case Vegetarian = "vegetarian"
     case Vegan = "vegan"
     case LactoseFree = "lactose-free"

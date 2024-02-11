@@ -33,7 +33,11 @@ extension InjectedValues {
     }
     
     var authViewModel: AuthenticationViewModel {
-        get { Self[ViewModelKey.self] }
-        set { Self[ViewModelKey.self] = newValue }
+        get { Self[AuthViewModelKey.self] }
+        set { Self[AuthViewModelKey.self] = newValue }
+    } 
+    var mainViewModel: MainViewModel {
+        get { Self[MainViewModelKey.self] }
+        set { Self[MainViewModelKey.self] = newValue }
     }
 }

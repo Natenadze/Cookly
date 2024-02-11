@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */; };
+		5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3422B76AF4A00A5063E /* MainViewModel.swift */; };
+		5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3482B76DB4F00A5063E /* BackgroundView.swift */; };
+		5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */; };
+		5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */; };
+		5D14B3532B7801C200A5063E /* LogoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3522B7801C200A5063E /* LogoContainerView.swift */; };
+		5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3542B7802C000A5063E /* SearchButtonView.swift */; };
 		5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */; };
-		5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */; };
+		5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */; };
 		5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */; };
 		5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */; };
 		5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */; };
@@ -40,14 +47,23 @@
 		5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A32B5BE86B003FE18D /* InjectedValues.swift */; };
 		5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A52B5BE876003FE18D /* InjectionKey.swift */; };
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
+		5DC38A712B78DCC9003860BB /* CustomLinearGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */; };
+		5DC38A742B78DE16003860BB /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A732B78DE16003860BB /* SaveButtonView.swift */; };
 		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
 		5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */; };
 		5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesCustomTableViewCell.swift; sourceTree = "<group>"; };
+		5D14B3422B76AF4A00A5063E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		5D14B3482B76DB4F00A5063E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCustomTableViewCell.swift; sourceTree = "<group>"; };
+		5D14B3522B7801C200A5063E /* LogoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoContainerView.swift; sourceTree = "<group>"; };
+		5D14B3542B7802C000A5063E /* SearchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButtonView.swift; sourceTree = "<group>"; };
 		5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
 		5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +91,8 @@
 		5DB880A32B5BE86B003FE18D /* InjectedValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedValues.swift; sourceTree = "<group>"; };
 		5DB880A52B5BE876003FE18D /* InjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
+		5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinearGradientView.swift; sourceTree = "<group>"; };
+		5DC38A732B78DE16003860BB /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
 		5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollSection.swift; sourceTree = "<group>"; };
@@ -97,15 +115,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
+		5D14B3392B750D6400A5063E /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				5D14B33A2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift */,
+				5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		5D14B33C2B75719300A5063E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5D14B33D2B75719A00A5063E /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
+			);
+			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		5D14B3402B76A6DE00A5063E /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
-				5DDA81CB2B6048E500548411 /* Search */,
-				5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */,
-				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
-				5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */,
-				5DDA81C82B60463D00548411 /* SwiftUI  */,
+				5DDA81CB2B6048E500548411 /* Home */,
+				5D14B3392B750D6400A5063E /* Favorites */,
+				5D14B33D2B75719A00A5063E /* ShoppingList */,
+				5D14B33C2B75719300A5063E /* Profile */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		5D14B3412B76AF2300A5063E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D14B3422B76AF4A00A5063E /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5D14B34E2B779A1F00A5063E /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */,
+				5D14B34F2B779A3800A5063E /* RecipeCustomTableViewCell.swift */,
+			);
+			path = Recipe;
+			sourceTree = "<group>";
+		};
+		5D14B3512B77FB9700A5063E /* Prompt */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
+			);
+			path = Prompt;
+			sourceTree = "<group>";
+		};
+		5D3E3C392B5C20CA00E3266E /* MainScenes */ = {
+			isa = PBXGroup;
+			children = (
+				5D14B3402B76A6DE00A5063E /* TabBar */,
 			);
 			path = MainScenes;
 			sourceTree = "<group>";
@@ -186,6 +261,7 @@
 			children = (
 				5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */,
 				5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */,
+				5D14B34C2B77991400A5063E /* NSAttributedString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,9 +288,11 @@
 				5DB8806E2B5BBDB5003FE18D /* App */,
 				5DB880A02B5BE852003FE18D /* API */,
 				5D3E3C4F2B5D6CEF00E3266E /* Model */,
+				5D14B3412B76AF2300A5063E /* ViewModel */,
 				5DB880A82B5BED04003FE18D /* Scenes */,
 				5DB880A72B5BEC70003FE18D /* DependencyInjection */,
 				5DDA81B52B5EC49900548411 /* Coordinator */,
+				5DC38A722B78DCE2003860BB /* Components */,
 				5D3E3C3A2B5C215500E3266E /* Utilities */,
 				5DB8806D2B5BBDAA003FE18D /* Files */,
 				5DB8805A2B5B2115003FE18D /* Info.plist */,
@@ -263,10 +341,21 @@
 		5DB880A82B5BED04003FE18D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
+				5DDA81C82B60463D00548411 /* SwiftUI  */,
 				5D3E3C3D2B5C2F7F00E3266E /* Authentication */,
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5DC38A722B78DCE2003860BB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
+				5DC38A732B78DE16003860BB /* SaveButtonView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		5DDA81B52B5EC49900548411 /* Coordinator */ = {
@@ -285,14 +374,16 @@
 			path = "SwiftUI ";
 			sourceTree = "<group>";
 		};
-		5DDA81CB2B6048E500548411 /* Search */ = {
+		5DDA81CB2B6048E500548411 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5D3E3C312B5C1FB600E3266E /* SearchViewController.swift */,
-				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
-				5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */,
+				5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */,
+				5D14B3522B7801C200A5063E /* LogoContainerView.swift */,
+				5D14B3542B7802C000A5063E /* SearchButtonView.swift */,
+				5D14B3512B77FB9700A5063E /* Prompt */,
+				5D14B34E2B779A1F00A5063E /* Recipe */,
 			);
-			path = Search;
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,22 +472,31 @@
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
 				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
-				5D3E3C322B5C1FB600E3266E /* SearchViewController.swift in Sources */,
+				5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */,
+				5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
+				5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
 				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
+				5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */,
 				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
 				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,
+				5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */,
 				5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */,
+				5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */,
+				5DC38A742B78DE16003860BB /* SaveButtonView.swift in Sources */,
 				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */,
+				5D14B3532B7801C200A5063E /* LogoContainerView.swift in Sources */,
+				5DC38A712B78DCC9003860BB /* CustomLinearGradientView.swift in Sources */,
 				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
 				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
+				5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */,
 				5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,

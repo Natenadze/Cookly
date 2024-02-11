@@ -12,9 +12,10 @@ protocol Coordinator: AnyObject {
     func start()
     func showRegistrationView()
     func goBackToLoginView()
-    func showTabBarController()
     func pushRecipeViewController(recipe: Recipe)
     func pushPromptViewController()
+    func showTabBarAsRoot()
+    func logoutUser()
 }
 
 final class FlowCoordinator:  Coordinator {
@@ -33,10 +34,19 @@ final class FlowCoordinator:  Coordinator {
         showRootView()
     }
     
+    func logoutUser() {
+        showRootView()
+    }
+    
     private func showRootView() {
         let loginView = LoginView(coordinator: self)
         let hostingView = UIHostingController(rootView: loginView)
-        navigationController.pushViewController(hostingView, animated: true)
+        navigationController.setViewControllers([hostingView], animated: true)
+    }
+    
+    func showTabBarAsRoot() {
+        let controller = TabBarController(coordinator: self)
+        navigationController.viewControllers = [controller]
     }
     
     func showRegistrationView() {
@@ -49,16 +59,11 @@ final class FlowCoordinator:  Coordinator {
         navigationController.popViewController(animated: true)
     }
     
-    func showTabBarController() {
-        let controller = TabBarController(coordinator: self)
-        controller.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(controller, animated: true)
-    }
-    
     func pushRecipeViewController(recipe: Recipe) {
         let controller = RecipeViewController(recipe: recipe)
         navigationController.pushViewController(controller, animated: true)
-    }    
+    }
+    
     func pushPromptViewController() {
         let controller = PromptViewController(coordinator: self)
         navigationController.pushViewController(controller, animated: true)

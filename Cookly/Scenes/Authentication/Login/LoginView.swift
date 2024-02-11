@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+struct BackgroundViewRepresentable: UIViewRepresentable {
+    func makeUIView(context: Context) -> BackgroundView {
+        BackgroundView()
+    }
+    
+    func updateUIView(_ uiView: BackgroundView, context: Context) {
+        
+    }
+}
+
+
 struct LoginView: View {
     
     // MARK: - Properties
@@ -20,15 +31,19 @@ struct LoginView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 16) {
+            BackgroundViewRepresentable()
+                .ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing:20) {
                 textFieldStack
                 dontHaveAnAccountButton
                 LoginButtonView(title: "Login", action: loginButtonTapped)
-                orDivider
-                googleSignInButton
-                    .padding(.top, 20)
+                orDivider.padding(.top, 20)
+                googleSignInButton.padding(.top, 20)
+                    
             }
             .padding(.horizontal, 16)
+            .padding(.top,80)
             
             if isLoading {
                 ZStack {
@@ -53,7 +68,6 @@ private extension LoginView {
             Text("Or")
                 .font(.headline)
                 .foregroundColor(.gray)
-                .padding(.top, 30)
             line
         }
     }
@@ -131,14 +145,14 @@ extension LoginView {
             do {
                 try await viewModel.login(email: emailInput, password: passwordInput)
                 await MainActor.run {
-                    coordinator.showTabBarController()
+                    coordinator.showTabBarAsRoot()
                 }
             } catch {
                 //TODO: - handle error
                 print("Login Error")
             }
         }
-    } 
+    }
     
     func googleLoginButtonTapped() {
         Task {
@@ -148,7 +162,7 @@ extension LoginView {
             do {
                 try await viewModel.loginWithGoogle()
                 await MainActor.run {
-                    coordinator.showTabBarController()
+                    coordinator.showTabBarAsRoot()
                 }
             } catch {
                 //TODO: - handle error
@@ -159,7 +173,7 @@ extension LoginView {
 }
 
 
-
+// MARK: - Preview
 #Preview {
     LoginView(coordinator: FlowCoordinator(navigationController: UINavigationController()))
 }

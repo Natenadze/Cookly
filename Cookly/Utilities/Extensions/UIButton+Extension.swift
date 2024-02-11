@@ -11,11 +11,11 @@ extension UIButton {
     
     func setupButton(title: String, action: @escaping (UIButton) -> Void) {
         setTitle(title, for: .normal)
-        setTitleColor(.orange, for: .normal)
-        backgroundColor = .white
+        setTitleColor(.systemOrange, for: .normal)
+        backgroundColor = .systemBackground
         layer.cornerRadius = 8
         layer.borderWidth = 1
-        layer.borderColor = UIColor.orange.cgColor
+        layer.borderColor = UIColor.systemOrange.cgColor
         heightAnchor.constraint(equalToConstant: 40).isActive = true
         addAction(UIAction {  _ in
             print(self.titleLabel?.text ?? "empty button title")
