@@ -283,7 +283,6 @@ private extension PromptViewController {
         [searchButton, titleLabel, subTitleLabel, mealTypeTitleLabel, difficultyTitleLabel, extendRecipeLabel, ingredientsTextField, ingredientsStackView, mealTypeStackView, difficultyStackView, extendRecipeToggle, errorLabel].forEach(view.addSubview)
     }
     
-    
     func layout() {
         NSLayoutConstraint.activate([
             
@@ -333,7 +332,6 @@ private extension PromptViewController {
 
 // MARK: - Extension Ingredient adding setup
 extension PromptViewController {
-    
     
     private func addIngredient(_ ingredient: String) {
         viewModel.prompt.ingredients.append(ingredient)

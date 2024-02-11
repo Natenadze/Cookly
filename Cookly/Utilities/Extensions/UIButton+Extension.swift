@@ -18,8 +18,7 @@ extension UIButton {
         layer.borderColor = UIColor.systemOrange.cgColor
         heightAnchor.constraint(equalToConstant: 40).isActive = true
         addAction(UIAction {  _ in
-            print(self.titleLabel?.text ?? "empty button title")
-                action(self)
+            action(self)
         }, for: .touchUpInside)
     }
 }

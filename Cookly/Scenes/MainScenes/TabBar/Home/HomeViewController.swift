@@ -167,8 +167,7 @@ extension HomeViewController {
             
             logoContainerView.heightAnchor.constraint(equalToConstant: 160),
             logoContainerView.widthAnchor.constraint(equalToConstant: 160),
-            logoContainerView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
-            logoContainerView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
+            logoContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             searchButton.heightAnchor.constraint(equalToConstant: 60),
             searchButton.widthAnchor.constraint(equalToConstant: 200),

@@ -8,10 +8,10 @@
 import UIKit
 
 protocol FavoritesTableViewCellDelegate: AnyObject {
-    func isSavedButtonTapped()
+    func isSavedButtonTapped(recipe: Recipe)
 }
 
-class FavoritesTableViewCell: UITableViewCell {
+final class FavoritesTableViewCell: UITableViewCell {
     
     static var identifier: String {
         .init(describing: self)
@@ -22,6 +22,8 @@ class FavoritesTableViewCell: UITableViewCell {
             updateFavoriteButton()
         }
     }
+    
+    private var recipe: Recipe?
     
     weak var delegate: FavoritesTableViewCellDelegate?
     
@@ -120,6 +122,7 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     func configure(with recipe: Recipe) {
+        self.recipe = recipe
         backgroundImageView.image = UIImage(named: recipe.image)
         titleLabel.text = recipe.name
         timeLabel.text = String(recipe.time)
@@ -136,15 +139,8 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     private func favoriteButtonTapped() {
-        delegate?.isSavedButtonTapped()
+        guard let recipe else { return }
+        delegate?.isSavedButtonTapped(recipe: recipe)
     }
     
 }
-
-
-#if DEBUG
-// MARK: - Preview
-#Preview {
-    FavoritesViewController(coordinator: FlowCoordinator(navigationController: UINavigationController()))
-}
-#endif

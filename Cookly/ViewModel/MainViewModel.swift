@@ -70,22 +70,19 @@ final class MainViewModel {
     }
 
     
-    
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {
-        allRecipes.append(rcp)
-        completion(rcp)
-//        Task {
-//            if let result = await apiManager.generateRecipe(prompt: prompt) {
-//                await MainActor.run {
-//                    self.updateAllRecipes(with: result)
-//                    completion(result)
-//                }
-//            } else {
-//                await MainActor.run {
-//                    completion(nil)
-//                }
-//            }
-//        }
-        
+//        completion(rcp)
+        Task {
+            if let result = await apiManager.generateRecipe(prompt: prompt) {
+                await MainActor.run {
+                    self.updateAllRecipes(with: result)
+                    completion(result)
+                }
+            } else {
+                await MainActor.run {
+                    completion(nil)
+                }
+            }
+        }
     }
 }

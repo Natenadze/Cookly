@@ -20,7 +20,7 @@ extension NSAttributedString {
         let instructionText = NSAttributedString(
             string: instruction,
             attributes: [
-                .font: UIFont.systemFont(ofSize: 14)
+                .font: UIFont.systemFont(ofSize: 16)
             ])
         
         attributedString.append(instructionText)

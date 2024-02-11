@@ -347,6 +347,7 @@
 		5DC38A722B78DCE2003860BB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5D14B3542B7802C000A5063E /* SearchButtonView.swift */,
 				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
 				5DC38A732B78DE16003860BB /* SaveButtonView.swift */,
@@ -377,7 +378,6 @@
 			children = (
 				5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */,
 				5D14B3522B7801C200A5063E /* LogoContainerView.swift */,
-				5D14B3542B7802C000A5063E /* SearchButtonView.swift */,
 				5D14B3512B77FB9700A5063E /* Prompt */,
 				5D14B34E2B779A1F00A5063E /* Recipe */,
 			);

@@ -46,12 +46,6 @@ final class RecipeViewController: UIViewController {
         setupUI()
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        let imageName = !recipe.isSaved ? "bookmark.fill" : "bookmark"
-    //        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
-    //    }
-    
     // MARK: - Methods
     func setupUI() {
         view.backgroundColor = .systemGray6
@@ -143,6 +137,7 @@ private extension RecipeViewController {
     
     func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
@@ -196,18 +191,28 @@ extension RecipeViewController: UITableViewDataSource {
             var content = cell.defaultContentConfiguration()
             
             let instruction = recipe.instructions[indexPath.row]
-            content.attributedText = NSAttributedString.attributedStringForInstruction(stepNumber: indexPath.row + 1, instruction: instruction)
+            content.attributedText = .attributedStringForInstruction(stepNumber: indexPath.row + 1,
+                                                                     instruction: instruction)
             content.textProperties.numberOfLines = 0
             cell.contentConfiguration = content
             return cell
         }
     }
+    
+    
+}
+
+extension RecipeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
+    }
 }
 
 
+#if DEBUG
 // MARK: - Preview
 #Preview {
     RecipeViewController(recipe: rcp)
 }
-
+#endif
 
