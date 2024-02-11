@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 final class RecipeViewController: UIViewController {
     
     // MARK: - Properties
@@ -45,6 +46,12 @@ final class RecipeViewController: UIViewController {
         setupUI()
     }
     
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        let imageName = !recipe.isSaved ? "bookmark.fill" : "bookmark"
+    //        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+    //    }
+    
     // MARK: - Methods
     func setupUI() {
         view.backgroundColor = .systemGray6
@@ -78,19 +85,17 @@ private extension RecipeViewController {
     }
     
     private func setupFavoriteButton() {
-        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark" // Assuming `isSaved` indicates the favorite state
+        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
         favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
         
-        // Using addAction for iOS 14 and later
-        let action = UIAction { [weak self] _ in
+        
+        favoriteButton.addAction(UIAction(handler: {[weak self] _  in
             self?.favoriteButtonTapped()
-        }
-        favoriteButton.addAction(action, for: .touchUpInside)
+        }), for: .touchUpInside)
         
         imageView.addSubview(favoriteButton)
-        imageView.isUserInteractionEnabled = true // Allow interaction with the button in imageView
+        imageView.isUserInteractionEnabled = true
         
-        // Constraints for the favoriteButton
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             favoriteButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -10),
@@ -99,15 +104,15 @@ private extension RecipeViewController {
             favoriteButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
-
+    
     
     func favoriteButtonTapped() {
         recipe.isSaved.toggle()
+        viewModel.toggleSavedRecipe(with: recipe)
         let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
         favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
-        viewModel.toggleSavedRecipe(with: recipe)
     }
-
+    
     
     func setupNameLabel() {
         nameLabel.text = recipe.name

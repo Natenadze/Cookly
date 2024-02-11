@@ -11,6 +11,7 @@ final class MainViewModel {
     
     // MARK: - Properties
     @Injected(\.networkProvider) var apiManager: NetworkProviding
+    var prompt = Prompt()
     
     var allRecipes = [Recipe]() {
         didSet {
@@ -29,6 +30,11 @@ final class MainViewModel {
     }
     
     // MARK: - Methods
+    func removeIngredientFromPromptAtIndex(_ index: Int) {
+        prompt.ingredients.remove(at: index)
+    }
+    
+    
     private func saveRecipes(recipes: [Recipe], key: String) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(recipes) {
@@ -57,15 +63,18 @@ final class MainViewModel {
     
     func toggleSavedRecipe(with recipe: Recipe) {
         if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
+//            savedRecipes[index].isSaved = false
             savedRecipes.remove(at: index)
         } else {
-            savedRecipes.append(recipe)
+            var newRecipe = recipe
+//            newRecipe.isSaved = true
+            savedRecipes.append(newRecipe)
         }
     }
 
     
     
-    func generateRecipe(prompt: Prompt, completion: @escaping (Recipe?) -> Void) {
+    func generateRecipe(completion: @escaping (Recipe?) -> Void) {
         allRecipes.append(rcp)
         completion(rcp)
 //        Task {

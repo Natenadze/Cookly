@@ -14,7 +14,7 @@ final class PromptViewController: UIViewController {
     weak var coordinator: Coordinator?
     @Injected(\.mainViewModel) var viewModel: MainViewModel
     
-    private var prompt = Prompt()
+    
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
     
@@ -54,7 +54,6 @@ final class PromptViewController: UIViewController {
         label.textColor = .white
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.textAlignment = .natural
-//        label.text = " 🌶️ - Please pick at least 2 ingredients"
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.isHidden = true
@@ -156,11 +155,11 @@ final class PromptViewController: UIViewController {
         
         switch sender.titleLabel?.text {
         case "Breakfast":
-            prompt.mealType = .Breakfast
+            viewModel.prompt.mealType = .Breakfast
         case "Lunch":
-            prompt.mealType = .Lunch
+            viewModel.prompt.mealType = .Lunch
         default:
-            prompt.mealType = .Dinner
+            viewModel.prompt.mealType = .Dinner
         }
         
     }
@@ -174,11 +173,11 @@ final class PromptViewController: UIViewController {
         
         switch sender.titleLabel?.text {
         case "Easy":
-            prompt.time = 20
+            viewModel.prompt.time = 20
         case "Medium":
-            prompt.time = 40
+            viewModel.prompt.time = 40
         default:
-            prompt.time = 60
+            viewModel.prompt.time = 60
         }
     }
     
@@ -217,17 +216,15 @@ final class PromptViewController: UIViewController {
         difficultyHardButton.setupButton(title: "Hard", action: difficultySelected)
     }
     
-    
-    
     private func searchButtonTapped(_ sender: UIButton) {
-        guard prompt.ingredients.count >= 2 else {
+        guard viewModel.prompt.ingredients.count >= 2 else {
             showErrorLabel(text: " 🌶️ - Please pick at least 2 ingredients")
             return
         }
         
         activityIndicator.startAnimating()
         
-        viewModel.generateRecipe(prompt: prompt) { [weak self] result in
+        viewModel.generateRecipe() { [weak self] result in
             guard let self = self else { return }
             
             self.activityIndicator.stopAnimating()
@@ -249,7 +246,7 @@ final class PromptViewController: UIViewController {
     }
     
     func extendRecipeToggled(isOn: Bool) {
-        prompt.extendRecipe = isOn
+        viewModel.prompt.extendRecipe = isOn
     }
     
     private func showErrorLabel(text: String) {
@@ -258,7 +255,7 @@ final class PromptViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.transform = CGAffineTransform(
                 translationX: 0,
-                y: self.errorLabel.frame.height + self.view.safeAreaInsets.top
+                y: self.errorLabel.frame.height + self.view.safeAreaInsets.top - 10
             )
         }) { _ in
             UIView.animate(withDuration: 0.5, delay: 3.0, options: [], animations: {
@@ -339,7 +336,7 @@ extension PromptViewController {
     
     
     private func addIngredient(_ ingredient: String) {
-        prompt.ingredients.append(ingredient)
+        viewModel.prompt.ingredients.append(ingredient)
         let ingredientView = createIngredientView(at: ingredientCounter, with: ingredient, index: ingredientCounter - 1)
         ingredientsStackView.addArrangedSubview(ingredientView)
         ingredientCounter += 1
@@ -404,8 +401,8 @@ extension PromptViewController {
     
     
     private func deleteIngredient(_ index: Int) {
-        guard index < prompt.ingredients.count else { return }
-        prompt.ingredients.remove(at: index)
+        guard index < viewModel.prompt.ingredients.count else { return }
+        viewModel.removeIngredientFromPromptAtIndex(index)
         ingredientsStackView.arrangedSubviews[index].removeFromSuperview()
         updateIngredientViews()
     }
@@ -427,7 +424,7 @@ extension PromptViewController {
 extension PromptViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let ingredient = textField.text, !ingredient.isEmpty, prompt.ingredients.count < ingredientsLimit {
+        if let ingredient = textField.text, !ingredient.isEmpty, viewModel.prompt.ingredients.count < ingredientsLimit {
             addIngredient(ingredient)
             textField.text = nil
         }

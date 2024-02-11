@@ -8,35 +8,6 @@
 import UIKit
 import SwiftUI
 
-import UIKit
-
-import UIKit
-
-class CustomLinearGradientView: UIView {
-    // Define the gradient colors with the desired opacity for orange
-    var colors: [CGColor] = [UIColor.orange.cgColor, UIColor.white.cgColor]
-    
-    // Adjust the colorLocations to change the proportion of the gradient occupied by each color
-    var colorLocations: [CGFloat] = [0.0, 0.5] // Orange occupies 30% from the top, and then it transitions to white
-
-    override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        guard let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations) else { return }
-        
-        // Define start and end points for the gradient
-        let startPoint = CGPoint(x: bounds.midX, y: bounds.minY)
-        let endPoint = CGPoint(x: bounds.midX, y: bounds.maxY)
-        
-        // Create the gradient
-        context.drawLinearGradient(gradient,
-                                   start: startPoint,
-                                   end: endPoint,
-                                   options: [])
-    }
-}
-
-
 
 protocol ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe)
@@ -154,7 +125,7 @@ final class HomeViewController: UIViewController {
             self.searchButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }, completion: nil)
     }
-
+    
 }
 
 // MARK: - Extension
@@ -164,7 +135,7 @@ extension HomeViewController {
         view.backgroundColor = .systemGray6
         recentSearchesScrollView.view.backgroundColor = .clear
         recentSearchesScrollView.rootView.delegate = self
-       
+        
         popularRecipesScrollView.view.backgroundColor = .clear
         popularRecipesScrollView.rootView.delegate = self
         
