@@ -86,7 +86,7 @@ extension ProfileViewController {
         case .preferences:
             showColorPreferences()
         case .account:
-            deleteUser()
+            confirmDeleteUser()
         default:
             performLogout()
         }
@@ -169,6 +169,20 @@ private extension ProfileViewController {
                 print("Error delete user")
             }
         }
+    }
+    
+    func confirmDeleteUser() {
+        let alertController = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account? This action cannot be undone.", preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteUser()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
 
