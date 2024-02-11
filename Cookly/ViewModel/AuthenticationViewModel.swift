@@ -12,23 +12,56 @@ final class AuthenticationViewModel: ObservableObject {
     // MARK: - Properties
     @Injected(\.networkProvider) var apiManager: NetworkProviding
     @Published var isRegistrationSuccessful = false
-   
-    // MARK: - Methods
+
+    
+
+    // MARK: - Auth Methods
     func register(email: String, password: String) async throws {
-        try await apiManager.register(email: email, password: password)
+        try validateCredentials(email: email, password: password)
+        do {
+            try await apiManager.register(email: email, password: password)
+            isRegistrationSuccessful = true
+        } catch {
+            throw AuthError.serverError
+        }
     }
     
     func login(email: String, password: String) async throws {
-//        do {
+        try validateCredentials(email: email, password: password)
+        do {
             try await apiManager.login(email: email, password: password)
-//        } catch {
-//            print("viewModel error")
-//            throw AuthError.networkError
-//        }
+        } catch {
+            throw AuthError.serverError
+        }
     }
     
     func loginWithGoogle() async throws {
         try await apiManager.loginWithGoogle()
+    }
+    
+    // MARK: - Helper method
+    private func validateCredentials(email: String, password: String) throws {
+        guard isEmailValid(email) else {
+            throw AuthError.invalidEmail
+        }
+        
+        guard isPasswordCriteriaMet(text: password) else {
+            throw AuthError.invalidPassword
+        }
+    }
+    
+ 
+    
+    func errorMessage(for error: AuthError) -> String {
+        switch error {
+        case .invalidCredentials: return "Invalid credentials. Please try again."
+        case .userNotFound: return "User not found."
+        case .networkError: return "Network error. Please check your connection."
+        case .serverError: return "Server error. Please try again later."
+        case .unknownError: return "Unknown error occurred."
+        case .invalidEmail: return "Invalid email format."
+        case .invalidPassword: return "Password does not meet the criteria."
+        }
     }
     
 }
@@ -44,7 +77,12 @@ extension AuthenticationViewModel {
         digitMet(text) &&
         specialCharMet(text)
     }
-
+    
+    func isEmailValid(_ email: String) -> Bool {
+        let emailPattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        return email.range(of: emailPattern, options: .regularExpression) != nil
+    }
+    
     // MARK: - Password Criteria Methods
     func lengthCriteriaMet(_ text: String) -> Bool {
         text.count >= 8 && text.count <= 32
@@ -53,7 +91,7 @@ extension AuthenticationViewModel {
     func noSpaceCriteriaMet(_ text: String) -> Bool {
         text.rangeOfCharacter(from: NSCharacterSet.whitespaces) == nil
     }
-        
+    
     func lengthAndNoSpaceMet(_ text: String) -> Bool {
         lengthCriteriaMet(text) && noSpaceCriteriaMet(text)
     }
@@ -71,7 +109,7 @@ extension AuthenticationViewModel {
     }
     
     func specialCharMet(_ text: String) -> Bool {
-        let pattern = #"[^a-zA-Z0-9]+"#   
+        let pattern = #"[^a-zA-Z0-9]+"#
         return text.range(of: pattern, options: .regularExpression) != nil
     }
 }

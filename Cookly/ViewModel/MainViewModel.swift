@@ -63,12 +63,9 @@ final class MainViewModel {
     
     func toggleSavedRecipe(with recipe: Recipe) {
         if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
-//            savedRecipes[index].isSaved = false
             savedRecipes.remove(at: index)
         } else {
-            var newRecipe = recipe
-//            newRecipe.isSaved = true
-            savedRecipes.append(newRecipe)
+            savedRecipes.append(recipe)
         }
     }
 

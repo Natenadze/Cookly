@@ -10,6 +10,8 @@ import Supabase
 import AuthenticationServices
 
 enum AuthError: Error {
+    case invalidEmail
+    case invalidPassword
     case invalidCredentials
     case userNotFound
     case networkError
@@ -69,8 +71,8 @@ final class ApiManager: NSObject, NetworkProviding {
             print("success login")
         } catch {
             //TODO: - Handle error
-            print("login error")
-            throw AuthError.invalidCredentials
+//            throw AuthError.invalidCredentials
+            throw AuthError.networkError
         }
     }
     

@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-struct BackgroundViewRepresentable: UIViewRepresentable {
-    func makeUIView(context: Context) -> BackgroundView {
-        BackgroundView()
-    }
-    
-    func updateUIView(_ uiView: BackgroundView, context: Context) {
-        
-    }
-}
-
 
 struct LoginView: View {
     
@@ -25,25 +15,37 @@ struct LoginView: View {
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var isLoading: Bool = false
+    @State var errorMessage: String = ""
+    @State var showErrorBanner: Bool = false
+ 
     
     let coordinator: Coordinator
     
     // MARK: - Body
     var body: some View {
+        
         ZStack {
             BackgroundViewRepresentable()
                 .ignoresSafeArea()
+            VStack {
+                ErrorBannerView(isVisible: $showErrorBanner, message: errorMessage)
+                    .padding()
+                
+                Spacer()
+            }
             
             VStack(alignment: .leading, spacing:20) {
+                
                 textFieldStack
                 dontHaveAnAccountButton
                 LoginButtonView(title: "Login", action: loginButtonTapped)
                 orDivider.padding(.top, 20)
                 googleSignInButton.padding(.top, 20)
-                    
+                
             }
             .padding(.horizontal, 16)
             .padding(.top,80)
+            
             
             if isLoading {
                 ZStack {
@@ -56,6 +58,15 @@ struct LoginView: View {
             }
         }
         
+    }
+    
+    func showError(error: Error) {
+        if let authError = error as? AuthError {
+            DispatchQueue.main.async {
+                errorMessage = viewModel.errorMessage(for: authError)
+                showErrorBanner = true
+            }
+        }
     }
 }
 
@@ -126,11 +137,7 @@ private extension LoginView {
     }
     
     func LoginButtonView(title: String, action: @escaping () -> Void) -> some View {
-        AuthButton(
-            title: title,
-            action: action,
-            isActive: viewModel.isPasswordCriteriaMet(text: passwordInput)
-        )
+        AuthButton(title: title, action: action)
     }
 }
 
@@ -148,8 +155,7 @@ extension LoginView {
                     coordinator.showTabBarAsRoot()
                 }
             } catch {
-                //TODO: - handle error
-                print("Login Error")
+                showError(error: error)
             }
         }
     }
@@ -171,6 +177,7 @@ extension LoginView {
         }
     }
 }
+
 
 
 // MARK: - Preview

@@ -14,6 +14,8 @@ struct RegistrationView: View {
     @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
+    @State private var errorMessage: String = ""
+    @State private var showErrorBanner: Bool = false
     let coordinator: Coordinator
     
     // MARK: - Body
@@ -29,6 +31,13 @@ private extension RegistrationView {
         ZStack {
             BackgroundViewRepresentable()
                 .ignoresSafeArea()
+            
+            VStack {
+                ErrorBannerView(isVisible: $showErrorBanner, message: errorMessage)
+                    .padding()
+                
+                Spacer()
+            }
          
             VStack(alignment: .leading, spacing: 16) {
                 textFieldStack
@@ -53,11 +62,7 @@ private extension RegistrationView {
     }
     
     func SignUpButtonView(title: String, action: @escaping () -> Void) -> some View {
-        AuthButton(
-            title: title,
-            action: action,
-            isActive: viewModel.isPasswordCriteriaMet(text: passwordInput)
-        )
+        AuthButton(title: title, action: action)
     }
 }
 
@@ -72,8 +77,20 @@ extension RegistrationView {
                     coordinator.goBackToLoginView()
                 }
             } catch {
-                //TODO: - handle error
-                print("Registration Error")
+                showError(error: error)
+            }
+        }
+    }
+}
+
+extension RegistrationView {
+    
+    
+    func showError(error: Error) {
+        if let authError = error as? AuthError {
+            DispatchQueue.main.async {
+                errorMessage = viewModel.errorMessage(for: authError)
+                showErrorBanner = true
             }
         }
     }

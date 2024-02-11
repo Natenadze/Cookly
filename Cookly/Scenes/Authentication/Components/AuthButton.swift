@@ -12,7 +12,6 @@ struct AuthButton: View {
     // MARK: - Properties
     let title: String
     let action: () -> Void
-    var isActive: Bool
     
     // MARK: - Body
     var body: some View {
@@ -21,14 +20,10 @@ struct AuthButton: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 44)
                 .font(.system(size: 16, weight: .bold))
-//                .background(isActive ? .orange : .orange.opacity(0.2))
                 .background(.orange)
-//                .foregroundColor(isActive ? .white : .gray)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-                .disabled(!isActive)
         })
-        
     }
 }
 
@@ -37,6 +32,6 @@ struct AuthButton: View {
 #Preview {
     AuthButton(title: "Login", action: {
         print("login button tapped")
-    }, isActive: true)
+    })
 }
 #endif

@@ -49,6 +49,8 @@
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
 		5DC38A712B78DCC9003860BB /* CustomLinearGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */; };
 		5DC38A742B78DE16003860BB /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A732B78DE16003860BB /* SaveButtonView.swift */; };
+		5DC38A762B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */; };
+		5DC38A782B78FFE2003860BB /* ErrorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A772B78FFE2003860BB /* ErrorBannerView.swift */; };
 		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
 		5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */; };
 		5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */; };
@@ -93,6 +95,8 @@
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
 		5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinearGradientView.swift; sourceTree = "<group>"; };
 		5DC38A732B78DE16003860BB /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
+		5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBackgroundViewRepresentable.swift; sourceTree = "<group>"; };
+		5DC38A772B78FFE2003860BB /* ErrorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBannerView.swift; sourceTree = "<group>"; };
 		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
 		5DDA81B62B5EC4B100548411 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollSection.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				5D14B3422B76AF4A00A5063E /* MainViewModel.swift */,
+				5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -198,7 +203,6 @@
 		5D3E3C3D2B5C2F7F00E3266E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				5D3E3C492B5D2DBA00E3266E /* ViewModel */,
 				5D3E3C4A2B5D2DCA00E3266E /* Registration */,
 				5D3E3C4D2B5D2DE500E3266E /* Login */,
 				5D3E3C402B5C30EF00E3266E /* Components */,
@@ -213,14 +217,6 @@
 				5D3E3C472B5D1C3F00E3266E /* AuthButton.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		5D3E3C492B5D2DBA00E3266E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5D3E3C4A2B5D2DCA00E3266E /* Registration */ = {
@@ -341,7 +337,6 @@
 		5DB880A82B5BED04003FE18D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5DDA81C82B60463D00548411 /* SwiftUI  */,
 				5D3E3C3D2B5C2F7F00E3266E /* Authentication */,
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
@@ -352,8 +347,10 @@
 		5DC38A722B78DCE2003860BB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
 				5DC38A732B78DE16003860BB /* SaveButtonView.swift */,
+				5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -370,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				5DDA81C92B60465700548411 /* HorizontalScrollSection.swift */,
+				5DC38A772B78FFE2003860BB /* ErrorBannerView.swift */,
 			);
 			path = "SwiftUI ";
 			sourceTree = "<group>";
@@ -469,6 +467,7 @@
 			files = (
 				5D3E3C512B5D6D0600E3266E /* Recipe.swift in Sources */,
 				5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */,
+				5DC38A782B78FFE2003860BB /* ErrorBannerView.swift in Sources */,
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
 				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
@@ -500,6 +499,7 @@
 				5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,
+				5DC38A762B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift in Sources */,
 				5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */,
 				5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */,
 				5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */,
