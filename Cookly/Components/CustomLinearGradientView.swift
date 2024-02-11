@@ -8,7 +8,7 @@
 import UIKit
 
 class CustomLinearGradientView: UIView {
-    var colors: [CGColor] = [UIColor.orange.cgColor, UIColor.white.cgColor]
+    var colors: [CGColor] = [UIColor.systemOrange.cgColor, UIColor.white.cgColor]
     var colorLocations: [CGFloat] = [0.0, 0.5]
 
     override func draw(_ rect: CGRect) {

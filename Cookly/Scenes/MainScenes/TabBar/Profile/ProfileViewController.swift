@@ -9,11 +9,11 @@
 import UIKit
 
 
-// MARK: ProfileViewController
 final class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
     @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     
     enum Section: Int, CaseIterable {
         case preferences, account, logout
@@ -77,7 +77,7 @@ extension ProfileViewController {
         cell.contentConfiguration = content
         return cell
     }
-
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -86,8 +86,7 @@ extension ProfileViewController {
         case .preferences:
             showColorPreferences()
         case .account:
-            //TODO: - ???
-            print("Delete Account tapped")
+            deleteUser()
         default:
             performLogout()
         }
@@ -112,11 +111,11 @@ extension ProfileViewController {
         
         return headerView
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-
+    
 }
 
 // MARK: - Actions
@@ -152,8 +151,23 @@ private extension ProfileViewController {
     
     func performLogout() {
         Task {
-            await apiManager.signOut()
-            coordinator?.logoutUser()
+            do {
+                try await viewModel.signOut()
+                coordinator?.logoutUser()
+            } catch {
+                print("Error logout")
+            }
+        }
+    }
+    
+    func deleteUser() {
+        Task {
+            do {
+                try await viewModel.deleteUser()
+                coordinator?.logoutUser()
+            } catch {
+                print("Error delete user")
+            }
         }
     }
 }

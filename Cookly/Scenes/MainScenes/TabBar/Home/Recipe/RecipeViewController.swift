@@ -66,7 +66,8 @@ private extension RecipeViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: recipe.image)
+        imageView.image = UIImage(named: "noImage")
+        
         
         view.addSubview(imageView)
         
@@ -204,7 +205,7 @@ extension RecipeViewController: UITableViewDataSource {
 
 extension RecipeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
+        indexPath.section == 0 ? 50 : 80
     }
 }
 

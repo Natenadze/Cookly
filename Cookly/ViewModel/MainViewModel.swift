@@ -71,7 +71,6 @@ final class MainViewModel {
 
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {
-//        completion(rcp)
         Task {
             if let result = await apiManager.generateRecipe(prompt: prompt) {
                 await MainActor.run {

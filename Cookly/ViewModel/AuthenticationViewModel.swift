@@ -37,6 +37,22 @@ final class AuthenticationViewModel: ObservableObject {
     
     func loginWithGoogle() async throws {
         try await apiManager.loginWithGoogle()
+    } 
+    
+    func signOut() async throws {
+        do {
+            try await apiManager.signOut()
+        } catch {
+            throw AuthError.serverError
+        }  
+    }  
+    
+    func deleteUser() async throws {
+        do {
+            try await apiManager.deleteUser()
+        } catch {
+            throw AuthError.serverError
+        }
     }
     
     // MARK: - Helper method
@@ -55,7 +71,6 @@ final class AuthenticationViewModel: ObservableObject {
     func errorMessage(for error: AuthError) -> String {
         switch error {
         case .invalidCredentials: return "Invalid credentials. Please try again."
-        case .userNotFound: return "User not found."
         case .networkError: return "Network error. Please check your connection."
         case .serverError: return "Server error. Please try again later."
         case .unknownError: return "Unknown error occurred."

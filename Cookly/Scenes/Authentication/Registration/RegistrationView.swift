@@ -35,7 +35,6 @@ private extension RegistrationView {
             VStack {
                 ErrorBannerView(isVisible: $showErrorBanner, message: errorMessage)
                     .padding()
-                
                 Spacer()
             }
          
@@ -84,7 +83,6 @@ extension RegistrationView {
 }
 
 extension RegistrationView {
-    
     
     func showError(error: Error) {
         if let authError = error as? AuthError {

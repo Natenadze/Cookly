@@ -32,6 +32,7 @@ struct ScrollableSection: View {
     private var titleView: some View {
         Text(title)
             .font(.title)
+            .foregroundStyle(.primary)
             .fontWeight(.semibold)
     }
     

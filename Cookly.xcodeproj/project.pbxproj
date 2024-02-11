@@ -16,7 +16,6 @@
 		5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D14B3542B7802C000A5063E /* SearchButtonView.swift */; };
 		5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */; };
 		5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */; };
-		5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */; };
 		5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */; };
 		5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */; };
 		5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C3B2B5C216700E3266E /* Constants.swift */; };
@@ -66,7 +65,6 @@
 		5D14B3542B7802C000A5063E /* SearchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButtonView.swift; sourceTree = "<group>"; };
 		5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5D3E3C312B5C1FB600E3266E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
 		5D3E3C352B5C1FED00E3266E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5D3E3C372B5C202900E3266E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		5D3E3C3B2B5C216700E3266E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -136,21 +134,12 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		5D14B33D2B75719A00A5063E /* ShoppingList */ = {
-			isa = PBXGroup;
-			children = (
-				5D3E3C332B5C1FDD00E3266E /* GroceryListViewController.swift */,
-			);
-			path = ShoppingList;
-			sourceTree = "<group>";
-		};
 		5D14B3402B76A6DE00A5063E /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				5D3E3C2F2B5C1F5200E3266E /* TabBarController.swift */,
 				5DDA81CB2B6048E500548411 /* Home */,
 				5D14B3392B750D6400A5063E /* Favorites */,
-				5D14B33D2B75719A00A5063E /* ShoppingList */,
 				5D14B33C2B75719300A5063E /* Profile */,
 			);
 			path = TabBar;
@@ -482,7 +471,6 @@
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
 				5D14B3492B76DB4F00A5063E /* BackgroundView.swift in Sources */,
 				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
-				5D3E3C342B5C1FDD00E3266E /* GroceryListViewController.swift in Sources */,
 				5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */,
 				5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */,
 				5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */,
