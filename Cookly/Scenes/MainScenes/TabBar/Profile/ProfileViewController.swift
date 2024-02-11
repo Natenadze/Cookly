@@ -84,9 +84,9 @@ extension ProfileViewController {
         
         switch Section(rawValue: indexPath.section) {
         case .preferences:
-            showColorPreferences()
+            presentColorPreferencesAlert()
         case .account:
-            confirmDeleteUser()
+            presentDeletionConfirmationAlert()
         default:
             performLogout()
         }
@@ -127,7 +127,7 @@ private extension ProfileViewController {
         }
     }
     
-    func showColorPreferences() {
+    func presentColorPreferencesAlert() {
         let alertController = UIAlertController(title: "", message: "Choose a theme", preferredStyle: .actionSheet)
         
         let lightAction = UIAlertAction(title: "Light", style: .default) { [weak self] _ in
@@ -160,10 +160,10 @@ private extension ProfileViewController {
         }
     }
     
-    func deleteUser() {
+    func deleteUserButtonTapped() {
         Task {
             do {
-                try await viewModel.deleteUser()
+                try await viewModel.handleDeleteUserButtonTapped()
                 coordinator?.logoutUser()
             } catch {
                 print("Error delete user")
@@ -171,17 +171,20 @@ private extension ProfileViewController {
         }
     }
     
-    func confirmDeleteUser() {
-        let alertController = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account? This action cannot be undone.", preferredStyle: .alert)
+    func presentDeletionConfirmationAlert() {
+        let alertController = UIAlertController(
+            title: "Delete Account",
+            message: "Are you sure you want to delete your account? This action cannot be undone.",
+            preferredStyle: .alert
+        )
         
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
-            self?.deleteUser()
+            self?.deleteUserButtonTapped()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
-        
         present(alertController, animated: true)
     }
 }

@@ -47,7 +47,7 @@ final class AuthenticationViewModel: ObservableObject {
         }  
     }  
     
-    func deleteUser() async throws {
+    func handleDeleteUserButtonTapped() async throws {
         do {
             try await apiManager.deleteUser()
         } catch {
