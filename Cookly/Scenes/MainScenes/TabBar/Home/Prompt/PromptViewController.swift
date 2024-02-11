@@ -46,6 +46,22 @@ final class PromptViewController: UIViewController {
     private let searchButton = UIButton()
     private var activityIndicator = UIActivityIndicatorView()
     
+    
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .systemOrange
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textAlignment = .natural
+//        label.text = " 🌶️ - Please pick at least 2 ingredients"
+        label.layer.cornerRadius = 5
+        label.clipsToBounds = true
+        label.isHidden = true
+        return label
+    }()
+    
+    
     // MARK: - LifeCycle
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
@@ -204,6 +220,11 @@ final class PromptViewController: UIViewController {
     
     
     private func searchButtonTapped(_ sender: UIButton) {
+        guard prompt.ingredients.count >= 2 else {
+            showErrorLabel(text: " 🌶️ - Please pick at least 2 ingredients")
+            return
+        }
+        
         activityIndicator.startAnimating()
         
         viewModel.generateRecipe(prompt: prompt) { [weak self] result in
@@ -214,10 +235,11 @@ final class PromptViewController: UIViewController {
             if let recipe = result {
                 self.coordinator?.pushRecipeViewController(recipe: recipe)
             } else {
-                //TODO: - handle error
+                self.showErrorLabel(text: " 🌐 - Network error, try again later")
             }
         }
     }
+    
     
     // MARK: - Selectors
     @objc func handleTapOutsideKeyboard(sender: UITapGestureRecognizer) {
@@ -229,6 +251,24 @@ final class PromptViewController: UIViewController {
     func extendRecipeToggled(isOn: Bool) {
         prompt.extendRecipe = isOn
     }
+    
+    private func showErrorLabel(text: String) {
+        errorLabel.text = text
+        errorLabel.isHidden = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.errorLabel.transform = CGAffineTransform(
+                translationX: 0,
+                y: self.errorLabel.frame.height + self.view.safeAreaInsets.top
+            )
+        }) { _ in
+            UIView.animate(withDuration: 0.5, delay: 3.0, options: [], animations: {
+                self.errorLabel.transform = .identity
+            }) { _ in
+                self.errorLabel.isHidden = true
+            }
+        }
+    }
+    
 }
 
 // MARK: - Extension Layout
@@ -243,12 +283,18 @@ private extension PromptViewController {
         difficultyStackView.addArrangedSubview(difficultyMediumButton)
         difficultyStackView.addArrangedSubview(difficultyHardButton)
         
-        [searchButton, titleLabel, subTitleLabel, mealTypeTitleLabel, difficultyTitleLabel, extendRecipeLabel, ingredientsTextField, ingredientsStackView, mealTypeStackView, difficultyStackView, extendRecipeToggle].forEach(view.addSubview)
+        [searchButton, titleLabel, subTitleLabel, mealTypeTitleLabel, difficultyTitleLabel, extendRecipeLabel, ingredientsTextField, ingredientsStackView, mealTypeStackView, difficultyStackView, extendRecipeToggle, errorLabel].forEach(view.addSubview)
     }
     
     
     func layout() {
         NSLayoutConstraint.activate([
+            
+            errorLabel.bottomAnchor.constraint(equalTo: view.topAnchor),
+            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            errorLabel.heightAnchor.constraint(equalToConstant: 70),
+            
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             

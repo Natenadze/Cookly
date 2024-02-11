@@ -16,7 +16,7 @@ class LogoContainerView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 80
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "logo")
+        imageView.image = UIImage(named: "nobg")
         return imageView
     }()
     

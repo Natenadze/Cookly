@@ -8,6 +8,36 @@
 import UIKit
 import SwiftUI
 
+import UIKit
+
+import UIKit
+
+class CustomLinearGradientView: UIView {
+    // Define the gradient colors with the desired opacity for orange
+    var colors: [CGColor] = [UIColor.orange.cgColor, UIColor.white.cgColor]
+    
+    // Adjust the colorLocations to change the proportion of the gradient occupied by each color
+    var colorLocations: [CGFloat] = [0.0, 0.5] // Orange occupies 30% from the top, and then it transitions to white
+
+    override func draw(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        guard let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations) else { return }
+        
+        // Define start and end points for the gradient
+        let startPoint = CGPoint(x: bounds.midX, y: bounds.minY)
+        let endPoint = CGPoint(x: bounds.midX, y: bounds.maxY)
+        
+        // Create the gradient
+        context.drawLinearGradient(gradient,
+                                   start: startPoint,
+                                   end: endPoint,
+                                   options: [])
+    }
+}
+
+
+
 protocol ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe)
 }
@@ -49,6 +79,7 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Welcome Back!"
         label.font = .boldSystemFont(ofSize: 36)
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -82,6 +113,16 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let gradientView = CustomLinearGradientView(frame: view.bounds)
+        view.addSubview(gradientView)
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            gradientView.topAnchor.constraint(equalTo: view.topAnchor, constant: -80),
+            gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        
         setup()
         layout()
     }

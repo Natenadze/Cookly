@@ -19,25 +19,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlq-zt-fhl">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KI9-SY-qEi">
-                                        <rect key="frame" x="71.666666666666686" y="301" width="250" height="250"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cookly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" sizingRule="oversize" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thT-6h-gVE">
+                                        <rect key="frame" x="65.666666666666657" y="330.33333333333331" width="261.66666666666674" height="111.66666666666669"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="85"/>
+                                        <color key="textColor" systemColor="systemGray6Color"/>
+                                        <color key="highlightedColor" systemColor="systemPinkColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="6" height="-1"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nobg" translatesAutoresizingMaskIntoConstraints="NO" id="UoV-g3-ejN">
+                                        <rect key="frame" x="106.66666666666669" y="150.33333333333334" width="180" height="200.00000000000003"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="250" id="df9-EV-FVv"/>
-                                            <constraint firstAttribute="height" constant="250" id="o5J-2b-xAo"/>
+                                            <constraint firstAttribute="width" constant="180" id="BT1-VQ-s3b"/>
+                                            <constraint firstAttribute="height" constant="200" id="hul-99-gID"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cookly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thT-6h-gVE">
-                                        <rect key="frame" x="116" y="170" width="161" height="60"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
-                                    <constraint firstItem="KI9-SY-qEi" firstAttribute="centerX" secondItem="dlq-zt-fhl" secondAttribute="centerX" id="35b-r3-WId"/>
-                                    <constraint firstItem="KI9-SY-qEi" firstAttribute="centerY" secondItem="dlq-zt-fhl" secondAttribute="centerY" id="7N5-Np-xAD"/>
-                                    <constraint firstItem="thT-6h-gVE" firstAttribute="top" secondItem="dlq-zt-fhl" secondAttribute="top" constant="170" id="uuf-OX-81M"/>
+                                    <constraint firstItem="thT-6h-gVE" firstAttribute="centerY" secondItem="dlq-zt-fhl" secondAttribute="centerY" constant="-40" id="NuV-uN-BsB"/>
+                                    <constraint firstItem="thT-6h-gVE" firstAttribute="top" secondItem="UoV-g3-ejN" secondAttribute="bottom" constant="-20" id="XRy-ZC-TeH"/>
+                                    <constraint firstItem="UoV-g3-ejN" firstAttribute="centerX" secondItem="dlq-zt-fhl" secondAttribute="centerX" id="ike-Mb-JY3"/>
                                     <constraint firstItem="thT-6h-gVE" firstAttribute="centerX" secondItem="dlq-zt-fhl" secondAttribute="centerX" id="x4m-kP-pff"/>
                                 </constraints>
                             </view>
@@ -54,16 +56,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+            <point key="canvasLocation" x="20.610687022900763" y="315.49295774647891"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="490" height="490"/>
+        <image name="nobg" width="250" height="250"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
