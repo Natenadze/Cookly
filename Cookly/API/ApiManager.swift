@@ -10,8 +10,9 @@ import Supabase
 import AuthenticationServices
 
 enum AuthError: Error {
+    case invalidEmail
+    case invalidPassword
     case invalidCredentials
-    case userNotFound
     case networkError
     case serverError
     case unknownError
@@ -25,9 +26,6 @@ final class ApiManager: NSObject, NetworkProviding {
         supabaseURL: APIConstants.supaUrl,
         supabaseKey: APIConstants.supaKey
     )
-    
-
-    
     
     // MARK: - Methods
     func checkIfUserIsSignedIn() async -> Bool  {
@@ -55,10 +53,13 @@ final class ApiManager: NSObject, NetworkProviding {
         } catch {
             print("Other error: \(error.localizedDescription)")
         }
-        
+        result?.isSaved = false
         return result
     }
-    
+}
+
+// MARK: - Login & Register
+extension ApiManager {
     
     func login(email: String, password: String) async throws {
         do {
@@ -66,14 +67,10 @@ final class ApiManager: NSObject, NetworkProviding {
                 email: email,
                 password: password
             )
-            print("success login")
         } catch {
-            //TODO: - Handle error
-            print("login error")
-            throw AuthError.invalidCredentials
+            throw AuthError.networkError
         }
     }
-    
     
     func loginWithGoogle() async throws {
         let url = try await supabase.auth.getOAuthSignInURL(provider: .google)
@@ -113,19 +110,30 @@ final class ApiManager: NSObject, NetworkProviding {
             )
             print("success registration")
         } catch {
-            //TODO: - Handle error
-            print("registration error")
-            throw AuthError.unknownError
+            throw AuthError.serverError
+        }
+    }
+}
+
+// MARK: - SignOut & Delete
+extension ApiManager {
+    func signOut() async throws {
+        do {
+            try await supabase.auth.signOut()
+        } catch {
+            throw AuthError.serverError
         }
     }
     
-    
-    func signOut() async {
+    func deleteUser() async throws {
         do {
-            try await supabase.auth.signOut()
-            print("successful logout")
+            try await supabase.functions.invoke("delete-user")
+        } catch FunctionsError.httpError(let code, let data) {
+            print("Function returned code \(code) with response \(String(data: data, encoding: .utf8) ?? "")")
+        } catch FunctionsError.relayError {
+            print("Relay error")
         } catch {
-            print("fail logout")
+            print("Other error: \(error.localizedDescription)")
         }
     }
 }

@@ -9,11 +9,11 @@
 import UIKit
 
 
-// MARK: ProfileViewController
 final class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
     @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     
     enum Section: Int, CaseIterable {
         case preferences, account, logout
@@ -77,17 +77,16 @@ extension ProfileViewController {
         cell.contentConfiguration = content
         return cell
     }
-
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch Section(rawValue: indexPath.section) {
         case .preferences:
-            showColorPreferences()
+            presentColorPreferencesAlert()
         case .account:
-            //TODO: - ???
-            print("Delete Account tapped")
+            presentDeletionConfirmationAlert()
         default:
             performLogout()
         }
@@ -112,11 +111,11 @@ extension ProfileViewController {
         
         return headerView
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-
+    
 }
 
 // MARK: - Actions
@@ -128,7 +127,7 @@ private extension ProfileViewController {
         }
     }
     
-    func showColorPreferences() {
+    func presentColorPreferencesAlert() {
         let alertController = UIAlertController(title: "", message: "Choose a theme", preferredStyle: .actionSheet)
         
         let lightAction = UIAlertAction(title: "Light", style: .default) { [weak self] _ in
@@ -152,9 +151,41 @@ private extension ProfileViewController {
     
     func performLogout() {
         Task {
-            await apiManager.signOut()
-            coordinator?.logoutUser()
+            do {
+                try await viewModel.signOut()
+                coordinator?.logoutUser()
+            } catch {
+                print("Error logout")
+            }
         }
+    }
+    
+    func deleteUserButtonTapped() {
+        Task {
+            do {
+                try await viewModel.handleDeleteUserButtonTapped()
+                coordinator?.logoutUser()
+            } catch {
+                print("Error delete user")
+            }
+        }
+    }
+    
+    func presentDeletionConfirmationAlert() {
+        let alertController = UIAlertController(
+            title: "Delete Account",
+            message: "Are you sure you want to delete your account? This action cannot be undone.",
+            preferredStyle: .alert
+        )
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteUserButtonTapped()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 }
 

@@ -17,7 +17,7 @@ struct Recipe: Codable {
     let time: Int
     let servings: Int
     let mealType: MealType
-    var isSaved: Bool = false
+    var isSaved: Bool! = false
 }
 
 struct Ingredient: Codable {

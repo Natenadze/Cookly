@@ -10,9 +10,9 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    @Injected(\.networkProvider) var apiManager: NetworkProviding
     var window: UIWindow?
     private var flowCoordinator: Coordinator?
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         

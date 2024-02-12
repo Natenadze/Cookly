@@ -11,6 +11,7 @@ final class FavoritesViewController: UIViewController{
     
     // MARK: - Properties
     @Injected(\.mainViewModel) var viewModel: MainViewModel
+    
     weak var coordinator: Coordinator?
     
     // MARK: - UI Components
@@ -81,8 +82,8 @@ extension FavoritesViewController: UITableViewDelegate {
 
 // MARK: - FavoritesTableViewCellDelegate
 extension FavoritesViewController: FavoritesTableViewCellDelegate {
-    func isSavedButtonTapped() {
-        viewModel.toggleSavedRecipe(with: rcp)
+    func isSavedButtonTapped(recipe: Recipe) {
+        viewModel.toggleSavedRecipe(with: recipe)
         tableView.reloadData()
     }
 }

@@ -39,21 +39,19 @@ private extension TabBarController {
         appearance.backgroundColor = .systemGray6
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
-        tabBar.tintColor = .orange
+        tabBar.tintColor = .systemOrange
     }
     
     func setupTabBars() {
         let searchVC    = HomeViewController(coordinator: coordinator)
         let favoritesVC = FavoritesViewController(coordinator: coordinator)
-        let listVC      = GroceryListViewController()
         let profileVC   = ProfileViewController(coordinator: coordinator)
         
         searchVC.tabBarItem    = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 1)
-        listVC.tabBarItem      = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), tag: 2)
-        profileVC.tabBarItem   = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 3)
+        profileVC.tabBarItem   = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
         
-        viewControllers = [searchVC, favoritesVC, listVC, profileVC]
+        viewControllers = [searchVC, favoritesVC, profileVC]
     }
 }
 
@@ -71,8 +69,6 @@ extension TabBarController: UITabBarControllerDelegate {
             navigationItem.title = ""
         case is FavoritesViewController:
             navigationItem.title = "Saved Recipes"
-        case is GroceryListViewController:
-            navigationItem.title = "Grocery List"
         default:
             navigationItem.title = "Settings"
         }

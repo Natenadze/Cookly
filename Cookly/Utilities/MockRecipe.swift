@@ -184,6 +184,5 @@ let rcp6 = Recipe(
     mealType: .Dinner
 )
 
-// Array containing all the recipes
 let recipesArray = [rcp, rcp1, rcp2, rcp3, rcp4, rcp5, rcp6]
 #endif

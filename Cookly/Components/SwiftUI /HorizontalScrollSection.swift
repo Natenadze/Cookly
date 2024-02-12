@@ -31,7 +31,8 @@ struct ScrollableSection: View {
     // MARK: - Computed Properties
     private var titleView: some View {
         Text(title)
-            .font(.title)
+            .font(.title2)
+            .foregroundStyle(.primary)
             .fontWeight(.semibold)
     }
     
@@ -66,7 +67,7 @@ struct ScrollableSection: View {
             
             Text(recipe.name)
                 .padding(.trailing)
-                .font(.title3)
+                .font(.headline)
                 .fontWeight(.semibold)
                 .lineLimit(2)
                 .frame(width: 140, alignment: .leading)

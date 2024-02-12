@@ -12,6 +12,7 @@ protocol NetworkProviding {
     func register(email: String, password: String) async throws
     func loginWithGoogle() async throws
     func generateRecipe(prompt: Prompt) async -> Recipe?
-    func signOut() async
-    func checkIfUserIsSignedIn() async -> Bool 
+    func signOut() async throws
+    func checkIfUserIsSignedIn() async -> Bool
+    func deleteUser() async throws
 }

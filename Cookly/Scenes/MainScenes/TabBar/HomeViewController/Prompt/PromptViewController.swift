@@ -11,17 +11,14 @@ import UIKit
 final class PromptViewController: UIViewController {
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
     @Injected(\.mainViewModel) var viewModel: MainViewModel
-    
-    
+    weak var coordinator: Coordinator?
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
     
     // MARK: - UI Elements
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
-    
     private let ingredientsTextField = UITextField()
     private let ingredientsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,17 +28,20 @@ final class PromptViewController: UIViewController {
         return stackView
     }()
     
-    private let mealTypeTitleLabel = UILabel()
-    private let difficultyTitleLabel = UILabel()
+   
+    private lazy var mealTypeView = SettingsView(
+        title: "Meal Type",
+        options: ["Breakfast", "Lunch", "Dinner"],
+        settingsType: .mealType
+    )
+    
+    private lazy var difficultyView = SettingsView(
+        title: "Choose Difficulty",
+        options: ["Easy", "Medium", "Hard"], 
+        settingsType: .difficulty
+    )
+
     private let extendRecipeLabel = UILabel()
-    private let breakfastButton = UIButton(type: .system)
-    private let lunchButton = UIButton(type: .system)
-    private let dinnerButton = UIButton(type: .system)
-    private let mealTypeStackView = UIStackView()
-    private let difficultyEasyButton = UIButton(type: .system)
-    private let difficultyMediumButton = UIButton(type: .system)
-    private let difficultyHardButton = UIButton(type: .system)
-    private let difficultyStackView = UIStackView()
     private let extendRecipeToggle = UISwitch()
     private let searchButton = UIButton()
     private var activityIndicator = UIActivityIndicatorView()
@@ -80,11 +80,14 @@ final class PromptViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        
+        mealTypeView.delegate = self
+        difficultyView.delegate = self
+        
         layoutUIElements()
         setupTitles()
         setupIngredientsInput()
-        setupMealTypeSelection()
-        setupDifficultySelection()
+
         setupExtendRecipeToggle()
         setupGestureRecognizer()
         setupSearchButton()
@@ -94,7 +97,7 @@ final class PromptViewController: UIViewController {
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.style = .large
-        activityIndicator.color = .label
+        activityIndicator.color = .systemOrange
         activityIndicator.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -116,70 +119,31 @@ final class PromptViewController: UIViewController {
     private func setupTitles() {
         titleLabel.configure(with: "What's in your kitchen?", font: .boldSystemFont(ofSize: 26))
         subTitleLabel.configure(with: "Enter up to 7 ingredients", font: .systemFont(ofSize: 18))
-        mealTypeTitleLabel.configure(with: "Meal Type", font: .systemFont(ofSize: 20))
-        difficultyTitleLabel.configure(with: "Choose Difficulty", font: .systemFont(ofSize: 20))
         extendRecipeLabel.configure(with: "Extend Recipe", font: .systemFont(ofSize: 20))
     }
     
-    private func setupMealTypeSelection() {
-        mealTypeStackView.axis = .horizontal
-        mealTypeStackView.distribution = .fillEqually
-        mealTypeStackView.spacing = 10
-        
-        breakfastButton.setupButton(title: "Breakfast", action: mealTypeSelected)
-        lunchButton.setupButton(title: "Lunch", action: mealTypeSelected)
-        dinnerButton.setupButton(title: "Dinner", action: mealTypeSelected)
-    }
-    
+
     
     private func setupIngredientsInput() {
         ingredientsTextField.placeholder = "Add Ingredient"
-        ingredientsTextField.borderStyle = .roundedRect
+        ingredientsTextField.layer.cornerRadius = 20
+        ingredientsTextField.layer.borderWidth = 1
+        ingredientsTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
+        ingredientsTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         ingredientsTextField.delegate = self
+        
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+         ingredientsTextField.leftView = paddingView
+         ingredientsTextField.leftViewMode = .always
     }
     
     private func setupSearchButton() {
-        searchButton.setupButton(title: "Search", action: searchButtonTapped)
+        searchButton.setupButtonWithTitleAndAction(title: "Search", action: searchButtonTapped)
         searchButton.backgroundColor = .orange
         searchButton.setTitleColor(.white, for: .normal)
     }
     
-    
-    //TODO: - Refactor this
-    private func mealTypeSelected(_ sender: UIButton) {
-        [breakfastButton, lunchButton, dinnerButton].forEach {
-            $0.backgroundColor = $0 == sender ? .orange : .white
-            $0.setTitleColor($0 == sender ? .white : .orange, for: .normal)
-            $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 18) : .systemFont(ofSize: 16)
-        }
-        
-        switch sender.titleLabel?.text {
-        case "Breakfast":
-            viewModel.prompt.mealType = .Breakfast
-        case "Lunch":
-            viewModel.prompt.mealType = .Lunch
-        default:
-            viewModel.prompt.mealType = .Dinner
-        }
-        
-    }
-    
-    private func difficultySelected(_ sender: UIButton) {
-        [difficultyEasyButton, difficultyMediumButton, difficultyHardButton].forEach {
-            $0.backgroundColor = $0 == sender ? .orange : .white
-            $0.setTitleColor($0 == sender ? .white : .orange, for: .normal)
-            $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 18) : .systemFont(ofSize: 16)
-        }
-        
-        switch sender.titleLabel?.text {
-        case "Easy":
-            viewModel.prompt.time = 20
-        case "Medium":
-            viewModel.prompt.time = 40
-        default:
-            viewModel.prompt.time = 60
-        }
-    }
+
     
     private func setupExtendRecipeToggle() {
         extendRecipeToggle.isOn = false
@@ -205,20 +169,11 @@ final class PromptViewController: UIViewController {
             extendRecipeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
     }
-    
-    private func setupDifficultySelection() {
-        difficultyStackView.axis = .horizontal
-        difficultyStackView.distribution = .fillEqually
-        difficultyStackView.spacing = 10
-        
-        difficultyEasyButton.setupButton(title: "Easy", action: difficultySelected)
-        difficultyMediumButton.setupButton(title: "Medium", action: difficultySelected)
-        difficultyHardButton.setupButton(title: "Hard", action: difficultySelected)
-    }
+
     
     private func searchButtonTapped(_ sender: UIButton) {
         guard viewModel.prompt.ingredients.count >= 2 else {
-            showErrorLabel(text: " 🌶️ - Please pick at least 2 ingredients")
+            showErrorLabel(text: " 🌶️  Please Enter at least 2 ingredients")
             return
         }
         
@@ -272,17 +227,8 @@ final class PromptViewController: UIViewController {
 private extension PromptViewController {
     
     func addSubviews() {
-        mealTypeStackView.addArrangedSubview(breakfastButton)
-        mealTypeStackView.addArrangedSubview(lunchButton)
-        mealTypeStackView.addArrangedSubview(dinnerButton)
-        
-        difficultyStackView.addArrangedSubview(difficultyEasyButton)
-        difficultyStackView.addArrangedSubview(difficultyMediumButton)
-        difficultyStackView.addArrangedSubview(difficultyHardButton)
-        
-        [searchButton, titleLabel, subTitleLabel, mealTypeTitleLabel, difficultyTitleLabel, extendRecipeLabel, ingredientsTextField, ingredientsStackView, mealTypeStackView, difficultyStackView, extendRecipeToggle, errorLabel].forEach(view.addSubview)
+        [searchButton, titleLabel, subTitleLabel, mealTypeView, difficultyView, extendRecipeLabel, ingredientsTextField, ingredientsStackView, extendRecipeToggle, errorLabel].forEach(view.addSubview)
     }
-    
     
     func layout() {
         NSLayoutConstraint.activate([
@@ -306,21 +252,15 @@ private extension PromptViewController {
             ingredientsStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             ingredientsStackView.trailingAnchor.constraint(equalTo: ingredientsTextField.trailingAnchor),
             
-            mealTypeTitleLabel.topAnchor.constraint(equalTo: ingredientsStackView.bottomAnchor, constant: 20),
-            mealTypeTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            mealTypeView.topAnchor.constraint(equalTo: ingredientsStackView.bottomAnchor, constant: 20),
+            mealTypeView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            mealTypeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20), 
             
-            mealTypeStackView.topAnchor.constraint(equalTo: mealTypeTitleLabel.bottomAnchor, constant: 10),
-            mealTypeStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            mealTypeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            difficultyTitleLabel.topAnchor.constraint(equalTo: mealTypeStackView.bottomAnchor, constant: 20),
-            difficultyTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            
-            difficultyStackView.topAnchor.constraint(equalTo: difficultyTitleLabel.bottomAnchor, constant: 10),
-            difficultyStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            difficultyStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            extendRecipeLabel.topAnchor.constraint(equalTo: difficultyStackView.bottomAnchor, constant: 20),
+            difficultyView.topAnchor.constraint(equalTo: mealTypeView.bottomAnchor, constant: 20),
+            difficultyView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            difficultyView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
+            extendRecipeLabel.topAnchor.constraint(equalTo: difficultyView.bottomAnchor, constant: 20),
             extendRecipeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
             searchButton.topAnchor.constraint(equalTo: extendRecipeLabel.bottomAnchor, constant: 60),
@@ -334,7 +274,6 @@ private extension PromptViewController {
 // MARK: - Extension Ingredient adding setup
 extension PromptViewController {
     
-    
     private func addIngredient(_ ingredient: String) {
         viewModel.prompt.ingredients.append(ingredient)
         let ingredientView = createIngredientView(at: ingredientCounter, with: ingredient, index: ingredientCounter - 1)
@@ -346,8 +285,8 @@ extension PromptViewController {
     private func createIngredientView(at number: Int, with ingredient: String, index: Int) -> UIView {
         let container = UIView()
         container.layer.cornerRadius = 15
-        container.layer.borderWidth = 2
-        container.layer.borderColor = UIColor.gray.cgColor
+        container.layer.borderWidth = 1.5
+        container.layer.borderColor = UIColor.systemGray4.cgColor
         container.translatesAutoresizingMaskIntoConstraints = false
         
         let numberLabel = UILabel()
@@ -429,6 +368,17 @@ extension PromptViewController: UITextFieldDelegate {
             textField.text = nil
         }
         return false
+    }
+}
+
+// MARK: - Extension SettingsViewDelegate
+extension PromptViewController: SettingsViewDelegate {
+    func mealTypeButtonTapped(text: String) {
+        viewModel.updateMealType(text: text)
+    }
+    
+    func difficultyButtonTapped(text: String) {
+        viewModel.updateDifficulty(text: text)
     }
 }
 
