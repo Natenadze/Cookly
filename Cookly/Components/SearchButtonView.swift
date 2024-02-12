@@ -24,7 +24,7 @@ class SearchButtonView: UIButton {
         self.contentHorizontalAlignment = .center
         self.setTitle("Start Search", for: .normal)
         self.setTitleColor(.white, for: .normal)
-        self.titleLabel?.font = .boldSystemFont(ofSize: 22)
+        self.titleLabel?.font = .boldSystemFont(ofSize: 20)
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.layer.shadowRadius = 5
