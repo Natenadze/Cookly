@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchButtonView: UIButton {
+final class SearchButtonView: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

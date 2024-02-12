@@ -11,17 +11,14 @@ import UIKit
 final class PromptViewController: UIViewController {
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
     @Injected(\.mainViewModel) var viewModel: MainViewModel
-    
-    
+    weak var coordinator: Coordinator?
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
     
     // MARK: - UI Elements
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
-    
     private let ingredientsTextField = UITextField()
     private let ingredientsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -30,7 +27,6 @@ final class PromptViewController: UIViewController {
         stackView.alignment = .leading
         return stackView
     }()
-    
     private let mealTypeTitleLabel = UILabel()
     private let difficultyTitleLabel = UILabel()
     private let extendRecipeLabel = UILabel()
@@ -94,7 +90,7 @@ final class PromptViewController: UIViewController {
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.style = .large
-        activityIndicator.color = .label
+        activityIndicator.color = .systemOrange
         activityIndicator.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -126,20 +122,27 @@ final class PromptViewController: UIViewController {
         mealTypeStackView.distribution = .fillEqually
         mealTypeStackView.spacing = 10
         
-        breakfastButton.setupButton(title: "Breakfast", action: mealTypeSelected)
-        lunchButton.setupButton(title: "Lunch", action: mealTypeSelected)
-        dinnerButton.setupButton(title: "Dinner", action: mealTypeSelected)
+        breakfastButton.setupButtonWithTitleAndAction(title: "Breakfast", action: mealTypeSelected)
+        lunchButton.setupButtonWithTitleAndAction(title: "Lunch", action: mealTypeSelected)
+        dinnerButton.setupButtonWithTitleAndAction(title: "Dinner", action: mealTypeSelected)
     }
     
     
     private func setupIngredientsInput() {
         ingredientsTextField.placeholder = "Add Ingredient"
-        ingredientsTextField.borderStyle = .roundedRect
+        ingredientsTextField.layer.cornerRadius = 20
+        ingredientsTextField.layer.borderWidth = 1
+        ingredientsTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
+        ingredientsTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         ingredientsTextField.delegate = self
+        
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+         ingredientsTextField.leftView = paddingView
+         ingredientsTextField.leftViewMode = .always
     }
     
     private func setupSearchButton() {
-        searchButton.setupButton(title: "Search", action: searchButtonTapped)
+        searchButton.setupButtonWithTitleAndAction(title: "Search", action: searchButtonTapped)
         searchButton.backgroundColor = .orange
         searchButton.setTitleColor(.white, for: .normal)
     }
@@ -148,9 +151,9 @@ final class PromptViewController: UIViewController {
     //TODO: - Refactor this
     private func mealTypeSelected(_ sender: UIButton) {
         [breakfastButton, lunchButton, dinnerButton].forEach {
-            $0.backgroundColor = $0 == sender ? .orange : .white
-            $0.setTitleColor($0 == sender ? .white : .orange, for: .normal)
-            $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 18) : .systemFont(ofSize: 16)
+            $0.backgroundColor = $0 == sender ? .orange : .systemBackground
+            $0.setTitleColor($0 == sender ? .systemBackground : .orange, for: .normal)
+            $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 16) : .systemFont(ofSize: 15)
         }
         
         switch sender.titleLabel?.text {
@@ -166,9 +169,9 @@ final class PromptViewController: UIViewController {
     
     private func difficultySelected(_ sender: UIButton) {
         [difficultyEasyButton, difficultyMediumButton, difficultyHardButton].forEach {
-            $0.backgroundColor = $0 == sender ? .orange : .white
-            $0.setTitleColor($0 == sender ? .white : .orange, for: .normal)
-            $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 18) : .systemFont(ofSize: 16)
+            $0.backgroundColor = $0 == sender ? .orange : .systemBackground
+            $0.setTitleColor($0 == sender ? .systemBackground : .orange, for: .normal)
+            $0.titleLabel?.font = $0 == sender  ? .boldSystemFont(ofSize: 17) : .systemFont(ofSize: 15)
         }
         
         switch sender.titleLabel?.text {
@@ -211,14 +214,14 @@ final class PromptViewController: UIViewController {
         difficultyStackView.distribution = .fillEqually
         difficultyStackView.spacing = 10
         
-        difficultyEasyButton.setupButton(title: "Easy", action: difficultySelected)
-        difficultyMediumButton.setupButton(title: "Medium", action: difficultySelected)
-        difficultyHardButton.setupButton(title: "Hard", action: difficultySelected)
+        difficultyEasyButton.setupButtonWithTitleAndAction(title: "Easy", action: difficultySelected)
+        difficultyMediumButton.setupButtonWithTitleAndAction(title: "Medium", action: difficultySelected)
+        difficultyHardButton.setupButtonWithTitleAndAction(title: "Hard", action: difficultySelected)
     }
     
     private func searchButtonTapped(_ sender: UIButton) {
         guard viewModel.prompt.ingredients.count >= 2 else {
-            showErrorLabel(text: " 🌶️ - Please pick at least 2 ingredients")
+            showErrorLabel(text: " 🌶️  Please Enter at least 2 ingredients")
             return
         }
         
@@ -344,8 +347,8 @@ extension PromptViewController {
     private func createIngredientView(at number: Int, with ingredient: String, index: Int) -> UIView {
         let container = UIView()
         container.layer.cornerRadius = 15
-        container.layer.borderWidth = 2
-        container.layer.borderColor = UIColor.gray.cgColor
+        container.layer.borderWidth = 1.5
+        container.layer.borderColor = UIColor.systemGray4.cgColor
         container.translatesAutoresizingMaskIntoConstraints = false
         
         let numberLabel = UILabel()

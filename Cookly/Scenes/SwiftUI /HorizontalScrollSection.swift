@@ -67,7 +67,7 @@ struct ScrollableSection: View {
             
             Text(recipe.name)
                 .padding(.trailing)
-                .font(.title3)
+                .font(.headline)
                 .fontWeight(.semibold)
                 .lineLimit(2)
                 .frame(width: 140, alignment: .leading)

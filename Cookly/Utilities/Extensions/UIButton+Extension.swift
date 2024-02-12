@@ -8,8 +8,7 @@
 import UIKit
 
 extension UIButton {
-    
-    func setupButton(title: String, action: @escaping (UIButton) -> Void) {
+    func setupButtonWithTitleAndAction(title: String, action: @escaping (UIButton) -> Void) {
         setTitle(title, for: .normal)
         setTitleColor(.systemOrange, for: .normal)
         backgroundColor = .systemBackground
