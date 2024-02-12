@@ -30,6 +30,29 @@ final class MainViewModel {
     }
     
     // MARK: - Methods
+    
+    func updateMealType(text: String) {
+        switch text {
+        case "Breakfast":
+            prompt.mealType = .Breakfast
+        case "Lunch":
+            prompt.mealType = .Lunch
+        default:
+            prompt.mealType = .Dinner
+        }
+    }   
+    
+    func updateDifficulty(text: String) {
+        switch text {
+        case "Easy":
+            prompt.time = 20
+        case "Medium":
+            prompt.time = 40
+        default:
+            prompt.time = 60
+        }
+    }
+    
     func removeIngredientFromPromptAtIndex(_ index: Int) {
         prompt.ingredients.remove(at: index)
     }
@@ -59,7 +82,7 @@ final class MainViewModel {
     
     func updateAllRecipes(with recipe: Recipe) {
         allRecipes.append(recipe)
-    } 
+    }
     
     func toggleSavedRecipe(with recipe: Recipe) {
         if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
@@ -68,7 +91,6 @@ final class MainViewModel {
             savedRecipes.append(recipe)
         }
     }
-
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {
         Task {

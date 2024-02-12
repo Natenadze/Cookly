@@ -53,7 +53,7 @@ final class RecipeViewController: UIViewController {
         setupNameLabel()
         setupDetailLabel()
         setupTableView()
-        setupFavoriteButton() 
+        setupFavoriteButton()
         tableView.reloadData()
     }
 }
@@ -66,8 +66,11 @@ private extension RecipeViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "noImage")
-        
+        if recipe.image.isEmpty {
+            imageView.image = UIImage(named: "noImage")
+        }else {
+            imageView.image = UIImage(named: recipe.image)
+        }
         
         view.addSubview(imageView)
         
@@ -79,7 +82,7 @@ private extension RecipeViewController {
         ])
     }
     
-    private func setupFavoriteButton() {
+    func setupFavoriteButton() {
         let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
         favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
         

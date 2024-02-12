@@ -12,9 +12,7 @@ final class AuthenticationViewModel: ObservableObject {
     // MARK: - Properties
     @Injected(\.networkProvider) var apiManager: NetworkProviding
     @Published var isRegistrationSuccessful = false
-
     
-
     // MARK: - Auth Methods
     func register(email: String, password: String) async throws {
         try validateCredentials(email: email, password: password)
@@ -37,15 +35,15 @@ final class AuthenticationViewModel: ObservableObject {
     
     func loginWithGoogle() async throws {
         try await apiManager.loginWithGoogle()
-    } 
+    }
     
     func signOut() async throws {
         do {
             try await apiManager.signOut()
         } catch {
             throw AuthError.serverError
-        }  
-    }  
+        }
+    }
     
     func handleDeleteUserButtonTapped() async throws {
         do {
@@ -66,7 +64,7 @@ final class AuthenticationViewModel: ObservableObject {
         }
     }
     
- 
+    
     
     func errorMessage(for error: AuthError) -> String {
         switch error {

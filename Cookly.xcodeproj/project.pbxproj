@@ -31,6 +31,7 @@
 		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
 		5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */; };
 		5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */; };
+		5DB64AE62B7A80B2008C1723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB64AE52B7A80B2008C1723 /* SettingsView.swift */; };
 		5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804C2B5B2114003FE18D /* AppDelegate.swift */; };
 		5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */; };
 		5DB880562B5B2115003FE18D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB880552B5B2115003FE18D /* Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		5D8F35062B72BE5500FDFCFD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecipe.swift; sourceTree = "<group>"; };
+		5DB64AE52B7A80B2008C1723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5DB880492B5B2114003FE18D /* Cookly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB8804C2B5B2114003FE18D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DB8804E2B5B2114003FE18D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */,
+				5DB64AE52B7A80B2008C1723 /* SettingsView.swift */,
 			);
 			path = Prompt;
 			sourceTree = "<group>";
@@ -354,7 +357,6 @@
 		5DB880A82B5BED04003FE18D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5DDA81C82B60463D00548411 /* SwiftUI  */,
 				5D3E3C3D2B5C2F7F00E3266E /* Authentication */,
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
@@ -364,6 +366,7 @@
 		5DC38A722B78DCE2003860BB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5DDA81C82B60463D00548411 /* SwiftUI  */,
 				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
 				5DC38A732B78DE16003860BB /* SaveButtonView.swift */,
@@ -482,6 +485,7 @@
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
+				5DB64AE62B7A80B2008C1723 /* SettingsView.swift in Sources */,
 				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
 				5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */,
