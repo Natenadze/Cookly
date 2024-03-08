@@ -17,7 +17,6 @@ struct LoginView: View {
     @State private var isLoading: Bool = false
     @State var errorMessage: String = ""
     @State var showErrorBanner: Bool = false
- 
     
     let coordinator: Coordinator
     
@@ -30,12 +29,10 @@ struct LoginView: View {
             VStack {
                 ErrorBannerView(isVisible: $showErrorBanner, message: errorMessage)
                     .padding()
-                
                 Spacer()
             }
             
             VStack(alignment: .leading, spacing:20) {
-                
                 textFieldStack
                 dontHaveAnAccountButton
                 LoginButtonView(title: "Login", action: loginButtonTapped)
@@ -45,7 +42,6 @@ struct LoginView: View {
             }
             .padding(.horizontal, 16)
             .padding(.top,80)
-            
             
             if isLoading {
                 ZStack {

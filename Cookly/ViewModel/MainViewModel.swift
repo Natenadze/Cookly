@@ -30,6 +30,9 @@ final class MainViewModel {
     }
     
     // MARK: - Methods
+    func clearPrompt() {
+        prompt = Prompt()
+    }
     
     func updateMealType(text: String) {
         switch text {

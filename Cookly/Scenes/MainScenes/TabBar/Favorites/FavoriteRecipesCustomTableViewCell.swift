@@ -49,7 +49,7 @@ final class FavoritesTableViewCell: UITableViewCell {
     
     private let favoriteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = .red
+        button.tintColor = .orange
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
         button.clipsToBounds = true

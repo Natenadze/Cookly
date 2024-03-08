@@ -33,11 +33,22 @@ struct AuthTextField: View {
             }
         }
         .padding(12)
+        .foregroundColor(Color.primary)
         .autocorrectionDisabled()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(.white)
-                .stroke(Color.gray.opacity(0.3))
+                .fill(Color(UIColor.systemBackground))
         )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+        )
+
     }
+}
+
+// MARK: - Preview
+#Preview {
+    @State var asd = ""
+    return AuthTextField(text: $asd, placeholder: "", isSecure: false)
 }

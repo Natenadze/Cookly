@@ -28,7 +28,7 @@ final class PromptViewController: UIViewController {
         return stackView
     }()
     
-   
+    
     private lazy var mealTypeView = SettingsView(
         title: "Meal Type",
         options: ["Breakfast", "Lunch", "Dinner"],
@@ -37,10 +37,10 @@ final class PromptViewController: UIViewController {
     
     private lazy var difficultyView = SettingsView(
         title: "Choose Difficulty",
-        options: ["Easy", "Medium", "Hard"], 
+        options: ["Easy", "Medium", "Hard"],
         settingsType: .difficulty
     )
-
+    
     private let extendRecipeLabel = UILabel()
     private let extendRecipeToggle = UISwitch()
     private let searchButton = UIButton()
@@ -80,14 +80,11 @@ final class PromptViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        
         mealTypeView.delegate = self
         difficultyView.delegate = self
-        
         layoutUIElements()
         setupTitles()
         setupIngredientsInput()
-
         setupExtendRecipeToggle()
         setupGestureRecognizer()
         setupSearchButton()
@@ -122,7 +119,7 @@ final class PromptViewController: UIViewController {
         extendRecipeLabel.configure(with: "Extend Recipe", font: .systemFont(ofSize: 20))
     }
     
-
+    
     
     private func setupIngredientsInput() {
         ingredientsTextField.placeholder = "Add Ingredient"
@@ -133,8 +130,8 @@ final class PromptViewController: UIViewController {
         ingredientsTextField.delegate = self
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-         ingredientsTextField.leftView = paddingView
-         ingredientsTextField.leftViewMode = .always
+        ingredientsTextField.leftView = paddingView
+        ingredientsTextField.leftViewMode = .always
     }
     
     private func setupSearchButton() {
@@ -143,7 +140,7 @@ final class PromptViewController: UIViewController {
         searchButton.setTitleColor(.white, for: .normal)
     }
     
-
+    
     
     private func setupExtendRecipeToggle() {
         extendRecipeToggle.isOn = false
@@ -169,7 +166,7 @@ final class PromptViewController: UIViewController {
             extendRecipeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
     }
-
+    
     
     private func searchButtonTapped(_ sender: UIButton) {
         guard viewModel.prompt.ingredients.count >= 2 else {
@@ -185,12 +182,23 @@ final class PromptViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             
             if let recipe = result {
+                clearPromptDetails()
                 self.coordinator?.pushRecipeViewController(recipe: recipe)
             } else {
                 self.showErrorLabel(text: " 🌐 - Network error, try again later")
             }
         }
     }
+    
+    func clearPromptDetails() {
+        viewModel.clearPrompt()
+        
+        for subview in ingredientsStackView.arrangedSubviews {
+            subview.removeFromSuperview()
+        }
+        ingredientCounter = 1
+    }
+    
     
     
     // MARK: - Selectors
@@ -254,12 +262,12 @@ private extension PromptViewController {
             
             mealTypeView.topAnchor.constraint(equalTo: ingredientsStackView.bottomAnchor, constant: 20),
             mealTypeView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            mealTypeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20), 
+            mealTypeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             difficultyView.topAnchor.constraint(equalTo: mealTypeView.bottomAnchor, constant: 20),
             difficultyView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             difficultyView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-
+            
             extendRecipeLabel.topAnchor.constraint(equalTo: difficultyView.bottomAnchor, constant: 20),
             extendRecipeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
