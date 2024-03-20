@@ -48,7 +48,7 @@
 		5DB880A62B5BE876003FE18D /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A52B5BE876003FE18D /* InjectionKey.swift */; };
 		5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */; };
 		5DC38A712B78DCC9003860BB /* CustomLinearGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */; };
-		5DC38A742B78DE16003860BB /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A732B78DE16003860BB /* SaveButtonView.swift */; };
+		5DC38A742B78DE16003860BB /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A732B78DE16003860BB /* FavoriteButton.swift */; };
 		5DC38A762B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */; };
 		5DC38A782B78FFE2003860BB /* ErrorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC38A772B78FFE2003860BB /* ErrorBannerView.swift */; };
 		5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */; };
@@ -94,7 +94,7 @@
 		5DB880A52B5BE876003FE18D /* InjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
 		5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviding.swift; sourceTree = "<group>"; };
 		5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinearGradientView.swift; sourceTree = "<group>"; };
-		5DC38A732B78DE16003860BB /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
+		5DC38A732B78DE16003860BB /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBackgroundViewRepresentable.swift; sourceTree = "<group>"; };
 		5DC38A772B78FFE2003860BB /* ErrorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBannerView.swift; sourceTree = "<group>"; };
 		5DDA81B12B5E880C00548411 /* InjectedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectedDependencies.swift; sourceTree = "<group>"; };
@@ -367,12 +367,20 @@
 			isa = PBXGroup;
 			children = (
 				5DDA81C82B60463D00548411 /* SwiftUI  */,
-				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
-				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
-				5DC38A732B78DE16003860BB /* SaveButtonView.swift */,
-				5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */,
+				5DCCE9202BAB36DC00917220 /* UIKit */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5DCCE9202BAB36DC00917220 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
+				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
+				5DC38A732B78DE16003860BB /* FavoriteButton.swift */,
+				5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		5DDA81B52B5EC49900548411 /* Coordinator */ = {
@@ -494,7 +502,7 @@
 				5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */,
 				5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */,
 				5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */,
-				5DC38A742B78DE16003860BB /* SaveButtonView.swift in Sources */,
+				5DC38A742B78DE16003860BB /* FavoriteButton.swift in Sources */,
 				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */,

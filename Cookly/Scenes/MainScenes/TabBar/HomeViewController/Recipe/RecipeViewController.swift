@@ -16,20 +16,11 @@ final class RecipeViewController: UIViewController {
     private var recipe: Recipe
     
     // MARK: -  UI Components
-    var imageView = UIImageView()
-    var nameLabel = UILabel()
-    var detailLabel = UILabel()
-    var tableView = UITableView()
-    
-    private let favoriteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .orange
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.imageView?.contentMode = .scaleAspectFit
-        return button
-    }()
+    private let imageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let detailLabel = UILabel()
+    private let tableView = UITableView()
+    private let favoriteButton = FavoriteButton()
     
     // MARK: - Lifecycle
     init(recipe: Recipe) {
@@ -46,8 +37,8 @@ final class RecipeViewController: UIViewController {
         setupUI()
     }
     
-    // MARK: - Methods
-    func setupUI() {
+    // MARK: - Setup UI
+    private func setupUI() {
         view.backgroundColor = .systemGray6
         setupImageView()
         setupNameLabel()
@@ -56,22 +47,13 @@ final class RecipeViewController: UIViewController {
         setupFavoriteButton()
         tableView.reloadData()
     }
-}
-
-// MARK: - Extension Methods
-private extension RecipeViewController {
     
-    func setupImageView() {
+    private func setupImageView() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
-        if recipe.image.isEmpty {
-            imageView.image = UIImage(named: "noImage")
-        }else {
-            imageView.image = UIImage(named: recipe.image)
-        }
-        
+        imageView.image = UIImage(named: recipe.image.isEmpty ? "test" : recipe.image)
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
@@ -82,15 +64,9 @@ private extension RecipeViewController {
         ])
     }
     
-    func setupFavoriteButton() {
-        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
-        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
-        
-        
-        favoriteButton.addAction(UIAction(handler: {[weak self] _  in
-            self?.favoriteButtonTapped()
-        }), for: .touchUpInside)
-        
+    private func setupFavoriteButton() {
+        favoriteButton.isFavorite = recipe.isSaved
+        favoriteButton.delegate = self
         imageView.addSubview(favoriteButton)
         imageView.isUserInteractionEnabled = true
         
@@ -103,16 +79,7 @@ private extension RecipeViewController {
         ])
     }
     
-    
-    func favoriteButtonTapped() {
-        recipe.isSaved.toggle()
-        viewModel.toggleSavedRecipe(with: recipe)
-        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
-        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
-    }
-    
-    
-    func setupNameLabel() {
+    private func setupNameLabel() {
         nameLabel.text = recipe.name
         nameLabel.font = UIFont.boldSystemFont(ofSize: 24)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -125,7 +92,7 @@ private extension RecipeViewController {
         ])
     }
     
-    func setupDetailLabel() {
+    private func setupDetailLabel() {
         let diets = recipe.diets.map { $0.rawValue.capitalized }.joined(separator: ", ")
         detailLabel.text = "Diets: \(diets)\nMeal Type: \(recipe.mealType.rawValue.capitalized)\nServings: \(recipe.servings)"
         detailLabel.numberOfLines = 0
@@ -139,7 +106,7 @@ private extension RecipeViewController {
         ])
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,12 +121,10 @@ private extension RecipeViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: "IngredientCell")
-        
     }
 }
 
 // MARK: - Extension TableView
-
 extension RecipeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -182,35 +147,47 @@ extension RecipeViewController: UITableViewDataSource {
         }
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let ingredientCell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as! IngredientTableViewCell
             let ingredient = recipe.ingredients[indexPath.row]
             ingredientCell.configure(with: ingredient)
             return ingredientCell
-        }else {
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             var content = cell.defaultContentConfiguration()
             
             let instruction = recipe.instructions[indexPath.row]
-            content.attributedText = .attributedStringForInstruction(stepNumber: indexPath.row + 1,
-                                                                     instruction: instruction)
+            content.attributedText = .attributedStringForInstruction(stepNumber: indexPath.row + 1, instruction: instruction)
             content.textProperties.numberOfLines = 0
             cell.contentConfiguration = content
             return cell
         }
     }
     
-    
 }
 
 extension RecipeViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         indexPath.section == 0 ? 50 : 80
     }
+    
 }
+
+// MARK: - Extension FavoriteButtonDelegate
+extension RecipeViewController: FavoriteButtonDelegate {
+    
+    func favoriteButtonTapped(isFavorite: Bool) {
+        recipe.isSaved.toggle()
+        viewModel.toggleSavedRecipe(with: recipe)
+        let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
+        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+    
+}
+
+
 
 
 #if DEBUG
