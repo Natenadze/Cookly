@@ -28,7 +28,6 @@ final class FavoritesTableViewCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
-        imageView.image = UIImage(named: "test")
         return imageView
     }()
 
@@ -112,7 +111,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         self.recipe = recipe
         backgroundImageView.image = UIImage(named: recipe.image)
         titleLabel.text = recipe.name
-        timeLabel.text = String(recipe.time)
+        timeLabel.text = String(recipe.time) + "min"
         favoriteButton.isFavorite = recipe.isSaved
     }
 }

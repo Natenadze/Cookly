@@ -8,12 +8,15 @@
 import Foundation
 
 struct Prompt: Encodable {
+    
+    // MARK: - Properties
     var ingredients: [String]
     var mealType: MealType
     var time: Int
     var diet: [Diet]
     var extendRecipe: Bool
     
+    // MARK: - Init
     init(
         ingredients: [String] = [],
         mealType: MealType = .Lunch,

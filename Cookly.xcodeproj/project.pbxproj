@@ -210,6 +210,7 @@
 			children = (
 				5D3E3C412B5C30FA00E3266E /* TextFieldView.swift */,
 				5D3E3C472B5D1C3F00E3266E /* AuthButton.swift */,
+				5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -381,7 +382,6 @@
 				5D14B3482B76DB4F00A5063E /* BackgroundView.swift */,
 				5DC38A702B78DCC9003860BB /* CustomLinearGradientView.swift */,
 				5DC38A732B78DE16003860BB /* FavoriteButton.swift */,
-				5DC38A752B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";

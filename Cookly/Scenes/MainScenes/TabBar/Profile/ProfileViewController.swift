@@ -16,10 +16,6 @@ final class ProfileViewController: UITableViewController {
     @Injected(\.authViewModel) var authViewModel: AuthenticationViewModel
     @Injected(\.profileViewModel) var profileViewModel: ProfileViewModel
     
-    enum Section: Int, CaseIterable {
-        case appInformation, preferences, account, logout
-    }
-    
     weak var coordinator: Coordinator?
     
     // MARK: - Lifecycle
@@ -37,10 +33,7 @@ final class ProfileViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .singleLine
     }
-    
-    // MARK: - methods
-
-    
+     
 }
 
 // MARK: - Extensions
@@ -65,9 +58,8 @@ extension ProfileViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         
-        switch Section(rawValue: indexPath.section) {
+        switch profileViewModel.sections[indexPath.section] {
         case .appInformation: break
         case .preferences:
             presentColorPreferencesAlert()
@@ -76,6 +68,8 @@ extension ProfileViewController {
         default:
             performLogout()
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

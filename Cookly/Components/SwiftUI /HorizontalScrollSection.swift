@@ -55,38 +55,22 @@ struct ScrollableSection: View {
     }
     
     private func recipeView(for recipe: Recipe) -> some View {
+        
         VStack(alignment: .leading) {
-            if recipe.image.isEmpty {
-                Image("noImage")
-                    .resizable()
-                    .frame(width: 140, height: 120)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .padding(4)
-                    .onTapGesture {
-                        delegate?.navigateToRecipeViewController(recipe: recipe)
-                    }
-            } else {
-                Image(recipe.image)
-                    .resizable()
-                    .frame(width: 140, height: 120)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .padding(4)
-                    .onTapGesture {
-                        delegate?.navigateToRecipeViewController(recipe: recipe)
-                    }
-            }
-//                .resizable()
-//                .frame(width: 140, height: 120)
-//                .clipShape(RoundedRectangle(cornerRadius: 8))
-//                .padding(4)
-//                .onTapGesture {
-//                    delegate?.navigateToRecipeViewController(recipe: recipe)
-//                }
+            let recipeImage = recipe.image.isEmpty ? Image("test") : Image(recipe.image)
+            
+            recipeImage
+                .resizable()
+                .frame(width: 140, height: 120)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(4)
+                .onTapGesture {
+                    delegate?.navigateToRecipeViewController(recipe: recipe)
+                }
+            
             
             Text(recipe.name)
                 .padding(.trailing)
-                .font(.headline)
-                .fontWeight(.semibold)
                 .lineLimit(2)
                 .frame(width: 140, alignment: .leading)
         }

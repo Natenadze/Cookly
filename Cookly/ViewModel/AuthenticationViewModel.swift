@@ -29,12 +29,17 @@ final class AuthenticationViewModel: ObservableObject {
         do {
             try await apiManager.login(email: email, password: password)
         } catch {
-            throw AuthError.serverError
+            throw AuthError.invalidCredentials
         }
     }
     
     func loginWithGoogle() async throws {
-        try await apiManager.loginWithGoogle()
+     
+        do {
+            try await apiManager.loginWithGoogle()
+        } catch {
+            throw AuthError.serverError
+        }
     }
     
     func signOut() async throws {
@@ -68,7 +73,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     func errorMessage(for error: AuthError) -> String {
         switch error {
-        case .invalidCredentials: return "Invalid credentials. Please try again."
+        case .invalidCredentials: return "Login Error: Incorrect email or password. Please try again."
         case .networkError: return "Network error. Please check your connection."
         case .serverError: return "Server error. Please try again later."
         case .unknownError: return "Unknown error occurred."
