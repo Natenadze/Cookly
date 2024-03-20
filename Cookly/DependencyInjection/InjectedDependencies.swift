@@ -19,3 +19,6 @@ struct AuthViewModelKey: InjectionKey {
 struct MainViewModelKey: InjectionKey {
     static var currentValue: MainViewModel = MainViewModel()
 }
+struct ProfileViewModelKey: InjectionKey {
+    static var currentValue: ProfileViewModel = ProfileViewModel()
+}

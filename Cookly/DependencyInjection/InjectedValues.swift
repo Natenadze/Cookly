@@ -36,8 +36,14 @@ extension InjectedValues {
         get { Self[AuthViewModelKey.self] }
         set { Self[AuthViewModelKey.self] = newValue }
     } 
+    
     var mainViewModel: MainViewModel {
         get { Self[MainViewModelKey.self] }
         set { Self[MainViewModelKey.self] = newValue }
+    }   
+    
+    var profileViewModel: ProfileViewModel {
+        get { Self[ProfileViewModelKey.self] }
+        set { Self[ProfileViewModelKey.self] = newValue }
     }
 }

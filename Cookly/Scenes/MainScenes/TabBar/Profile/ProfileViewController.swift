@@ -13,10 +13,11 @@ final class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
     @Injected(\.networkProvider) var apiManager: NetworkProviding
-    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
+    @Injected(\.authViewModel) var authViewModel: AuthenticationViewModel
+    @Injected(\.profileViewModel) var profileViewModel: ProfileViewModel
     
     enum Section: Int, CaseIterable {
-        case preferences, account, logout
+        case appInformation, preferences, account, logout
     }
     
     weak var coordinator: Coordinator?
@@ -37,12 +38,15 @@ final class ProfileViewController: UITableViewController {
         tableView.separatorStyle = .singleLine
     }
     
+    // MARK: - methods
+
+    
 }
 
 // MARK: - Extensions
 extension ProfileViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        profileViewModel.sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,31 +54,12 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch Section(rawValue: section) {
-        case .preferences: return "Preferences"
-        case .account: return "Account"
-        default: return " "
-        }
+        profileViewModel.titleForHeader(in: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var content = cell.defaultContentConfiguration()
-        
-        switch Section(rawValue: indexPath.section) {
-        case .preferences:
-            content.text = "Color Preferences"
-            cell.accessoryType = .disclosureIndicator
-        case .account:
-            content.text = "Delete Account"
-            cell.accessoryType = .disclosureIndicator
-        default:
-            content.text = "Logout"
-            content.textProperties.font = .boldSystemFont(ofSize: 18)
-            content.textProperties.color = .red
-            content.textProperties.alignment = .center
-        }
-        cell.contentConfiguration = content
+        profileViewModel.configureCell(cell, for: indexPath)
         return cell
     }
     
@@ -83,6 +68,7 @@ extension ProfileViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch Section(rawValue: indexPath.section) {
+        case .appInformation: break
         case .preferences:
             presentColorPreferencesAlert()
         case .account:
@@ -113,13 +99,14 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        30
     }
     
 }
 
 // MARK: - Actions
 private extension ProfileViewController {
+    
     func changeColorScheme(to scheme: UIUserInterfaceStyle) {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         windowScene.windows.forEach { window in
@@ -152,7 +139,7 @@ private extension ProfileViewController {
     func performLogout() {
         Task {
             do {
-                try await viewModel.signOut()
+                try await authViewModel.signOut()
                 coordinator?.logoutUser()
             } catch {
                 print("Error logout")
@@ -163,7 +150,7 @@ private extension ProfileViewController {
     func deleteUserButtonTapped() {
         Task {
             do {
-                try await viewModel.handleDeleteUserButtonTapped()
+                try await authViewModel.handleDeleteUserButtonTapped()
                 coordinator?.logoutUser()
             } catch {
                 print("Error delete user")
