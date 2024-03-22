@@ -31,15 +31,16 @@ final class FlowCoordinator: Coordinator {
     // MARK: - Methods
     
     func start() {
-        showRootView()
+        showLoginAsRootView()
     }
     
     func logoutUser() {
-        showRootView()
+        showLoginAsRootView()
     }
     
-    private func showRootView() {
-        let loginView = LoginView(coordinator: self)
+    private func showLoginAsRootView() {
+        var loginView = LoginView()
+        loginView.delegate = self
         let hostingView = UIHostingController(rootView: loginView)
         navigationController.setViewControllers([hostingView], animated: true)
     }
@@ -57,7 +58,8 @@ final class FlowCoordinator: Coordinator {
     }
     
     func showRegistrationView() {
-        let registration = RegistrationView(coordinator: self)
+        var registration = RegistrationView()
+        registration.delegate = self
         let hostingView = UIHostingController(rootView: registration)
         navigationController.pushViewController(hostingView, animated: true)
     }
@@ -84,5 +86,18 @@ extension FlowCoordinator: OnboardingContainerVCDelegate {
         LocalState.hasOnboarded = true
         showTabBarAsRoot()
     }
+}
+
+extension FlowCoordinator: AuthDelegate {
+    func loginViewDidTapLogin() {
+        showTabBarAsRoot()
+    }
     
+    func RegistrationViewDidTapRegister() {
+        goBackToLoginView()
+    }
+    
+    func loginViewDidTapDontHaveAnAccount() {
+        showRegistrationView()
+    }
 }

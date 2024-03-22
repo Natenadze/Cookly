@@ -72,7 +72,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     func errorMessage(for error: AuthError) -> String {
         switch error {
-        case .invalidCredentials: return "Login Error: Incorrect email or password. Please try again."
+        case .invalidCredentials: return "Login Error: Incorrect email or password."
         case .networkError: return "Network error. Please check your connection."
         case .serverError: return "Server error. Please try again later."
         case .unknownError: return "Unknown error occurred."

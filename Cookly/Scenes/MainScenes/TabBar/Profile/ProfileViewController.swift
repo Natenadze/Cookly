@@ -33,7 +33,7 @@ final class ProfileViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .singleLine
     }
-     
+    
 }
 
 // MARK: - Extensions

@@ -30,6 +30,7 @@
 		5D6D1AB12BAC86F1000C5601 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */; };
 		5D6D1AB32BAC8DFF000C5601 /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */; };
 		5D6D1AB52BADF394000C5601 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB42BADF394000C5601 /* LocalState.swift */; };
+		5D6D1AB82BAE25AA000C5601 /* AuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB72BAE25AA000C5601 /* AuthDelegate.swift */; };
 		5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */; };
 		5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */; };
 		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
@@ -84,6 +85,7 @@
 		5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		5D6D1AB42BADF394000C5601 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
+		5D6D1AB72BAE25AA000C5601 /* AuthDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDelegate.swift; sourceTree = "<group>"; };
 		5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		5D3E3C3D2B5C2F7F00E3266E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				5D6D1AB62BAE259C000C5601 /* Protocol */,
 				5D3E3C4A2B5D2DCA00E3266E /* Registration */,
 				5D3E3C4D2B5D2DE500E3266E /* Login */,
 				5D3E3C402B5C30EF00E3266E /* Components */,
@@ -262,6 +265,14 @@
 				5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		5D6D1AB62BAE259C000C5601 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				5D6D1AB72BAE25AA000C5601 /* AuthDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		5D8F35052B72BD8E00FDFCFD /* Extensions */ = {
@@ -511,6 +522,7 @@
 				5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
 				5D6D1AAE2BAB6B51000C5601 /* ProfileViewModel.swift in Sources */,
+				5D6D1AB82BAE25AA000C5601 /* AuthDelegate.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,

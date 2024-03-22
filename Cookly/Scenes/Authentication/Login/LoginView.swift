@@ -18,7 +18,7 @@ struct LoginView: View {
     @State var errorMessage: String = ""
     @State var showErrorBanner: Bool = false
     
-    let coordinator: Coordinator
+    weak var delegate: AuthDelegate?
     
     // MARK: - Body
     var body: some View {
@@ -122,7 +122,7 @@ private extension LoginView {
             Spacer()
             
             Button(action: {
-                coordinator.showRegistrationView()
+                delegate?.loginViewDidTapDontHaveAnAccount()
             }, label: {
                 Text("Dont't have an account?")
                     .fontWeight(.semibold)
@@ -158,7 +158,7 @@ extension LoginView {
             do {
                 try await action()
                 await MainActor.run {
-                    coordinator.showTabBarAsRoot()
+                    delegate?.loginViewDidTapLogin()
                 }
             } catch {
                 showError(error: error)
@@ -171,5 +171,5 @@ extension LoginView {
 
 // MARK: - Preview
 #Preview {
-    LoginView(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    LoginView()
 }

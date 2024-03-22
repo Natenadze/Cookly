@@ -7,13 +7,13 @@
 
 import UIKit
 
- final class OnboardingVC: UIViewController {
+final class OnboardingVC: UIViewController {
     
     // MARK: - Properties
     var imageName: String
     var titleText: String
     
-     // MARK: - UI Components
+    // MARK: - UI Components
     let stackView = UIStackView()
     let imageView = UIImageView()
     let label = UILabel()
@@ -56,7 +56,7 @@ extension OnboardingVC {
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
         label.text = titleText
-      
+        
     }
     
     func layout() {
