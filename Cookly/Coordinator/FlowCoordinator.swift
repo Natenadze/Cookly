@@ -18,7 +18,7 @@ protocol Coordinator: AnyObject {
     func logoutUser()
 }
 
-final class FlowCoordinator:  Coordinator {
+final class FlowCoordinator: Coordinator {
     
     // MARK: - Properties
     var navigationController: UINavigationController
@@ -45,8 +45,15 @@ final class FlowCoordinator:  Coordinator {
     }
     
     func showTabBarAsRoot() {
-        let controller = TabBarController(coordinator: self)
-        navigationController.viewControllers = [controller]
+        if LocalState.hasOnboarded {
+            let controller = TabBarController(coordinator: self)
+            navigationController.viewControllers = [controller]
+        } else {
+            let onboardingContainerVC = OnboardingContainerVC()
+            onboardingContainerVC.delegate = self
+            navigationController.viewControllers = [onboardingContainerVC]
+        }
+        
     }
     
     func showRegistrationView() {
@@ -70,3 +77,12 @@ final class FlowCoordinator:  Coordinator {
     }
 }
 
+
+// MARK: - Extension
+extension FlowCoordinator: OnboardingContainerVCDelegate {
+    func didFinishOnboarding() {
+        LocalState.hasOnboarded = true
+        showTabBarAsRoot()
+    }
+    
+}

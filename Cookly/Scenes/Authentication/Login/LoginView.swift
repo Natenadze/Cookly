@@ -139,36 +139,29 @@ private extension LoginView {
 
 // MARK: - Methods Extension
 extension LoginView {
-    //TODO: - refactor redundancy
-    func loginButtonTapped() {
+    private func loginButtonTapped() {
+        performLoginAction {
+            try await viewModel.login(email: emailInput, password: passwordInput)
+        }
+    }
+    
+    private func googleLoginButtonTapped() {
+        performLoginAction {
+            try await viewModel.loginWithGoogle()
+        }
+    }
+    
+    private func performLoginAction(action: @escaping () async throws -> Void) {
+        isLoading = true
         Task {
-            isLoading = true
             defer { isLoading = false }
-            
             do {
-                try await viewModel.login(email: emailInput, password: passwordInput)
+                try await action()
                 await MainActor.run {
                     coordinator.showTabBarAsRoot()
                 }
             } catch {
                 showError(error: error)
-            }
-        }
-    }
-    
-    func googleLoginButtonTapped() {
-        Task {
-            isLoading = true
-            defer { isLoading = false }
-            
-            do {
-                try await viewModel.loginWithGoogle()
-                await MainActor.run {
-                    coordinator.showTabBarAsRoot()
-                }
-            } catch {
-                //TODO: - handle error
-                print("Google Login Error")
             }
         }
     }

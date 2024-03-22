@@ -34,7 +34,6 @@ final class AuthenticationViewModel: ObservableObject {
     }
     
     func loginWithGoogle() async throws {
-     
         do {
             try await apiManager.loginWithGoogle()
         } catch {

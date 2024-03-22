@@ -81,7 +81,6 @@ final class MainViewModel {
             savedRecipes = recipes
         }
     }
-    // MARK: - Methods
     
     func updateAllRecipes(with recipe: Recipe) {
         allRecipes.append(recipe)

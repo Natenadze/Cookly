@@ -27,6 +27,9 @@
 		5D3E3C512B5D6D0600E3266E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C502B5D6D0600E3266E /* Recipe.swift */; };
 		5D4392AB2B713BD300039BCC /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4392AA2B713BD300039BCC /* Prompt.swift */; };
 		5D6D1AAE2BAB6B51000C5601 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AAD2BAB6B51000C5601 /* ProfileViewModel.swift */; };
+		5D6D1AB12BAC86F1000C5601 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */; };
+		5D6D1AB32BAC8DFF000C5601 /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */; };
+		5D6D1AB52BADF394000C5601 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB42BADF394000C5601 /* LocalState.swift */; };
 		5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */; };
 		5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */; };
 		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
@@ -78,6 +81,9 @@
 		5D3E3C502B5D6D0600E3266E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		5D4392AA2B713BD300039BCC /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		5D6D1AAD2BAB6B51000C5601 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
+		5D6D1AB42BADF394000C5601 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -191,6 +197,7 @@
 				5D3E3C3B2B5C216700E3266E /* Constants.swift */,
 				5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */,
 				5D8F35052B72BD8E00FDFCFD /* Extensions */,
+				5D6D1AB42BADF394000C5601 /* LocalState.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -246,6 +253,15 @@
 				5D4392AA2B713BD300039BCC /* Prompt.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5D6D1AAF2BAC86DD000C5601 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */,
+				5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		5D8F35052B72BD8E00FDFCFD /* Extensions */ = {
@@ -362,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C3D2B5C2F7F00E3266E /* Authentication */,
+				5D6D1AAF2BAC86DD000C5601 /* Onboarding */,
 				5D3E3C392B5C20CA00E3266E /* MainScenes */,
 			);
 			path = Scenes;
@@ -497,6 +514,7 @@
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
 				5D14B34D2B77991400A5063E /* NSAttributedString+Extension.swift in Sources */,
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
+				5D6D1AB32BAC8DFF000C5601 /* OnboardingContainerViewController.swift in Sources */,
 				5DB64AE62B7A80B2008C1723 /* SettingsView.swift in Sources */,
 				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,
@@ -516,7 +534,9 @@
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
 				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
 				5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */,
+				5D6D1AB52BADF394000C5601 /* LocalState.swift in Sources */,
 				5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */,
+				5D6D1AB12BAC86F1000C5601 /* OnboardingViewController.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,
 				5DC38A762B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift in Sources */,
