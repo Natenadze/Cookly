@@ -18,13 +18,13 @@ struct ErrorBannerView: View {
         Text(message)
             .padding()
             .font(.headline)
-            .foregroundColor(.black)
+            .foregroundColor(.primary)
             .frame(maxWidth: .infinity)
             .background(Color(uiColor: .systemGray5))
             .cornerRadius(5)
             .offset(y: isVisible ? -50 : -170)
             .animation(.easeInOut(duration: 0.5), value: isVisible)
-            .onChange(of: isVisible) { _, _ in
+            .onChange(of: isVisible) { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         self.isVisible = false

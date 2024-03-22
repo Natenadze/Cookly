@@ -69,7 +69,7 @@ final class BackgroundView: UIView {
         path.close()
         
         shapeLayer.path = path.cgPath
-        shapeLayer.fillColor = UIColor.orange.cgColor
+        shapeLayer.fillColor = UIColor.systemOrange.cgColor
     }
 }
 

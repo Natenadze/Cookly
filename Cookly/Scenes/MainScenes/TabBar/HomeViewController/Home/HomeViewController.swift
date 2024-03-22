@@ -108,6 +108,7 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Methods
     func updateUI() {
+        navigationController?.navigationBar.isHidden = false
         recentSearchesScrollView.rootView.recipes = viewModel.allRecipes
         recentSearchesScrollView.view.invalidateIntrinsicContentSize()
     }

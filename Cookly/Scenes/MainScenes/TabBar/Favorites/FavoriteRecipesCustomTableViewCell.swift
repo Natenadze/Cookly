@@ -14,13 +14,7 @@ protocol FavoritesTableViewCellDelegate: AnyObject {
 final class FavoritesTableViewCell: UITableViewCell {
     
     static var identifier: String {
-        .init(describing: self)
-    }
-    
-    private var isSaved = false {
-        didSet {
-            updateFavoriteButton()
-        }
+        String(describing: self)
     }
     
     private var recipe: Recipe?
@@ -34,7 +28,6 @@ final class FavoritesTableViewCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
-        imageView.image = UIImage(named: "test")
         return imageView
     }()
     
@@ -47,13 +40,8 @@ final class FavoritesTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let favoriteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .red
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.imageView?.contentMode = .scaleAspectFit
+    private let favoriteButton: FavoriteButton = {
+        let button = FavoriteButton()
         return button
     }()
     
@@ -96,9 +84,7 @@ final class FavoritesTableViewCell: UITableViewCell {
         containerView.addSubview(timeLabel)
         containerView.addSubview(favoriteButton)
         
-        favoriteButton.addAction(UIAction(handler: { _ in
-            self.favoriteButtonTapped()
-        }), for: .touchUpInside)
+        favoriteButton.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -125,22 +111,15 @@ final class FavoritesTableViewCell: UITableViewCell {
         self.recipe = recipe
         backgroundImageView.image = UIImage(named: recipe.image)
         titleLabel.text = recipe.name
-        timeLabel.text = String(recipe.time)
-        isSaved = recipe.isSaved
-        updateFavoriteButton()
+        timeLabel.text = String(recipe.time) + "min"
+        favoriteButton.isFavorite = recipe.isSaved
     }
-    
-    private func updateFavoriteButton() {
-        UIView.transition(with: favoriteButton, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
-            guard let self else { return }
-            let imageName = self.isSaved ? "bookmark.fill" : "bookmark"
-            self.favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
-        }, completion: nil)
-    }
-    
-    private func favoriteButtonTapped() {
+}
+
+extension FavoritesTableViewCell: FavoriteButtonDelegate {
+    func favoriteButtonTapped(isFavorite: Bool) {
         guard let recipe else { return }
         delegate?.isSavedButtonTapped(recipe: recipe)
     }
-    
 }
+

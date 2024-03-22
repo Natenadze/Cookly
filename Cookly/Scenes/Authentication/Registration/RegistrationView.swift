@@ -16,7 +16,8 @@ struct RegistrationView: View {
     @State private var passwordInput: String = ""
     @State private var errorMessage: String = ""
     @State private var showErrorBanner: Bool = false
-    let coordinator: Coordinator
+    
+    weak var delegate: AuthDelegate?
     
     // MARK: - Body
     var body: some View {
@@ -37,7 +38,7 @@ private extension RegistrationView {
                     .padding()
                 Spacer()
             }
-         
+            
             VStack(alignment: .leading, spacing: 16) {
                 textFieldStack
                 SignUpButtonView(title: "Sign Up", action: SignUpButtonTapped)
@@ -73,7 +74,7 @@ extension RegistrationView {
             do {
                 try await viewModel.register(email: emailInput, password: passwordInput)
                 await MainActor.run {
-                    coordinator.goBackToLoginView()
+                    delegate?.RegistrationViewDidTapRegister()
                 }
             } catch {
                 showError(error: error)
@@ -96,5 +97,5 @@ extension RegistrationView {
 
 // MARK: - Preview
 #Preview {
-    RegistrationView(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    RegistrationView()
 }

@@ -17,9 +17,8 @@ struct LoginView: View {
     @State private var isLoading: Bool = false
     @State var errorMessage: String = ""
     @State var showErrorBanner: Bool = false
- 
     
-    let coordinator: Coordinator
+    weak var delegate: AuthDelegate?
     
     // MARK: - Body
     var body: some View {
@@ -30,12 +29,10 @@ struct LoginView: View {
             VStack {
                 ErrorBannerView(isVisible: $showErrorBanner, message: errorMessage)
                     .padding()
-                
                 Spacer()
             }
             
             VStack(alignment: .leading, spacing:20) {
-                
                 textFieldStack
                 dontHaveAnAccountButton
                 LoginButtonView(title: "Login", action: loginButtonTapped)
@@ -45,7 +42,6 @@ struct LoginView: View {
             }
             .padding(.horizontal, 16)
             .padding(.top,80)
-            
             
             if isLoading {
                 ZStack {
@@ -126,7 +122,7 @@ private extension LoginView {
             Spacer()
             
             Button(action: {
-                coordinator.showRegistrationView()
+                delegate?.loginViewDidTapDontHaveAnAccount()
             }, label: {
                 Text("Dont't have an account?")
                     .fontWeight(.semibold)
@@ -143,36 +139,29 @@ private extension LoginView {
 
 // MARK: - Methods Extension
 extension LoginView {
-    //TODO: - refactor redundancy
-    func loginButtonTapped() {
-        Task {
-            isLoading = true
-            defer { isLoading = false }
-            
-            do {
-                try await viewModel.login(email: emailInput, password: passwordInput)
-                await MainActor.run {
-                    coordinator.showTabBarAsRoot()
-                }
-            } catch {
-                showError(error: error)
-            }
+    private func loginButtonTapped() {
+        performLoginAction {
+            try await viewModel.login(email: emailInput, password: passwordInput)
         }
     }
     
-    func googleLoginButtonTapped() {
+    private func googleLoginButtonTapped() {
+        performLoginAction {
+            try await viewModel.loginWithGoogle()
+        }
+    }
+    
+    private func performLoginAction(action: @escaping () async throws -> Void) {
+        isLoading = true
         Task {
-            isLoading = true
             defer { isLoading = false }
-            
             do {
-                try await viewModel.loginWithGoogle()
+                try await action()
                 await MainActor.run {
-                    coordinator.showTabBarAsRoot()
+                    delegate?.loginViewDidTapLogin()
                 }
             } catch {
-                //TODO: - handle error
-                print("Google Login Error")
+                showError(error: error)
             }
         }
     }
@@ -182,5 +171,5 @@ extension LoginView {
 
 // MARK: - Preview
 #Preview {
-    LoginView(coordinator: FlowCoordinator(navigationController: UINavigationController()))
+    LoginView()
 }

@@ -55,8 +55,11 @@ struct ScrollableSection: View {
     }
     
     private func recipeView(for recipe: Recipe) -> some View {
+        
         VStack(alignment: .leading) {
-            Image(recipe.image)
+            let recipeImage = recipe.image.isEmpty ? Image("test") : Image(recipe.image)
+            
+            recipeImage
                 .resizable()
                 .frame(width: 140, height: 120)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -65,10 +68,9 @@ struct ScrollableSection: View {
                     delegate?.navigateToRecipeViewController(recipe: recipe)
                 }
             
+            
             Text(recipe.name)
                 .padding(.trailing)
-                .font(.headline)
-                .fontWeight(.semibold)
                 .lineLimit(2)
                 .frame(width: 140, alignment: .leading)
         }

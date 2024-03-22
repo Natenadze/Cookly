@@ -30,6 +30,9 @@ final class MainViewModel {
     }
     
     // MARK: - Methods
+    func clearPrompt() {
+        prompt = Prompt()
+    }
     
     func updateMealType(text: String) {
         switch text {
@@ -78,7 +81,6 @@ final class MainViewModel {
             savedRecipes = recipes
         }
     }
-    // MARK: - Methods
     
     func updateAllRecipes(with recipe: Recipe) {
         allRecipes.append(recipe)
