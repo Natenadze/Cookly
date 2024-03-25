@@ -8,9 +8,6 @@
 import Foundation
 
 // MARK: - Injected Dependencies
-struct NetworkProviderKey: InjectionKey {
-    static var currentValue: NetworkProviding = ApiManager()
-}
 
 struct AuthServiceKey: InjectionKey {
     static var currentValue: AuthProviding = AuthService()

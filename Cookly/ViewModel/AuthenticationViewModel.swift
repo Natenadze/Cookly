@@ -10,14 +10,16 @@ import Foundation
 final class AuthenticationViewModel: ObservableObject {
     
     // MARK: - Properties
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.authService) var authService: AuthProviding
+    @Injected(\.userService) var userService: UserServiceProviding
+    @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
     @Published var isRegistrationSuccessful = false
     
     // MARK: - Auth Methods
     func register(email: String, password: String) async throws {
         try validateCredentials(email: email, password: password)
         do {
-            try await apiManager.register(email: email, password: password)
+            try await authService.register(email: email, password: password)
             isRegistrationSuccessful = true
         } catch {
             throw AuthError.serverError
@@ -27,7 +29,7 @@ final class AuthenticationViewModel: ObservableObject {
     func login(email: String, password: String) async throws {
         try validateCredentials(email: email, password: password)
         do {
-            try await apiManager.login(email: email, password: password)
+            try await authService.login(email: email, password: password)
         } catch {
             throw AuthError.invalidCredentials
         }
@@ -35,7 +37,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     func loginWithGoogle() async throws {
         do {
-            try await apiManager.loginWithGoogle()
+            try await authService.loginWithGoogle()
         } catch {
             throw AuthError.serverError
         }
@@ -43,7 +45,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     func signOut() async throws {
         do {
-            try await apiManager.signOut()
+            try await userService.signOut()
         } catch {
             throw AuthError.serverError
         }
@@ -51,7 +53,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     func handleDeleteUserButtonTapped() async throws {
         do {
-            try await apiManager.deleteUser()
+            try await userService.deleteUser()
         } catch {
             throw AuthError.serverError
         }

@@ -12,7 +12,6 @@ import UIKit
 final class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
     @Injected(\.authViewModel) var authViewModel: AuthenticationViewModel
     @Injected(\.profileViewModel) var profileViewModel: ProfileViewModel
     

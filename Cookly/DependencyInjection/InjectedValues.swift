@@ -28,10 +28,6 @@ struct InjectedValues {
 
 // MARK: - Extension
 extension InjectedValues {
-    var networkProvider: NetworkProviding {
-        get { Self[NetworkProviderKey.self] }
-        set { Self[NetworkProviderKey.self] = newValue }
-    }
     
     var authService: AuthProviding {
         get { Self[AuthServiceKey.self] }

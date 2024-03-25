@@ -10,7 +10,8 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
+//    @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.userService) var userService: UserServiceProviding
     var window: UIWindow?
     private var flowCoordinator: Coordinator?
     
@@ -23,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         flowCoordinator = FlowCoordinator(navigationController: navigationController)
         
         Task {
-            if await apiManager.checkIfUserIsSignedIn() {
+            if await userService.checkIfUserIsSignedIn() {
                 flowCoordinator?.showTabBarAsRoot()
             } else {
                 flowCoordinator?.start()

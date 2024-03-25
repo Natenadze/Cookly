@@ -10,7 +10,7 @@ import Foundation
 final class MainViewModel {
     
     // MARK: - Properties
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
     var prompt = Prompt()
     
     var allRecipes = [Recipe]() {
@@ -100,7 +100,7 @@ final class MainViewModel {
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {
         Task {
-            if let result = await apiManager.generateRecipe(prompt: prompt) {
+            if let result = await recipeProvider.generateRecipe(prompt: prompt) {
                 await MainActor.run {
                     self.updateAllRecipes(with: result)
                     completion(result)
