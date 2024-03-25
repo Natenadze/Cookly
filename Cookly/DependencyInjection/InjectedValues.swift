@@ -58,5 +58,10 @@ extension InjectedValues {
     var supaClient: SupabaseClient {
         get { Self[SupabaseClientKey.self] }
         set { Self[SupabaseClientKey.self] = newValue }
+    } 
+    
+    var authManager: AuthCredentialsManager {
+        get { Self[AuthManagerKey.self] }
+        set { Self[AuthManagerKey.self] = newValue }
     }
 }

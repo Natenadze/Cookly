@@ -16,7 +16,7 @@ struct RegistrationView: View {
     @State private var errorMessage: String = ""
     @State private var showErrorBanner: Bool = false
     
-    var viewModel: RegistrationViewModel
+    let viewModel: RegistrationViewModel
     
     
     // MARK: - Body
@@ -97,5 +97,5 @@ extension RegistrationView {
 
 // MARK: - Preview
 #Preview {
-    RegistrationView(viewModel: RegistrationViewModel())
+    RegistrationView(viewModel: RegistrationViewModel(authManager: AuthCredentialsManager()))
 }

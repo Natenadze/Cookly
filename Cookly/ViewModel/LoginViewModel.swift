@@ -13,10 +13,16 @@ final class LoginViewModel {
     // MARK: - Properties
     @Injected(\.authService) var authService: AuthProviding
     weak var delegate: AuthDelegate?
+    private let authManager: AuthCredentialsManager
+    
+    // MARK: - Lifecycle
+    init(authManager: AuthCredentialsManager) {
+        self.authManager = authManager
+    }
     
     // MARK: - Methods
     func login(email: String, password: String) async throws {
-        try validateCredentials(email: email, password: password)
+        try authManager.validateCredentials(email: email, password: password)
         do {
             try await authService.login(email: email, password: password)
         } catch {
@@ -33,16 +39,7 @@ final class LoginViewModel {
     }
     
     // MARK: - Helpers
-    private func validateCredentials(email: String, password: String) throws {
-        guard isEmailValid(email) else {
-            throw AuthError.invalidEmail
-        }
-        
-        guard isPasswordCriteriaMet(text: password) else {
-            throw AuthError.invalidPassword
-        }
-    }
-    
+//TODO: - Refactor redundancy
     func errorMessage(for error: AuthError) -> String {
         switch error {
         case .invalidCredentials: return "Login Error: Incorrect email or password."
@@ -54,51 +51,4 @@ final class LoginViewModel {
         }
     }
     
-}
-
-//TODO: - Refactor redundancy
-extension LoginViewModel {
-    
-    func isPasswordCriteriaMet(text: String) ->  Bool {
-        lengthAndNoSpaceMet(text) &&
-        uppercaseMet(text) &&
-        lowercaseMet(text) &&
-        digitMet(text) &&
-        specialCharMet(text)
-    }
-    
-    func isEmailValid(_ email: String) -> Bool {
-        let emailPattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        return email.range(of: emailPattern, options: .regularExpression) != nil
-    }
-    
-    // MARK: - Password Criteria Methods
-    func lengthCriteriaMet(_ text: String) -> Bool {
-        text.count >= 8 && text.count <= 32
-    }
-    
-    func noSpaceCriteriaMet(_ text: String) -> Bool {
-        text.rangeOfCharacter(from: NSCharacterSet.whitespaces) == nil
-    }
-    
-    func lengthAndNoSpaceMet(_ text: String) -> Bool {
-        lengthCriteriaMet(text) && noSpaceCriteriaMet(text)
-    }
-    
-    func uppercaseMet(_ text: String) -> Bool {
-        text.range(of: "[A-Z]+", options: .regularExpression) != nil
-    }
-    
-    func lowercaseMet(_ text: String) -> Bool {
-        text.range(of: "[a-z]+", options: .regularExpression) != nil
-    }
-    
-    func digitMet(_ text: String) -> Bool {
-        text.range(of: "[0-9]+", options: .regularExpression) != nil
-    }
-    
-    func specialCharMet(_ text: String) -> Bool {
-        let pattern = #"[^a-zA-Z0-9]+"#
-        return text.range(of: pattern, options: .regularExpression) != nil
-    }
 }

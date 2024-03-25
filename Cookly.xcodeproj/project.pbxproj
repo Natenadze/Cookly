@@ -43,6 +43,7 @@
 		5D6D1AD12BB20600000C5601 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AD02BB20600000C5601 /* LoginViewModel.swift */; };
 		5D6D1AD32BB2060B000C5601 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AD22BB2060B000C5601 /* RegistrationViewModel.swift */; };
 		5D6D1AD52BB20C09000C5601 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AD42BB20C09000C5601 /* AuthError.swift */; };
+		5D6D1AD72BB21601000C5601 /* AuthCredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AD62BB21601000C5601 /* AuthCredentialsManager.swift */; };
 		5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */; };
 		5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */; };
 		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
@@ -108,6 +109,7 @@
 		5D6D1AD02BB20600000C5601 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5D6D1AD22BB2060B000C5601 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		5D6D1AD42BB20C09000C5601 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		5D6D1AD62BB21601000C5601 /* AuthCredentialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentialsManager.swift; sourceTree = "<group>"; };
 		5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				5D8F350A2B72C85200FDFCFD /* MockRecipe.swift */,
 				5D8F35052B72BD8E00FDFCFD /* Extensions */,
 				5D6D1AB42BADF394000C5601 /* LocalState.swift */,
+				5D6D1AD62BB21601000C5601 /* AuthCredentialsManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				5D3E3C3F2B5C2F8F00E3266E /* RegistrationView.swift in Sources */,
 				5D6D1AB32BAC8DFF000C5601 /* OnboardingContainerViewController.swift in Sources */,
 				5DB64AE62B7A80B2008C1723 /* SettingsView.swift in Sources */,
+				5D6D1AD72BB21601000C5601 /* AuthCredentialsManager.swift in Sources */,
 				5D6D1ACF2BB2052F000C5601 /* Diet.swift in Sources */,
 				5D8F350B2B72C85200FDFCFD /* MockRecipe.swift in Sources */,
 				5DDA81B72B5EC4B100548411 /* FlowCoordinator.swift in Sources */,

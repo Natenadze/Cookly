@@ -35,6 +35,10 @@ struct SupabaseClientKey: InjectionKey {
     static var currentValue = SupaClient.supabase
 }
 
+struct AuthManagerKey: InjectionKey {
+    static var currentValue: AuthCredentialsManager = AuthCredentialsManager()
+}
+
 
 
 

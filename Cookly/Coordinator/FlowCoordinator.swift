@@ -39,9 +39,10 @@ final class FlowCoordinator: Coordinator {
     }
     
     private func showLoginAsRootView() {
-        let viewModel = LoginViewModel()
+        let authManager = AuthCredentialsManager()
+        let viewModel = LoginViewModel(authManager: authManager)
         viewModel.delegate = self
-        var loginView = LoginView(viewModel: viewModel)
+        let loginView = LoginView(viewModel: viewModel)
         let hostingView = UIHostingController(rootView: loginView)
         navigationController.setViewControllers([hostingView], animated: true)
     }
@@ -59,9 +60,10 @@ final class FlowCoordinator: Coordinator {
     }
     
     func showRegistrationView() {
-        let viewModel = RegistrationViewModel()
+        let authManager = AuthCredentialsManager()
+        let viewModel = RegistrationViewModel(authManager: authManager)
         viewModel.delegate = self
-        var registration = RegistrationView(viewModel: viewModel)
+        let registration = RegistrationView(viewModel: viewModel)
         let hostingView = UIHostingController(rootView: registration)
         navigationController.pushViewController(hostingView, animated: true)
     }

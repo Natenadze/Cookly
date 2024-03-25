@@ -171,7 +171,7 @@ extension LoginView {
 // MARK: - Preview
 #if DEBUG
 #Preview {
-    let viewModel = LoginViewModel()
+    let viewModel = LoginViewModel(authManager: AuthCredentialsManager())
     return LoginView(viewModel: viewModel)
 }
 #endif
