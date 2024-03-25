@@ -44,10 +44,6 @@ extension InjectedValues {
         set { Self[RecipeServiceKey.self] = newValue }
     }
     
-    var authViewModel: AuthenticationViewModel {
-        get { Self[AuthViewModelKey.self] }
-        set { Self[AuthViewModelKey.self] = newValue }
-    } 
     
     var mainViewModel: MainViewModel {
         get { Self[MainViewModelKey.self] }

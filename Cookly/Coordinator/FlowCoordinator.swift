@@ -59,7 +59,8 @@ final class FlowCoordinator: Coordinator {
     }
     
     func showRegistrationView() {
-        var registration = RegistrationView()
+        let viewModel = RegistrationViewModel()
+        var registration = RegistrationView(viewModel: viewModel)
         registration.delegate = self
         let hostingView = UIHostingController(rootView: registration)
         navigationController.pushViewController(hostingView, animated: true)

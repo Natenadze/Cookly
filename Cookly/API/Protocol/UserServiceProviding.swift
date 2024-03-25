@@ -7,15 +7,6 @@
 
 import Foundation
 
-enum AuthError: Error {
-    case invalidEmail
-    case invalidPassword
-    case invalidCredentials
-    case networkError
-    case serverError
-    case unknownError
-}
-
 protocol UserServiceProviding {
     func checkIfUserIsSignedIn() async -> Bool
     func signOut() async throws

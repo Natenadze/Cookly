@@ -11,13 +11,13 @@ import SwiftUI
 struct LoginView: View {
     
     // MARK: - Properties
-    var viewModel: LoginViewModel
-    
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var isLoading: Bool = false
     @State var errorMessage: String = ""
     @State var showErrorBanner: Bool = false
+    
+    var viewModel: LoginViewModel
     
     //TODO: - move delegate to viewModel
     weak var delegate: AuthDelegate?

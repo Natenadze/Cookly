@@ -10,11 +10,32 @@ import UIKit
 
 final class ProfileViewModel {
     
+    @Injected(\.userService) var userService: UserServiceProviding
+    
     enum Section: Int, CaseIterable {
         case preferences, account, appInformation, logout
     }
     
     let sections = Section.allCases
+    
+    // MARK: - Methods
+    func signOut() async throws {
+        do {
+            try await userService.signOut()
+        } catch {
+            throw AuthError.serverError
+        }
+    }
+    
+    func handleDeleteUserButtonTapped() async throws {
+        do {
+            try await userService.deleteUser()
+        } catch {
+            throw AuthError.serverError
+        }
+    }
+    
+    
     
     func titleForHeader(in section: Int) -> String {
         switch sections[section] {
@@ -50,4 +71,3 @@ final class ProfileViewModel {
         cell.contentConfiguration = content
     }
 }
-

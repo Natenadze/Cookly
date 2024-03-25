@@ -8,11 +8,10 @@
 import Foundation
 
 
-final class LoginViewModel: ObservableObject {
+final class LoginViewModel {
     
     // MARK: - Properties
     @Injected(\.authService) var authService: AuthProviding
-    
     
     // MARK: - Methods
     func login(email: String, password: String) async throws {
@@ -56,6 +55,7 @@ final class LoginViewModel: ObservableObject {
     
 }
 
+//TODO: - Refactor redundancy
 extension LoginViewModel {
     
     func isPasswordCriteriaMet(text: String) ->  Bool {

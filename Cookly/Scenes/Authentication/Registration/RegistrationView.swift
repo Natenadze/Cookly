@@ -11,12 +11,12 @@ import SwiftUI
 struct RegistrationView: View {
     
     // MARK: - Properties
-    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var errorMessage: String = ""
     @State private var showErrorBanner: Bool = false
     
+    var viewModel: RegistrationViewModel
     weak var delegate: AuthDelegate?
     
     // MARK: - Body
@@ -97,5 +97,5 @@ extension RegistrationView {
 
 // MARK: - Preview
 #Preview {
-    RegistrationView()
+    RegistrationView(viewModel: RegistrationViewModel())
 }

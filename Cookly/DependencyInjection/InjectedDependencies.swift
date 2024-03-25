@@ -21,9 +21,6 @@ struct RecipeServiceKey: InjectionKey {
     static var currentValue: RecipeProviding = RecipeService()
 }
 
-struct AuthViewModelKey: InjectionKey {
-    static var currentValue: AuthenticationViewModel = AuthenticationViewModel()
-}
 
 //TODO: - create viewModels in coordinator and use init dependency injection
 struct MainViewModelKey: InjectionKey {
