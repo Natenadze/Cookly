@@ -18,6 +18,7 @@ struct LoginView: View {
     @State var errorMessage: String = ""
     @State var showErrorBanner: Bool = false
     
+    //TODO: - move delegate to viewModel
     weak var delegate: AuthDelegate?
     
     // MARK: - Body

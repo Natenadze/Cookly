@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+//TODO: - დასაშლელია 3/4 ნაწილად
 protocol NetworkProviding {
     func login(email: String, password: String) async throws
     func register(email: String, password: String) async throws
@@ -16,3 +18,11 @@ protocol NetworkProviding {
     func checkIfUserIsSignedIn() async -> Bool
     func deleteUser() async throws
 }
+
+
+
+
+
+
+
+

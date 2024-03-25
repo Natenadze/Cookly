@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//TODO: - better practice is to move models in separate files
 struct Recipe: Codable {
     let name: String
     let image: String
@@ -26,7 +26,7 @@ struct Ingredient: Codable {
     let emoji: String
 }
 
-
+//TODO: - cases start with small letter (if possible :d)
 enum MealType: String, Codable {
     case Breakfast = "breakfast"
     case Lunch = "lunch"

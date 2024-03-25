@@ -147,6 +147,7 @@ private extension ProfileViewController {
                 try await authViewModel.handleDeleteUserButtonTapped()
                 coordinator?.logoutUser()
             } catch {
+                //TODO: - ???
                 print("Error delete user")
             }
         }

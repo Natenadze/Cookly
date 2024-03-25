@@ -34,6 +34,7 @@ final class MainViewModel {
         prompt = Prompt()
     }
     
+    //TODO: - create enum for meal types
     func updateMealType(text: String) {
         switch text {
         case "Breakfast":
@@ -45,6 +46,7 @@ final class MainViewModel {
         }
     }   
     
+    //TODO: - create enum for difficulties
     func updateDifficulty(text: String) {
         switch text {
         case "Easy":
@@ -60,7 +62,8 @@ final class MainViewModel {
         prompt.ingredients.remove(at: index)
     }
     
-    
+    //TODO: - create recipe service move this functionality there. exampleService.save(recipe)
+    //TODO: - add id to recipe model
     private func saveRecipes(recipes: [Recipe], key: String) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(recipes) {
@@ -68,6 +71,7 @@ final class MainViewModel {
         }
     }
     
+    //TODO: - same service here.  e.g recipeStorage
     private func loadRecipes() {
         let decoder = JSONDecoder()
         

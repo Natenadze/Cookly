@@ -13,6 +13,7 @@ protocol ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe)
 }
 
+//TODO: - separate viewModels for each viewController
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties

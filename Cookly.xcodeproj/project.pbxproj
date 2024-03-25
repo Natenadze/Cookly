@@ -31,6 +31,13 @@
 		5D6D1AB32BAC8DFF000C5601 /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */; };
 		5D6D1AB52BADF394000C5601 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB42BADF394000C5601 /* LocalState.swift */; };
 		5D6D1AB82BAE25AA000C5601 /* AuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB72BAE25AA000C5601 /* AuthDelegate.swift */; };
+		5D6D1ABC2BB1EDB8000C5601 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1ABB2BB1EDB8000C5601 /* AuthProviding.swift */; };
+		5D6D1ABE2BB1EDC2000C5601 /* UserServiceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1ABD2BB1EDC2000C5601 /* UserServiceProviding.swift */; };
+		5D6D1AC02BB1EDCE000C5601 /* RecipeProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1ABF2BB1EDCE000C5601 /* RecipeProviding.swift */; };
+		5D6D1AC32BB1F6FB000C5601 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AC22BB1F6FB000C5601 /* RecipeService.swift */; };
+		5D6D1AC52BB1F742000C5601 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AC42BB1F742000C5601 /* AuthService.swift */; };
+		5D6D1AC72BB1F7D0000C5601 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AC62BB1F7D0000C5601 /* UserService.swift */; };
+		5D6D1AC92BB1FB17000C5601 /* SupaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AC82BB1FB17000C5601 /* SupaClient.swift */; };
 		5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */; };
 		5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */; };
 		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
@@ -86,6 +93,13 @@
 		5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		5D6D1AB42BADF394000C5601 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		5D6D1AB72BAE25AA000C5601 /* AuthDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDelegate.swift; sourceTree = "<group>"; };
+		5D6D1ABB2BB1EDB8000C5601 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
+		5D6D1ABD2BB1EDC2000C5601 /* UserServiceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProviding.swift; sourceTree = "<group>"; };
+		5D6D1ABF2BB1EDCE000C5601 /* RecipeProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeProviding.swift; sourceTree = "<group>"; };
+		5D6D1AC22BB1F6FB000C5601 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
+		5D6D1AC42BB1F742000C5601 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		5D6D1AC62BB1F7D0000C5601 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		5D6D1AC82BB1FB17000C5601 /* SupaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaClient.swift; sourceTree = "<group>"; };
 		5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -245,6 +259,9 @@
 			isa = PBXGroup;
 			children = (
 				5DB880A92B5BED9F003FE18D /* NetworkProviding.swift */,
+				5D6D1ABD2BB1EDC2000C5601 /* UserServiceProviding.swift */,
+				5D6D1ABF2BB1EDCE000C5601 /* RecipeProviding.swift */,
+				5D6D1ABB2BB1EDB8000C5601 /* AuthProviding.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -273,6 +290,17 @@
 				5D6D1AB72BAE25AA000C5601 /* AuthDelegate.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		5D6D1AC12BB1F6D5000C5601 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5D6D1AC42BB1F742000C5601 /* AuthService.swift */,
+				5D6D1AC22BB1F6FB000C5601 /* RecipeService.swift */,
+				5D6D1AC62BB1F7D0000C5601 /* UserService.swift */,
+				5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		5D8F35052B72BD8E00FDFCFD /* Extensions */ = {
@@ -369,7 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				5D3E3C4E2B5D2E3A00E3266E /* Protocol */,
-				5DB8806F2B5BBDCE003FE18D /* ApiManager.swift */,
+				5D6D1AC12BB1F6D5000C5601 /* Service */,
+				5D6D1AC82BB1FB17000C5601 /* SupaClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -515,12 +544,15 @@
 				5D3E3C512B5D6D0600E3266E /* Recipe.swift in Sources */,
 				5D3E3C382B5C202900E3266E /* FavoritesViewController.swift in Sources */,
 				5DC38A782B78FFE2003860BB /* ErrorBannerView.swift in Sources */,
+				5D6D1ABE2BB1EDC2000C5601 /* UserServiceProviding.swift in Sources */,
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
 				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
+				5D6D1AC52BB1F742000C5601 /* AuthService.swift in Sources */,
 				5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */,
 				5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */,
 				5D3E3C422B5C30FA00E3266E /* TextFieldView.swift in Sources */,
+				5D6D1AC02BB1EDCE000C5601 /* RecipeProviding.swift in Sources */,
 				5D6D1AAE2BAB6B51000C5601 /* ProfileViewModel.swift in Sources */,
 				5D6D1AB82BAE25AA000C5601 /* AuthDelegate.swift in Sources */,
 				5DB880702B5BBDCE003FE18D /* ApiManager.swift in Sources */,
@@ -535,6 +567,7 @@
 				5D3E3C302B5C1F5200E3266E /* TabBarController.swift in Sources */,
 				5D14B33B2B750D8600A5063E /* FavoriteRecipesCustomTableViewCell.swift in Sources */,
 				5D8F35072B72BE5500FDFCFD /* UIButton+Extension.swift in Sources */,
+				5D6D1AC72BB1F7D0000C5601 /* UserService.swift in Sources */,
 				5D14B3502B779A3900A5063E /* RecipeCustomTableViewCell.swift in Sources */,
 				5DC38A742B78DE16003860BB /* FavoriteButton.swift in Sources */,
 				5D3E3C362B5C1FED00E3266E /* ProfileViewController.swift in Sources */,
@@ -548,11 +581,14 @@
 				5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */,
 				5D6D1AB52BADF394000C5601 /* LocalState.swift in Sources */,
 				5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */,
+				5D6D1ABC2BB1EDB8000C5601 /* AuthProviding.swift in Sources */,
 				5D6D1AB12BAC86F1000C5601 /* OnboardingViewController.swift in Sources */,
 				5DB880A22B5BE85F003FE18D /* Injected.swift in Sources */,
 				5DDA81B22B5E880C00548411 /* InjectedDependencies.swift in Sources */,
 				5DC38A762B78F2C4003860BB /* AuthBackgroundViewRepresentable.swift in Sources */,
 				5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */,
+				5D6D1AC32BB1F6FB000C5601 /* RecipeService.swift in Sources */,
+				5D6D1AC92BB1FB17000C5601 /* SupaClient.swift in Sources */,
 				5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */,
 				5DB880AA2B5BED9F003FE18D /* NetworkProviding.swift in Sources */,
 				5D4392AB2B713BD300039BCC /* Prompt.swift in Sources */,

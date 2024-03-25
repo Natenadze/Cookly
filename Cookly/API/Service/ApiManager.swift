@@ -18,7 +18,7 @@ enum AuthError: Error {
     case unknownError
 }
 
-
+//TODO: - refactor according to protocols
 final class ApiManager: NSObject, NetworkProviding {
     
     // MARK: - Properties

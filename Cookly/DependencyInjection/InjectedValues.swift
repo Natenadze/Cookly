@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Supabase
 
 struct InjectedValues {
     
@@ -32,6 +33,21 @@ extension InjectedValues {
         set { Self[NetworkProviderKey.self] = newValue }
     }
     
+    var authService: AuthProviding {
+        get { Self[AuthServiceKey.self] }
+        set { Self[AuthServiceKey.self] = newValue }
+    }
+    
+    var userService: UserServiceProviding {
+        get { Self[UserServiceKey.self] }
+        set { Self[UserServiceKey.self] = newValue }
+    }
+    
+    var recipeProvider: RecipeProviding {
+        get { Self[RecipeServiceKey.self] }
+        set { Self[RecipeServiceKey.self] = newValue }
+    }
+    
     var authViewModel: AuthenticationViewModel {
         get { Self[AuthViewModelKey.self] }
         set { Self[AuthViewModelKey.self] = newValue }
@@ -45,5 +61,10 @@ extension InjectedValues {
     var profileViewModel: ProfileViewModel {
         get { Self[ProfileViewModelKey.self] }
         set { Self[ProfileViewModelKey.self] = newValue }
+    }  
+    
+    var supaClient: SupabaseClient {
+        get { Self[SupabaseClientKey.self] }
+        set { Self[SupabaseClientKey.self] = newValue }
     }
 }
