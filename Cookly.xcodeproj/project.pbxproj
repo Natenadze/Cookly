@@ -405,9 +405,9 @@
 			isa = PBXGroup;
 			children = (
 				5D6D1AD42BB20C09000C5601 /* AuthError.swift */,
+				5D6D1AC82BB1FB17000C5601 /* SupaClient.swift */,
 				5D3E3C4E2B5D2E3A00E3266E /* Protocol */,
 				5D6D1AC12BB1F6D5000C5601 /* Service */,
-				5D6D1AC82BB1FB17000C5601 /* SupaClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";

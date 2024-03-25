@@ -17,7 +17,7 @@ struct RegistrationView: View {
     @State private var showErrorBanner: Bool = false
     
     var viewModel: RegistrationViewModel
-    weak var delegate: AuthDelegate?
+    
     
     // MARK: - Body
     var body: some View {
@@ -74,7 +74,7 @@ extension RegistrationView {
             do {
                 try await viewModel.register(email: emailInput, password: passwordInput)
                 await MainActor.run {
-                    delegate?.RegistrationViewDidTapRegister()
+                    viewModel.delegate?.RegistrationViewDidTapRegister()
                 }
             } catch {
                 showError(error: error)

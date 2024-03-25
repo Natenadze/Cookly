@@ -12,6 +12,7 @@ final class LoginViewModel {
     
     // MARK: - Properties
     @Injected(\.authService) var authService: AuthProviding
+    weak var delegate: AuthDelegate?
     
     // MARK: - Methods
     func login(email: String, password: String) async throws {

@@ -12,6 +12,7 @@ final class RegistrationViewModel: ObservableObject {
     // MARK: - Properties
     @Injected(\.authService) var authService: AuthProviding
     @Published var isRegistrationSuccessful = false
+    weak var delegate: AuthDelegate?
     
     // MARK: - Methods
     func register(email: String, password: String) async throws {

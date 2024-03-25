@@ -18,10 +18,7 @@ struct LoginView: View {
     @State var showErrorBanner: Bool = false
     
     var viewModel: LoginViewModel
-    
-    //TODO: - move delegate to viewModel
-    weak var delegate: AuthDelegate?
-    
+
     // MARK: - Body
     var body: some View {
         
@@ -124,7 +121,7 @@ private extension LoginView {
             Spacer()
             
             Button(action: {
-                delegate?.loginViewDidTapDontHaveAnAccount()
+                viewModel.delegate?.loginViewDidTapDontHaveAnAccount()
             }, label: {
                 Text("Dont't have an account?")
                     .fontWeight(.semibold)
@@ -160,7 +157,7 @@ extension LoginView {
             do {
                 try await action()
                 await MainActor.run {
-                    delegate?.loginViewDidTapLogin()
+                    viewModel.delegate?.loginViewDidTapLogin()
                 }
             } catch {
                 showError(error: error)
