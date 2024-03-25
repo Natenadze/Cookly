@@ -7,7 +7,6 @@
 
 import Foundation
 
-//TODO: - better practice is to move models in separate files
 struct Recipe: Codable {
     let name: String
     let image: String
@@ -20,26 +19,3 @@ struct Recipe: Codable {
     var isSaved: Bool! = false
 }
 
-struct Ingredient: Codable {
-    let name: String
-    let quantity: String
-    let emoji: String
-}
-
-//TODO: - cases start with small letter (if possible :d)
-enum MealType: String, Codable {
-    case Breakfast = "breakfast"
-    case Lunch = "lunch"
-    case Dinner = "dinner"
-}
-
-
-enum Diet: String, Codable, CaseIterable {
-    case Vegetarian = "vegetarian"
-    case Vegan = "vegan"
-    case LactoseFree = "lactose-free"
-    case GlutenFree = "gluten-free"
-    case Healthy = "healthy"
-    case HighProtein = "high-protein"
-    case LowCarb = "low-carb"
-}
