@@ -11,7 +11,8 @@ import SwiftUI
 struct LoginView: View {
     
     // MARK: - Properties
-    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
+    var viewModel: LoginViewModel
+    
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var isLoading: Bool = false
@@ -171,6 +172,9 @@ extension LoginView {
 
 
 // MARK: - Preview
+#if DEBUG
 #Preview {
-    LoginView()
+    let viewModel = LoginViewModel()
+    return LoginView(viewModel: viewModel)
 }
+#endif

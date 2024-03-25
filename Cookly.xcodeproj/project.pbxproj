@@ -41,6 +41,8 @@
 		5D6D1ACB2BB2051B000C5601 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1ACA2BB2051B000C5601 /* Ingredient.swift */; };
 		5D6D1ACD2BB20524000C5601 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1ACC2BB20524000C5601 /* MealType.swift */; };
 		5D6D1ACF2BB2052F000C5601 /* Diet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1ACE2BB2052F000C5601 /* Diet.swift */; };
+		5D6D1AD12BB20600000C5601 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AD02BB20600000C5601 /* LoginViewModel.swift */; };
+		5D6D1AD32BB2060B000C5601 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AD22BB2060B000C5601 /* RegistrationViewModel.swift */; };
 		5D8F34FC2B71981300FDFCFD /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */; };
 		5D8F34FE2B72868B00FDFCFD /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */; };
 		5D8F35022B72AC0400FDFCFD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */; };
@@ -104,6 +106,8 @@
 		5D6D1ACA2BB2051B000C5601 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		5D6D1ACC2BB20524000C5601 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		5D6D1ACE2BB2052F000C5601 /* Diet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diet.swift; sourceTree = "<group>"; };
+		5D6D1AD02BB20600000C5601 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5D6D1AD22BB2060B000C5601 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		5D8F34FB2B71981300FDFCFD /* PromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		5D8F34FD2B72868B00FDFCFD /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		5D8F35012B72AC0400FDFCFD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 			children = (
 				5D14B3422B76AF4A00A5063E /* MainViewModel.swift */,
 				5D3E3C432B5C330000E3266E /* AuthenticationViewModel.swift */,
+				5D6D1AD02BB20600000C5601 /* LoginViewModel.swift */,
+				5D6D1AD22BB2060B000C5601 /* RegistrationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 				5D3E3C482B5D1C3F00E3266E /* AuthButton.swift in Sources */,
 				5D3E3C442B5C330000E3266E /* AuthenticationViewModel.swift in Sources */,
 				5DDA81CA2B60465700548411 /* HorizontalScrollSection.swift in Sources */,
+				5D6D1AD12BB20600000C5601 /* LoginViewModel.swift in Sources */,
 				5D6D1AC52BB1F742000C5601 /* AuthService.swift in Sources */,
 				5D14B3432B76AF4A00A5063E /* MainViewModel.swift in Sources */,
 				5D3E3C322B5C1FB600E3266E /* HomeViewController.swift in Sources */,
@@ -580,6 +587,7 @@
 				5D14B3532B7801C200A5063E /* LogoContainerView.swift in Sources */,
 				5DC38A712B78DCC9003860BB /* CustomLinearGradientView.swift in Sources */,
 				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
+				5D6D1AD32BB2060B000C5601 /* RegistrationViewModel.swift in Sources */,
 				5DB8804F2B5B2114003FE18D /* SceneDelegate.swift in Sources */,
 				5D3E3C3C2B5C216700E3266E /* Constants.swift in Sources */,
 				5D14B3552B7802C000A5063E /* SearchButtonView.swift in Sources */,

@@ -39,7 +39,8 @@ final class FlowCoordinator: Coordinator {
     }
     
     private func showLoginAsRootView() {
-        var loginView = LoginView()
+        let viewModel = LoginViewModel()
+        var loginView = LoginView(viewModel: viewModel)
         loginView.delegate = self
         let hostingView = UIHostingController(rootView: loginView)
         navigationController.setViewControllers([hostingView], animated: true)
