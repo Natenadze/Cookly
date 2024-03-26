@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: - add id to recipe model
 struct Recipe: Codable {
     let name: String
     let image: String

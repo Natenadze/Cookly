@@ -27,16 +27,16 @@ struct MainViewModelKey: InjectionKey {
     static var currentValue: MainViewModel = MainViewModel()
 }
 
-struct ProfileViewModelKey: InjectionKey {
-    static var currentValue: ProfileViewModel = ProfileViewModel()
-}
-
 struct SupabaseClientKey: InjectionKey {
     static var currentValue = SupaClient.supabase
 }
 
 struct AuthManagerKey: InjectionKey {
     static var currentValue: AuthCredentialsManager = AuthCredentialsManager()
+}
+
+struct RecipeStorageKey: InjectionKey {
+    static var currentValue: RecipeStorage = RecipeStorage()
 }
 
 

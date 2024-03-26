@@ -13,12 +13,10 @@ protocol ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe)
 }
 
-//TODO: - separate viewModels for each viewController
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    @Injected(\.mainViewModel) var viewModel: MainViewModel
-    weak var coordinator: Coordinator?
+    var viewModel: HomeViewModel
     
     
     // MARK: - UI Elements
@@ -74,8 +72,8 @@ final class HomeViewController: UIViewController {
     )
     
     // MARK: - LifeCycle
-    init(coordinator: Coordinator?) {
-        self.coordinator = coordinator
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -115,7 +113,7 @@ final class HomeViewController: UIViewController {
     }
     
     func searchButtonTapped() {
-        coordinator?.pushPromptViewController()
+        viewModel.coordinator?.pushPromptViewController()
     }
     
     func animateSearchButton() {
@@ -180,17 +178,9 @@ extension HomeViewController {
 // MARK: - extension ScrollViewDelegate
 extension HomeViewController: ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe) {
-        coordinator?.pushRecipeViewController(recipe: recipe)
+        viewModel.coordinator?.pushRecipeViewController(recipe: recipe)
     }
 }
 
-
-#if DEBUG
-// MARK: - Preview
-#Preview {
-    let coordinator = FlowCoordinator(navigationController: UINavigationController())
-    return HomeViewController(coordinator: coordinator)
-}
-#endif
 
 

@@ -11,22 +11,26 @@ final class MainViewModel {
     
     // MARK: - Properties
     @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
+    @Injected(\.recipeStorage) var recipeStorage: RecipeStorage
+    
     var prompt = Prompt()
     
     var allRecipes = [Recipe]() {
         didSet {
-            saveRecipes(recipes: allRecipes, key: "allRecipes")
+            recipeStorage.saveRecipes(recipes: allRecipes, key: "allRecipes")
         }
     }
+    
     var savedRecipes = [Recipe]() {
         didSet {
-            saveRecipes(recipes: savedRecipes, key: "savedRecipes")
+            recipeStorage.saveRecipes(recipes: savedRecipes, key: "savedRecipes")
         }
     }
     
     // MARK: - Init
     init() {
-        loadRecipes()
+        allRecipes = recipeStorage.loadAllRecipes()
+        savedRecipes = recipeStorage.loadSavedRecipes()
     }
     
     // MARK: - Methods
@@ -44,7 +48,7 @@ final class MainViewModel {
         default:
             prompt.mealType = .Dinner
         }
-    }   
+    }
     
     //TODO: - create enum for difficulties
     func updateDifficulty(text: String) {
@@ -62,29 +66,6 @@ final class MainViewModel {
         prompt.ingredients.remove(at: index)
     }
     
-    //TODO: - create recipe service move this functionality there. exampleService.save(recipe)
-    //TODO: - add id to recipe model
-    private func saveRecipes(recipes: [Recipe], key: String) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(recipes) {
-            UserDefaults.standard.set(encoded, forKey: key)
-        }
-    }
-    
-    //TODO: - same service here.  e.g recipeStorage
-    private func loadRecipes() {
-        let decoder = JSONDecoder()
-        
-        if let allRecipesData = UserDefaults.standard.data(forKey: "allRecipes"),
-           let recipes = try? decoder.decode([Recipe].self, from: allRecipesData) {
-            allRecipes = recipes
-        }
-        
-        if let savedRecipesData = UserDefaults.standard.data(forKey: "savedRecipes"),
-           let recipes = try? decoder.decode([Recipe].self, from: savedRecipesData) {
-            savedRecipes = recipes
-        }
-    }
     
     func updateAllRecipes(with recipe: Recipe) {
         allRecipes.append(recipe)

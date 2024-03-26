@@ -48,12 +48,7 @@ extension InjectedValues {
     var mainViewModel: MainViewModel {
         get { Self[MainViewModelKey.self] }
         set { Self[MainViewModelKey.self] = newValue }
-    }   
-    
-    var profileViewModel: ProfileViewModel {
-        get { Self[ProfileViewModelKey.self] }
-        set { Self[ProfileViewModelKey.self] = newValue }
-    }  
+    }
     
     var supaClient: SupabaseClient {
         get { Self[SupabaseClientKey.self] }
@@ -63,5 +58,10 @@ extension InjectedValues {
     var authManager: AuthCredentialsManager {
         get { Self[AuthManagerKey.self] }
         set { Self[AuthManagerKey.self] = newValue }
+    }  
+    
+    var recipeStorage: RecipeStorage {
+        get { Self[RecipeStorageKey.self] }
+        set { Self[RecipeStorageKey.self] = newValue }
     }
 }
