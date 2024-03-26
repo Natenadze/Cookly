@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Recipe: Codable {
     let name: String
     let image: String
@@ -20,26 +19,3 @@ struct Recipe: Codable {
     var isSaved: Bool! = false
 }
 
-struct Ingredient: Codable {
-    let name: String
-    let quantity: String
-    let emoji: String
-}
-
-
-enum MealType: String, Codable {
-    case Breakfast = "breakfast"
-    case Lunch = "lunch"
-    case Dinner = "dinner"
-}
-
-
-enum Diet: String, Codable, CaseIterable {
-    case Vegetarian = "vegetarian"
-    case Vegan = "vegan"
-    case LactoseFree = "lactose-free"
-    case GlutenFree = "gluten-free"
-    case Healthy = "healthy"
-    case HighProtein = "high-protein"
-    case LowCarb = "low-carb"
-}

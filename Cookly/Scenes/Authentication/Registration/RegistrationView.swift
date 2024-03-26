@@ -11,13 +11,13 @@ import SwiftUI
 struct RegistrationView: View {
     
     // MARK: - Properties
-    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var errorMessage: String = ""
     @State private var showErrorBanner: Bool = false
     
-    weak var delegate: AuthDelegate?
+    let viewModel: RegistrationViewModel
+    
     
     // MARK: - Body
     var body: some View {
@@ -74,7 +74,7 @@ extension RegistrationView {
             do {
                 try await viewModel.register(email: emailInput, password: passwordInput)
                 await MainActor.run {
-                    delegate?.RegistrationViewDidTapRegister()
+                    viewModel.delegate?.RegistrationViewDidTapRegister()
                 }
             } catch {
                 showError(error: error)
@@ -97,5 +97,5 @@ extension RegistrationView {
 
 // MARK: - Preview
 #Preview {
-    RegistrationView()
+    RegistrationView(viewModel: RegistrationViewModel(authManager: AuthCredentialsManager()))
 }

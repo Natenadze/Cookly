@@ -11,15 +11,14 @@ import SwiftUI
 struct LoginView: View {
     
     // MARK: - Properties
-    @Injected(\.authViewModel) var viewModel: AuthenticationViewModel
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var isLoading: Bool = false
     @State var errorMessage: String = ""
     @State var showErrorBanner: Bool = false
     
-    weak var delegate: AuthDelegate?
-    
+    var viewModel: LoginViewModel
+
     // MARK: - Body
     var body: some View {
         
@@ -122,7 +121,7 @@ private extension LoginView {
             Spacer()
             
             Button(action: {
-                delegate?.loginViewDidTapDontHaveAnAccount()
+                viewModel.delegate?.loginViewDidTapDontHaveAnAccount()
             }, label: {
                 Text("Dont't have an account?")
                     .fontWeight(.semibold)
@@ -158,7 +157,7 @@ extension LoginView {
             do {
                 try await action()
                 await MainActor.run {
-                    delegate?.loginViewDidTapLogin()
+                    viewModel.delegate?.loginViewDidTapLogin()
                 }
             } catch {
                 showError(error: error)
@@ -170,6 +169,9 @@ extension LoginView {
 
 
 // MARK: - Preview
+#if DEBUG
 #Preview {
-    LoginView()
+    let viewModel = LoginViewModel(authManager: AuthCredentialsManager())
+    return LoginView(viewModel: viewModel)
 }
+#endif

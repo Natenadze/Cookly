@@ -10,7 +10,7 @@ import Foundation
 final class MainViewModel {
     
     // MARK: - Properties
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
+    @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
     var prompt = Prompt()
     
     var allRecipes = [Recipe]() {
@@ -34,6 +34,7 @@ final class MainViewModel {
         prompt = Prompt()
     }
     
+    //TODO: - create enum for meal types
     func updateMealType(text: String) {
         switch text {
         case "Breakfast":
@@ -45,6 +46,7 @@ final class MainViewModel {
         }
     }   
     
+    //TODO: - create enum for difficulties
     func updateDifficulty(text: String) {
         switch text {
         case "Easy":
@@ -60,7 +62,8 @@ final class MainViewModel {
         prompt.ingredients.remove(at: index)
     }
     
-    
+    //TODO: - create recipe service move this functionality there. exampleService.save(recipe)
+    //TODO: - add id to recipe model
     private func saveRecipes(recipes: [Recipe], key: String) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(recipes) {
@@ -68,6 +71,7 @@ final class MainViewModel {
         }
     }
     
+    //TODO: - same service here.  e.g recipeStorage
     private func loadRecipes() {
         let decoder = JSONDecoder()
         
@@ -96,7 +100,7 @@ final class MainViewModel {
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {
         Task {
-            if let result = await apiManager.generateRecipe(prompt: prompt) {
+            if let result = await recipeProvider.generateRecipe(prompt: prompt) {
                 await MainActor.run {
                     self.updateAllRecipes(with: result)
                     completion(result)

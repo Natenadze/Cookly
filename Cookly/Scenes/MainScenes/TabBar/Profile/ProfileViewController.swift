@@ -12,13 +12,11 @@ import UIKit
 final class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
-    @Injected(\.networkProvider) var apiManager: NetworkProviding
-    @Injected(\.authViewModel) var authViewModel: AuthenticationViewModel
     @Injected(\.profileViewModel) var profileViewModel: ProfileViewModel
     
     weak var coordinator: Coordinator?
     
-    // MARK: - Lifecycle
+    // MARK: - LifeCycle
     init(coordinator: Coordinator?) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -133,7 +131,7 @@ private extension ProfileViewController {
     func performLogout() {
         Task {
             do {
-                try await authViewModel.signOut()
+                try await profileViewModel.signOut()
                 coordinator?.logoutUser()
             } catch {
                 print("Error logout")
@@ -144,9 +142,10 @@ private extension ProfileViewController {
     func deleteUserButtonTapped() {
         Task {
             do {
-                try await authViewModel.handleDeleteUserButtonTapped()
+                try await profileViewModel.handleDeleteUserButtonTapped()
                 coordinator?.logoutUser()
             } catch {
+                //TODO: - ???
                 print("Error delete user")
             }
         }
