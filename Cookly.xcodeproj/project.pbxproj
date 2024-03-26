@@ -25,6 +25,7 @@
 		5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C4B2B5D2DE200E3266E /* LoginView.swift */; };
 		5D3E3C512B5D6D0600E3266E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E3C502B5D6D0600E3266E /* Recipe.swift */; };
 		5D4392AB2B713BD300039BCC /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4392AA2B713BD300039BCC /* Prompt.swift */; };
+		5D65A7652BB37770000D4E90 /* RecipeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D65A7642BB37770000D4E90 /* RecipeStorage.swift */; };
 		5D6D1AAE2BAB6B51000C5601 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AAD2BAB6B51000C5601 /* ProfileViewModel.swift */; };
 		5D6D1AB12BAC86F1000C5601 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */; };
 		5D6D1AB32BAC8DFF000C5601 /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */; };
@@ -91,6 +92,7 @@
 		5D3E3C4B2B5D2DE200E3266E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5D3E3C502B5D6D0600E3266E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		5D4392AA2B713BD300039BCC /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
+		5D65A7642BB37770000D4E90 /* RecipeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStorage.swift; sourceTree = "<group>"; };
 		5D6D1AAD2BAB6B51000C5601 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5D6D1AB02BAC86F1000C5601 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		5D6D1AB22BAC8DFF000C5601 /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				5D8F35052B72BD8E00FDFCFD /* Extensions */,
 				5D6D1AB42BADF394000C5601 /* LocalState.swift */,
 				5D6D1AD62BB21601000C5601 /* AuthCredentialsManager.swift */,
+				5D65A7642BB37770000D4E90 /* RecipeStorage.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				5DB8804D2B5B2114003FE18D /* AppDelegate.swift in Sources */,
 				5D3E3C4C2B5D2DE200E3266E /* LoginView.swift in Sources */,
 				5D14B3532B7801C200A5063E /* LogoContainerView.swift in Sources */,
+				5D65A7652BB37770000D4E90 /* RecipeStorage.swift in Sources */,
 				5DC38A712B78DCC9003860BB /* CustomLinearGradientView.swift in Sources */,
 				5DB880A42B5BE86B003FE18D /* InjectedValues.swift in Sources */,
 				5D6D1AD32BB2060B000C5601 /* RegistrationViewModel.swift in Sources */,
