@@ -43,9 +43,14 @@ private extension TabBarController {
     }
     
     func setupTabBars() {
-        let searchVC    = HomeViewController(coordinator: coordinator)
-        let favoritesVC = FavoritesViewController(coordinator: coordinator)
-        let profileVC   = ProfileViewController(coordinator: coordinator)
+        let homeViewModel = HomeViewModel(coordinator: coordinator)
+        let searchVC    = HomeViewController(viewModel: homeViewModel)
+        
+        let favoritesViewModel = FavoritesViewModel(coordinator: coordinator)
+        let favoritesVC = FavoritesViewController(viewModel: favoritesViewModel)
+        
+        let profileViewModel = ProfileViewModel(coordinator: coordinator)
+        let profileVC   = ProfileViewController(viewModel: profileViewModel)
         
         searchVC.tabBarItem    = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 1)

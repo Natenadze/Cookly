@@ -16,8 +16,11 @@ struct RegistrationView: View {
     @State private var errorMessage: String = ""
     @State private var showErrorBanner: Bool = false
     
-    let viewModel: RegistrationViewModel
+    @ObservedObject private var viewModel: RegistrationViewModel
     
+    init(viewModel: RegistrationViewModel) {
+        self.viewModel = viewModel
+    }
     
     // MARK: - Body
     var body: some View {

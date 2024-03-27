@@ -11,12 +11,18 @@ import UIKit
 final class ProfileViewModel {
     
     @Injected(\.userService) var userService: UserServiceProviding
+    weak var coordinator: Coordinator?
     
     enum Section: Int, CaseIterable {
         case preferences, account, appInformation, logout
     }
     
     let sections = Section.allCases
+    
+    // MARK: - LifeCycle
+    init(coordinator: Coordinator?) {
+        self.coordinator = coordinator
+    }
     
     // MARK: - Methods
     func signOut() async throws {

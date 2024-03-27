@@ -24,7 +24,7 @@ struct ErrorBannerView: View {
             .cornerRadius(5)
             .offset(y: isVisible ? -50 : -170)
             .animation(.easeInOut(duration: 0.5), value: isVisible)
-            .onChange(of: isVisible) { _ in
+            .onChange(of: isVisible) { _, _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         self.isVisible = false
