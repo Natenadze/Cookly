@@ -44,7 +44,7 @@ private extension RegistrationView {
             
             VStack(alignment: .leading, spacing: 16) {
                 textFieldStack
-                SignUpButtonView(title: "Sign Up", action: SignUpButtonTapped)
+                signUpButton
             }
             .padding(.horizontal, 16)
         }
@@ -64,8 +64,8 @@ private extension RegistrationView {
         .padding(.top, 60)
     }
     
-    func SignUpButtonView(title: String, action: @escaping () -> Void) -> some View {
-        AuthButton(title: title, action: action)
+    var signUpButton: some View {
+        AuthButton(title: "Sign Up", action: SignUpButtonTapped)
     }
 }
 
@@ -76,9 +76,6 @@ extension RegistrationView {
         Task {
             do {
                 try await viewModel.register(email: emailInput, password: passwordInput)
-                await MainActor.run {
-                    viewModel.delegate?.RegistrationViewDidTapRegister()
-                }
             } catch {
                 showError(error: error)
             }

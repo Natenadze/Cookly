@@ -97,7 +97,7 @@ extension FlowCoordinator: AuthDelegate {
         showTabBarAsRoot()
     }
     
-    func RegistrationViewDidTapRegister() {
+    func registrationViewDidTapRegister() {
         goBackToLoginView()
     }
     

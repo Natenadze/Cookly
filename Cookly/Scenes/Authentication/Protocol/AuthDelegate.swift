@@ -9,6 +9,6 @@ import Foundation
 
 protocol AuthDelegate: AnyObject {
     func loginViewDidTapLogin()
-    func RegistrationViewDidTapRegister()
+    func registrationViewDidTapRegister()
     func loginViewDidTapDontHaveAnAccount()
 }
