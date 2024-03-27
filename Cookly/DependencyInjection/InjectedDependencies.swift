@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Supabase
 
 // MARK: - Injected Dependencies
 
@@ -27,16 +28,19 @@ struct MainViewModelKey: InjectionKey {
     static var currentValue: MainViewModel = MainViewModel()
 }
 
-struct ProfileViewModelKey: InjectionKey {
-    static var currentValue: ProfileViewModel = ProfileViewModel()
-}
-
 struct SupabaseClientKey: InjectionKey {
-    static var currentValue = SupaClient.supabase
+    static var currentValue = SupabaseClient(
+        supabaseURL: URL(string: APIConstants.supaUrl)!,
+        supabaseKey: APIConstants.supaKey
+    )
 }
 
 struct AuthManagerKey: InjectionKey {
     static var currentValue: AuthCredentialsManager = AuthCredentialsManager()
+}
+
+struct RecipeStorageKey: InjectionKey {
+    static var currentValue: RecipeStorage = RecipeStorage()
 }
 
 

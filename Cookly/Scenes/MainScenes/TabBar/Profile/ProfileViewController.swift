@@ -12,13 +12,12 @@ import UIKit
 final class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
-    @Injected(\.profileViewModel) var profileViewModel: ProfileViewModel
+    let viewModel: ProfileViewModel
     
-    weak var coordinator: Coordinator?
     
     // MARK: - LifeCycle
-    init(coordinator: Coordinator?) {
-        self.coordinator = coordinator
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,7 +36,7 @@ final class ProfileViewController: UITableViewController {
 // MARK: - Extensions
 extension ProfileViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        profileViewModel.sections.count
+        viewModel.sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,19 +44,19 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        profileViewModel.titleForHeader(in: section)
+        viewModel.titleForHeader(in: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        profileViewModel.configureCell(cell, for: indexPath)
+        viewModel.configureCell(cell, for: indexPath)
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        switch profileViewModel.sections[indexPath.section] {
+        switch viewModel.sections[indexPath.section] {
         case .appInformation: break
         case .preferences:
             presentColorPreferencesAlert()
@@ -131,8 +130,8 @@ private extension ProfileViewController {
     func performLogout() {
         Task {
             do {
-                try await profileViewModel.signOut()
-                coordinator?.logoutUser()
+                try await viewModel.signOut()
+                viewModel.coordinator?.logoutUser()
             } catch {
                 print("Error logout")
             }
@@ -142,8 +141,8 @@ private extension ProfileViewController {
     func deleteUserButtonTapped() {
         Task {
             do {
-                try await profileViewModel.handleDeleteUserButtonTapped()
-                coordinator?.logoutUser()
+                try await viewModel.handleDeleteUserButtonTapped()
+                viewModel.coordinator?.logoutUser()
             } catch {
                 //TODO: - ???
                 print("Error delete user")
@@ -170,8 +169,3 @@ private extension ProfileViewController {
 }
 
 
-// MARK: - Preview
-#Preview {
-    let coordinator = FlowCoordinator(navigationController: UINavigationController())
-    return ProfileViewController(coordinator: coordinator)
-}

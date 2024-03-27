@@ -29,6 +29,10 @@ final class RegistrationViewModel: ObservableObject {
         } catch {
             throw AuthError.serverError
         }
+        
+        await MainActor.run {
+            delegate?.registrationViewDidTapRegister()
+        }
     }
     
     // MARK: - Helper

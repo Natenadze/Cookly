@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//TODO: - Use buttonStyle instead
 struct AuthButton: View {
     
     // MARK: - Properties

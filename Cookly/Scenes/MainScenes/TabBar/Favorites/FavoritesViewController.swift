@@ -11,15 +11,14 @@ final class FavoritesViewController: UIViewController{
     
     // MARK: - Properties
     @Injected(\.mainViewModel) var viewModel: MainViewModel
-    
-    weak var coordinator: Coordinator?
+    let viewModel2: FavoritesViewModel
     
     // MARK: - UI Components
     private var tableView: UITableView!
     
     // MARK: - Lifecycle
-    init(coordinator: Coordinator?) {
-        self.coordinator = coordinator
+    init(viewModel: FavoritesViewModel) {
+        self.viewModel2 = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -76,7 +75,7 @@ extension FavoritesViewController: UITableViewDataSource  {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = viewModel.savedRecipes[indexPath.row]
-        coordinator?.pushRecipeViewController(recipe: recipe)
+        viewModel2.coordinator?.pushRecipeViewController(recipe: recipe)
     }
 }
 
@@ -88,10 +87,3 @@ extension FavoritesViewController: FavoritesTableViewCellDelegate {
     }
 }
 
-// MARK: - Preview
-#if DEBUG
-#Preview {
-    let coordinator = FlowCoordinator(navigationController: UINavigationController())
-    return FavoritesViewController(coordinator: coordinator)
-}
-#endif

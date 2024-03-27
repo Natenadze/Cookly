@@ -49,6 +49,5 @@ struct AuthTextField: View {
 
 // MARK: - Preview
 #Preview {
-    @State var asd = ""
-    return AuthTextField(text: $asd, placeholder: "", isSecure: false)
+    AuthTextField(text: .constant("asd"), placeholder: "", isSecure: false)
 }
