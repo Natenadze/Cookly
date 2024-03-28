@@ -76,7 +76,7 @@ final class MainViewModel {
     }
     
     func updateAllRecipes(with recipe: Recipe) {
-        allRecipes.append(recipe)
+        allRecipes.insert(recipe, at: 0)
     }
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {

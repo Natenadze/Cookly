@@ -34,7 +34,7 @@ struct LoginView: View {
             VStack(alignment: .leading, spacing:20) {
                 textFieldStack
                 dontHaveAnAccountButton
-                LoginButtonView(title: "Login", action: loginButtonTapped)
+                loginButton
                 orDivider.padding(.top, 20)
                 googleSignInButton.padding(.top, 20)
                 
@@ -131,9 +131,11 @@ private extension LoginView {
         }
     }
     
-    func LoginButtonView(title: String, action: @escaping () -> Void) -> some View {
-        AuthButton(title: title, action: action)
+    var loginButton: some View {
+        Button("Login", action: loginButtonTapped)
+            .buttonStyle(AuthButtonStyle())
     }
+
 }
 
 // MARK: - Methods Extension

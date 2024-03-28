@@ -65,7 +65,8 @@ private extension RegistrationView {
     }
     
     var signUpButton: some View {
-        AuthButton(title: "Sign Up", action: SignUpButtonTapped)
+        Button("Sign Up", action: SignUpButtonTapped)
+            .buttonStyle(AuthButtonStyle())
     }
 }
 
