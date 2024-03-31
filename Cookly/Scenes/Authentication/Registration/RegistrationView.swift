@@ -18,6 +18,7 @@ struct RegistrationView: View {
     
     @ObservedObject private var viewModel: RegistrationViewModel
     
+    // MARK: - LifeCycle
     init(viewModel: RegistrationViewModel) {
         self.viewModel = viewModel
     }

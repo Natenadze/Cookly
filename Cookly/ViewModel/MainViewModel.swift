@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+
+
 final class MainViewModel {
     
     // MARK: - Properties
@@ -36,24 +39,24 @@ final class MainViewModel {
         prompt = Prompt()
     }
     
-    //TODO: - create enum for meal types
-    func updateMealType(text: String) {
-        switch text {
-        case "Breakfast":
-            prompt.mealType = .Breakfast
-        case "Lunch":
-            prompt.mealType = .Lunch
-        default:
-            prompt.mealType = .Dinner
-        }
-    }   
     
-    //TODO: - create enum for difficulties
-    func updateDifficulty(text: String) {
-        switch text {
-        case "Easy":
+    func updateMealType(_ type: MealType) {
+        switch type {
+        case .breakfast:
+            prompt.mealType = .breakfast
+        case .lunch:
+            prompt.mealType = .lunch
+        default:
+            prompt.mealType = .dinner
+        }
+    }
+    
+    
+    func updateDifficulty(_ difficulty: DifficultyLevel) {
+        switch difficulty {
+        case .easy:
             prompt.time = 20
-        case "Medium":
+        case .medium:
             prompt.time = 40
         default:
             prompt.time = 60
@@ -64,9 +67,6 @@ final class MainViewModel {
         prompt.ingredients.remove(at: index)
     }
     
-
-   
- 
     func toggleSavedRecipe(with recipe: Recipe) {
         if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
             savedRecipes.remove(at: index)

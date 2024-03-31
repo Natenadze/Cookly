@@ -9,8 +9,8 @@
 import UIKit
 
 protocol SettingsViewDelegate: AnyObject {
-    func mealTypeButtonTapped(text: String)
-    func difficultyButtonTapped(text: String)
+    func mealTypeButtonTapped(_ type: MealType)
+    func difficultyButtonTapped(_ level: DifficultyLevel)
 }
 
 final class SettingsView: UIView {
@@ -61,7 +61,7 @@ final class SettingsView: UIView {
             let button = UIButton(type: .system)
             button.setupButtonWithTitleAndAction(title: option) { _ in
                 self.updateButtonSelection(button)
-                self.notifyDelegate(button)
+                self.handleButtonTap(button)
             }
             optionsStackView.addArrangedSubview(button)
         }
@@ -89,13 +89,17 @@ final class SettingsView: UIView {
         }
     }
     
-    private func notifyDelegate(_ sender: UIButton) {
-        guard let text = sender.titleLabel?.text else { return }
+    private func handleButtonTap(_ button: UIButton) {
+        guard let title = button.titleLabel?.text else { return }
         switch settingsType {
         case .mealType:
-            delegate?.mealTypeButtonTapped(text: text)
+            if let type = MealType(rawValue: title) {
+                delegate?.mealTypeButtonTapped(type)
+            }
         case .difficulty:
-            delegate?.difficultyButtonTapped(text: text)
+            if let level = DifficultyLevel(rawValue: title) {
+                delegate?.difficultyButtonTapped(level)
+            }
         case .none:
             return
         }

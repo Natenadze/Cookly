@@ -381,12 +381,14 @@ extension PromptViewController: UITextFieldDelegate {
 
 // MARK: - Extension SettingsViewDelegate
 extension PromptViewController: SettingsViewDelegate {
-    func mealTypeButtonTapped(text: String) {
-        viewModel.updateMealType(text: text)
+  
+    
+    func mealTypeButtonTapped(_ type: MealType) {
+        viewModel.updateMealType(type)
     }
     
-    func difficultyButtonTapped(text: String) {
-        viewModel.updateDifficulty(text: text)
+    func difficultyButtonTapped(_ difficulty: DifficultyLevel) {
+        viewModel.updateDifficulty(difficulty)
     }
 }
 
