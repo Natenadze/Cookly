@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  PromptViewModel.swift
 //  Cookly
 //
 //  Created by Davit Natenadze on 09.02.24.
@@ -8,7 +8,7 @@
 import Foundation
 
 //TODO: - remove MainViewModel
-final class MainViewModel {
+final class PromptViewModel {
     
     // MARK: - Properties
     @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
@@ -19,18 +19,19 @@ final class MainViewModel {
     
     var allRecipes = [Recipe]() {
         didSet {
-            storage.saveRecipes(recipes: allRecipes, key: "allRecipes")
+            storage.saveRecipes()
         }
     }
     var savedRecipes = [Recipe]() {
         didSet {
-            storage.saveRecipes(recipes: savedRecipes, key: "savedRecipes")
+            storage.saveRecipes()
         }
     }
     
     // MARK: - Init
-    init() {
-        allRecipes = storage.loadAllRecipes()
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
+        allRecipes = storage.loadRecentRecipes()
         savedRecipes = storage.loadSavedRecipes()
     }
     

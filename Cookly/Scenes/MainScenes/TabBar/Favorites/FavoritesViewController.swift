@@ -10,16 +10,14 @@ import UIKit
 final class FavoritesViewController: UIViewController{
     
     // MARK: - Properties
-    private var viewModel: MainViewModel
-    let viewModel2: FavoritesViewModel
+    let viewModel: FavoritesViewModel
     
     // MARK: - UI Components
     private var tableView: UITableView!
     
     // MARK: - Lifecycle
-    init(viewModel: FavoritesViewModel, mainViewModel: MainViewModel) {
-        self.viewModel2 = viewModel
-        self.viewModel = mainViewModel
+    init(viewModel: FavoritesViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -76,14 +74,14 @@ extension FavoritesViewController: UITableViewDataSource  {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = viewModel.savedRecipes[indexPath.row]
-        viewModel2.coordinator?.pushRecipeViewController(recipe: recipe)
+        viewModel.coordinator?.pushRecipeViewController(recipe: recipe)
     }
 }
 
 // MARK: - FavoritesTableViewCellDelegate
 extension FavoritesViewController: FavoritesTableViewCellDelegate {
     func isSavedButtonTapped(recipe: Recipe) {
-        viewModel.toggleSavedRecipe(with: recipe)
+        viewModel.handleIsSaveButtonTapped(recipe: recipe)
         tableView.reloadData()
     }
 }

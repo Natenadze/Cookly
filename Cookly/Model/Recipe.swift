@@ -7,8 +7,8 @@
 
 import Foundation
 
-//TODO: - add id to recipe model
 struct Recipe: Codable {
+    var id: UUID! = UUID()
     let name: String
     let image: String
     let ingredients: [Ingredient]

@@ -13,12 +13,10 @@ protocol ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe)
 }
 
-//TODO: - separate viewModels for each viewController
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    var viewModel: MainViewModel
-    let viewModel2: HomeViewModel
+    let viewModel: HomeViewModel
     
     
     // MARK: - UI Elements
@@ -74,9 +72,8 @@ final class HomeViewController: UIViewController {
     )
     
     // MARK: - LifeCycle
-    init(viewModel2: HomeViewModel, mainViewModel: MainViewModel) {
-        self.viewModel2 = viewModel2
-        self.viewModel = mainViewModel
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -86,16 +83,6 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gradientView = CustomLinearGradientView(frame: view.bounds)
-        view.addSubview(gradientView)
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: view.topAnchor, constant: -80),
-            gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-        
         setup()
         layout()
     }
@@ -114,8 +101,20 @@ final class HomeViewController: UIViewController {
         recentSearchesScrollView.view.invalidateIntrinsicContentSize()
     }
     
+    func setupGradient() {
+        let gradientView = CustomLinearGradientView(frame: view.bounds)
+        view.addSubview(gradientView)
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            gradientView.topAnchor.constraint(equalTo: view.topAnchor, constant: -80),
+            gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
     func searchButtonTapped() {
-        viewModel2.coordinator?.pushPromptViewController()
+        viewModel.coordinator?.pushPromptViewController()
     }
     
     func animateSearchButton() {
@@ -134,6 +133,7 @@ final class HomeViewController: UIViewController {
 extension HomeViewController {
     
     func setup() {
+        setupGradient()
         view.backgroundColor = .systemGray6
         recentSearchesScrollView.view.backgroundColor = .clear
         recentSearchesScrollView.rootView.delegate = self
@@ -180,7 +180,7 @@ extension HomeViewController {
 // MARK: - extension ScrollViewDelegate
 extension HomeViewController: ScrollViewDelegate {
     func navigateToRecipeViewController(recipe: Recipe) {
-        viewModel2.coordinator?.pushRecipeViewController(recipe: recipe)
+        viewModel.coordinator?.pushRecipeViewController(recipe: recipe)
     }
 }
 

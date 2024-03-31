@@ -11,7 +11,7 @@ import UIKit
 final class PromptViewController: UIViewController {
     
     // MARK: - Properties
-    var viewModel: MainViewModel
+    var viewModel: PromptViewModel
     
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
@@ -62,7 +62,7 @@ final class PromptViewController: UIViewController {
     
     
     // MARK: - LifeCycle
-    init(viewModel: MainViewModel) {
+    init(viewModel: PromptViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

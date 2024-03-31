@@ -15,14 +15,14 @@ final class HomeViewModel {
     
     var allRecipes = [Recipe]() {
         didSet {
-            recipeStorage.saveRecipes(recipes: allRecipes, key: "allRecipes")
+            recipeStorage.saveRecipes()
         }
     }
     
     // MARK: - LifeCycle
     init(coordinator: Coordinator?) {
         self.coordinator = coordinator
-        allRecipes = recipeStorage.loadAllRecipes()
+        allRecipes = recipeStorage.loadRecentRecipes()
     }
     
 }

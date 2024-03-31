@@ -12,7 +12,7 @@ import UIKit
 final class RecipeViewController: UIViewController {
     
     // MARK: - Properties
-    private let viewModel: MainViewModel
+    private let viewModel: RecipeViewModel
     private var recipe: Recipe
     
     // MARK: -  UI Components
@@ -23,7 +23,7 @@ final class RecipeViewController: UIViewController {
     private let favoriteButton = FavoriteButton()
     
     // MARK: - Lifecycle
-    init(recipe: Recipe, viewModel: MainViewModel) {
+    init(recipe: Recipe, viewModel: RecipeViewModel) {
         self.recipe = recipe
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -181,7 +181,7 @@ extension RecipeViewController: FavoriteButtonDelegate {
     
     func favoriteButtonTapped(isFavorite: Bool) {
         recipe.isSaved.toggle()
-        viewModel.toggleSavedRecipe(with: recipe)
+        viewModel.handleIsSaveButtonTapped(recipe: recipe)
         let imageName = recipe.isSaved ? "bookmark.fill" : "bookmark"
         favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
     }

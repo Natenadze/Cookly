@@ -9,15 +9,40 @@ import Foundation
 
 final class RecipeStorage {
     
-    func saveRecipes(recipes: [Recipe], key: String) {
+    
+    private var recentRecipes: [Recipe] = []
+    private var savedRecipes: [Recipe] = []
+    
+    init() {
+        savedRecipes = loadSavedRecipes()
+        recentRecipes = loadRecentRecipes()
+    }
+    
+    
+    func fetchSavedRecipes() -> [Recipe] {
+        savedRecipes
+    }
+    
+    func toggleSavedRecipe(with recipe: Recipe) {
+        if let index = savedRecipes.firstIndex(where: { $0.id == recipe.id }) {
+            savedRecipes.remove(at: index)
+        } else {
+            savedRecipes.insert(recipe, at: 0)
+        }
+        saveRecipes()
+    }
+    
+    
+    //TODO: - save all recipes as well
+    func saveRecipes() {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(recipes) {
-            UserDefaults.standard.set(encoded, forKey: key)
+        if let encoded = try? encoder.encode(savedRecipes) {
+            UserDefaults.standard.set(encoded, forKey: "savedRecipes")
         }
     }
     
     
-    func loadAllRecipes() -> [Recipe] {
+    func loadRecentRecipes() -> [Recipe] {
         let decoder = JSONDecoder()
         //TODO: - use user default keys instead of strings
         if let allRecipesData = UserDefaults.standard.data(forKey: "allRecipes"),
@@ -37,3 +62,4 @@ final class RecipeStorage {
         return []
     }
 }
+
