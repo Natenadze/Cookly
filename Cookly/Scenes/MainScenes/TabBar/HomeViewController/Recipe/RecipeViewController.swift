@@ -12,7 +12,7 @@ import UIKit
 final class RecipeViewController: UIViewController {
     
     // MARK: - Properties
-    @Injected(\.mainViewModel) var viewModel: MainViewModel
+    private let viewModel: MainViewModel
     private var recipe: Recipe
     
     // MARK: -  UI Components
@@ -23,8 +23,9 @@ final class RecipeViewController: UIViewController {
     private let favoriteButton = FavoriteButton()
     
     // MARK: - Lifecycle
-    init(recipe: Recipe) {
+    init(recipe: Recipe, viewModel: MainViewModel) {
         self.recipe = recipe
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -186,14 +187,4 @@ extension RecipeViewController: FavoriteButtonDelegate {
     }
     
 }
-
-
-
-
-#if DEBUG
-// MARK: - Preview
-#Preview {
-    RecipeViewController(recipe: rcp)
-}
-#endif
 

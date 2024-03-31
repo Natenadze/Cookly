@@ -10,10 +10,12 @@ import UIKit
 final class TabBarController: UITabBarController {
     
     weak var coordinator: Coordinator?
+    let viewModel: MainViewModel
     
     // MARK: - LifeCycle
-    init(coordinator: Coordinator) {
+    init(coordinator: Coordinator, viewModel: MainViewModel) {
         self.coordinator = coordinator
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,14 +45,14 @@ private extension TabBarController {
     }
     
     func setupTabBars() {
-        let homeViewModel = HomeViewModel(coordinator: coordinator)
-        let searchVC    = HomeViewController(viewModel: homeViewModel)
+        let homeViewModel      = HomeViewModel(coordinator: coordinator)
+        let searchVC           = HomeViewController(viewModel2: homeViewModel, mainViewModel: viewModel)
         
         let favoritesViewModel = FavoritesViewModel(coordinator: coordinator)
-        let favoritesVC = FavoritesViewController(viewModel: favoritesViewModel)
+        let favoritesVC        = FavoritesViewController(viewModel: favoritesViewModel, mainViewModel: viewModel)
         
-        let profileViewModel = ProfileViewModel(coordinator: coordinator)
-        let profileVC   = ProfileViewController(viewModel: profileViewModel)
+        let profileViewModel   = ProfileViewModel(coordinator: coordinator)
+        let profileVC          = ProfileViewController(viewModel: profileViewModel)
         
         searchVC.tabBarItem    = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 1)

@@ -7,8 +7,7 @@
 
 import Foundation
 
-//TODO: - cases start with small letter (if possible :d)
-enum MealType: String, Codable {
+enum MealType: String, Codable, CaseIterable {
     case breakfast = "breakfast"
     case lunch = "lunch"
     case dinner = "dinner"

@@ -7,13 +7,13 @@
 
 import Foundation
 
-
-
-
+//TODO: - remove MainViewModel
 final class MainViewModel {
     
     // MARK: - Properties
     @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
+    weak var coordinator: Coordinator?
+    
     let storage = RecipeStorage()
     var prompt = Prompt()
     

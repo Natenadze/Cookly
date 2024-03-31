@@ -21,6 +21,7 @@ protocol Coordinator: AnyObject {
 final class FlowCoordinator: Coordinator {
     
     // MARK: - Properties
+    private let mainViewModel = MainViewModel()
     var navigationController: UINavigationController
     
     // MARK: - Init
@@ -49,7 +50,7 @@ final class FlowCoordinator: Coordinator {
     
     func showTabBarAsRoot() {
         if LocalState.hasOnboarded {
-            let controller = TabBarController(coordinator: self)
+            let controller = TabBarController(coordinator: self, viewModel: mainViewModel)
             navigationController.viewControllers = [controller]
         } else {
             let onboardingContainerVC = OnboardingContainerVC()
@@ -73,12 +74,12 @@ final class FlowCoordinator: Coordinator {
     }
     
     func pushRecipeViewController(recipe: Recipe) {
-        let controller = RecipeViewController(recipe: recipe)
+        let controller = RecipeViewController(recipe: recipe, viewModel: mainViewModel)
         navigationController.pushViewController(controller, animated: true)
     }
     
     func pushPromptViewController() {
-        let controller = PromptViewController(coordinator: self)
+        let controller = PromptViewController(viewModel: mainViewModel)
         navigationController.pushViewController(controller, animated: true)
     }
 }

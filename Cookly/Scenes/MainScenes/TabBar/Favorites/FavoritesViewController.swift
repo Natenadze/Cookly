@@ -10,15 +10,16 @@ import UIKit
 final class FavoritesViewController: UIViewController{
     
     // MARK: - Properties
-    @Injected(\.mainViewModel) var viewModel: MainViewModel
+    private var viewModel: MainViewModel
     let viewModel2: FavoritesViewModel
     
     // MARK: - UI Components
     private var tableView: UITableView!
     
     // MARK: - Lifecycle
-    init(viewModel: FavoritesViewModel) {
+    init(viewModel: FavoritesViewModel, mainViewModel: MainViewModel) {
         self.viewModel2 = viewModel
+        self.viewModel = mainViewModel
         super.init(nibName: nil, bundle: nil)
     }
     

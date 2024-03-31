@@ -11,8 +11,8 @@ import UIKit
 final class PromptViewController: UIViewController {
     
     // MARK: - Properties
-    @Injected(\.mainViewModel) var viewModel: MainViewModel
-    weak var coordinator: Coordinator?
+    var viewModel: MainViewModel
+    
     private let ingredientsLimit = 7
     private var ingredientCounter = 1
     
@@ -31,13 +31,13 @@ final class PromptViewController: UIViewController {
     
     private lazy var mealTypeView = SettingsView(
         title: "Meal Type",
-        options: ["Breakfast", "Lunch", "Dinner"],
+        options: MealType.allCases.map { $0.rawValue.capitalized },
         settingsType: .mealType
     )
     
     private lazy var difficultyView = SettingsView(
         title: "Choose Difficulty",
-        options: ["Easy", "Medium", "Hard"],
+        options: DifficultyLevel.allCases.map { $0.rawValue.capitalized },
         settingsType: .difficulty
     )
     
@@ -62,8 +62,8 @@ final class PromptViewController: UIViewController {
     
     
     // MARK: - LifeCycle
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -79,6 +79,7 @@ final class PromptViewController: UIViewController {
     // MARK: - Methods
     
     private func setupUI() {
+        navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .systemBackground
         mealTypeView.delegate = self
         difficultyView.delegate = self
@@ -183,7 +184,7 @@ final class PromptViewController: UIViewController {
             
             if let recipe = result {
                 clearPromptDetails()
-                self.coordinator?.pushRecipeViewController(recipe: recipe)
+                viewModel.coordinator?.pushRecipeViewController(recipe: recipe)
             } else {
                 self.showErrorLabel(text: " 🌐 - Network error, try again later")
             }
@@ -395,11 +396,9 @@ extension PromptViewController: SettingsViewDelegate {
 
 
 
-#if DEBUG
-// MARK: - Preview
-#Preview {
-    let nav = UINavigationController()
-    let coordinator = FlowCoordinator(navigationController: nav)
-    return PromptViewController(coordinator: coordinator)
-}
-#endif
+//#if DEBUG
+//// MARK: - Preview
+//#Preview {
+//    PromptViewController()
+//}
+//#endif

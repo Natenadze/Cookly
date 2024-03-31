@@ -17,7 +17,7 @@ protocol ScrollViewDelegate {
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    @Injected(\.mainViewModel) var viewModel: MainViewModel
+    var viewModel: MainViewModel
     let viewModel2: HomeViewModel
     
     
@@ -74,8 +74,9 @@ final class HomeViewController: UIViewController {
     )
     
     // MARK: - LifeCycle
-    init(viewModel: HomeViewModel) {
-        self.viewModel2 = viewModel
+    init(viewModel2: HomeViewModel, mainViewModel: MainViewModel) {
+        self.viewModel2 = viewModel2
+        self.viewModel = mainViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -109,7 +110,6 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Methods
     func updateUI() {
-        navigationController?.navigationBar.isHidden = false
         recentSearchesScrollView.rootView.recipes = viewModel.allRecipes
         recentSearchesScrollView.view.invalidateIntrinsicContentSize()
     }
