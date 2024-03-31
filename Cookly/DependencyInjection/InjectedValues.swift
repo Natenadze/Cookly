@@ -44,11 +44,6 @@ extension InjectedValues {
         set { Self[RecipeServiceKey.self] = newValue }
     }
     
-    var mainViewModel: MainViewModel {
-        get { Self[MainViewModelKey.self] }
-        set { Self[MainViewModelKey.self] = newValue }
-    }
-    
     var supaClient: SupabaseClient {
         get { Self[SupabaseClientKey.self] }
         set { Self[SupabaseClientKey.self] = newValue }

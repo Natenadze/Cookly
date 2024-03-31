@@ -73,12 +73,14 @@ final class FlowCoordinator: Coordinator {
     }
     
     func pushRecipeViewController(recipe: Recipe) {
-        let controller = RecipeViewController(recipe: recipe)
+        let viewModel = RecipeViewModel()
+        let controller = RecipeViewController(recipe: recipe, viewModel: viewModel)
         navigationController.pushViewController(controller, animated: true)
     }
     
     func pushPromptViewController() {
-        let controller = PromptViewController(coordinator: self)
+        let viewModel = PromptViewModel(coordinator: self)
+        let controller = PromptViewController(viewModel: viewModel)
         navigationController.pushViewController(controller, animated: true)
     }
 }

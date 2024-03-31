@@ -31,7 +31,7 @@ let rcp = Recipe(
     diets: [.Healthy, .GlutenFree],
     time: 30,
     servings: 2,
-    mealType: .Breakfast
+    mealType: .breakfast
 )
 
 let rcp1 = Recipe(
@@ -57,7 +57,7 @@ let rcp1 = Recipe(
     diets: [.Vegetarian],
     time: 45,
     servings: 4,
-    mealType: .Lunch
+    mealType: .lunch
 )
 
 let rcp2 = Recipe(
@@ -81,7 +81,7 @@ let rcp2 = Recipe(
     diets: [.LowCarb],
     time: 35,
     servings: 4,
-    mealType: .Dinner
+    mealType: .dinner
 )
 
 let rcp3 = Recipe(
@@ -106,7 +106,7 @@ let rcp3 = Recipe(
     diets: [.Vegetarian, .Vegan, .GlutenFree],
     time: 25,
     servings: 4,
-    mealType: .Lunch
+    mealType: .lunch
 )
 
 let rcp4 = Recipe(
@@ -130,7 +130,7 @@ let rcp4 = Recipe(
     diets: [.Vegetarian],
     time: 20,
     servings: 4,
-    mealType: .Dinner
+    mealType: .dinner
 )
 
 let rcp5 = Recipe(
@@ -153,7 +153,7 @@ let rcp5 = Recipe(
     diets: [.Vegetarian],
     time: 10,
     servings: 2,
-    mealType: .Breakfast
+    mealType: .breakfast
 )
 
 let rcp6 = Recipe(
@@ -181,7 +181,7 @@ let rcp6 = Recipe(
     diets: [.Vegetarian, .Vegan],
     time: 25,
     servings: 4,
-    mealType: .Dinner
+    mealType: .dinner
 )
 
 let recipesArray = [rcp, rcp1, rcp2, rcp3, rcp4, rcp5, rcp6]

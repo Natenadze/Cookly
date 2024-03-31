@@ -1,27 +1,23 @@
 //
-//  FavoritesViewModel.swift
+//  RecipeViewModel.swift
 //  Cookly
 //
-//  Created by Davit Natenadze on 26.03.24.
+//  Created by Davit Natenadze on 31.03.24.
 //
 
 import Foundation
 
-final class FavoritesViewModel {
+
+final class RecipeViewModel {
     
     // MARK: - Properties
     @Injected(\.recipeStorage) var recipeStorage: RecipeStorage
-    weak var coordinator: Coordinator?
-    
+        
     
     var savedRecipes: [Recipe] {
         recipeStorage.fetchSavedRecipes()
     }
     
-    // MARK: - LifeCycle
-    init(coordinator: Coordinator?) {
-        self.coordinator = coordinator
-    }
     
     // MARK: - Methods
  

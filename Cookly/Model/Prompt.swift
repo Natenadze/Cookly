@@ -19,7 +19,7 @@ struct Prompt: Encodable {
     // MARK: - Init
     init(
         ingredients: [String] = [],
-        mealType: MealType = .Lunch,
+        mealType: MealType = .lunch,
         time: Int = 40,
         diet: [Diet] = [],
         extendRecipe: Bool = false

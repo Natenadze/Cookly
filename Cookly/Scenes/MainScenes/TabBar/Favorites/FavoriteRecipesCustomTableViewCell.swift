@@ -109,7 +109,7 @@ final class FavoritesTableViewCell: UITableViewCell {
     
     func configure(with recipe: Recipe) {
         self.recipe = recipe
-        backgroundImageView.image = UIImage(named: recipe.image)
+        backgroundImageView.image = UIImage(named: recipe.image.isEmpty ? "test" : recipe.image)
         titleLabel.text = recipe.name
         timeLabel.text = String(recipe.time) + "min"
         favoriteButton.isFavorite = recipe.isSaved

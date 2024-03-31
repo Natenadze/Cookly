@@ -31,6 +31,7 @@ final class UserService: UserServiceProviding {
     }
     
     func deleteUser() async throws {
+        //TODO: - handling
         do {
             try await supaClient.functions.invoke("delete-user")
         } catch FunctionsError.httpError(let code, let data) {

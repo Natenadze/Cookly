@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  PromptViewModel.swift
 //  Cookly
 //
 //  Created by Davit Natenadze on 09.02.24.
@@ -7,27 +7,31 @@
 
 import Foundation
 
-final class MainViewModel {
+//TODO: - remove MainViewModel
+final class PromptViewModel {
     
     // MARK: - Properties
     @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
+    weak var coordinator: Coordinator?
+    
     let storage = RecipeStorage()
     var prompt = Prompt()
     
     var allRecipes = [Recipe]() {
         didSet {
-            storage.saveRecipes(recipes: allRecipes, key: "allRecipes")
+            storage.saveRecipes()
         }
     }
     var savedRecipes = [Recipe]() {
         didSet {
-            storage.saveRecipes(recipes: savedRecipes, key: "savedRecipes")
+            storage.saveRecipes()
         }
     }
     
     // MARK: - Init
-    init() {
-        allRecipes = storage.loadAllRecipes()
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
+        allRecipes = storage.loadRecentRecipes()
         savedRecipes = storage.loadSavedRecipes()
     }
     
@@ -36,24 +40,24 @@ final class MainViewModel {
         prompt = Prompt()
     }
     
-    //TODO: - create enum for meal types
-    func updateMealType(text: String) {
-        switch text {
-        case "Breakfast":
-            prompt.mealType = .Breakfast
-        case "Lunch":
-            prompt.mealType = .Lunch
-        default:
-            prompt.mealType = .Dinner
-        }
-    }   
     
-    //TODO: - create enum for difficulties
-    func updateDifficulty(text: String) {
-        switch text {
-        case "Easy":
+    func updateMealType(_ type: MealType) {
+        switch type {
+        case .breakfast:
+            prompt.mealType = .breakfast
+        case .lunch:
+            prompt.mealType = .lunch
+        default:
+            prompt.mealType = .dinner
+        }
+    }
+    
+    
+    func updateDifficulty(_ difficulty: DifficultyLevel) {
+        switch difficulty {
+        case .easy:
             prompt.time = 20
-        case "Medium":
+        case .medium:
             prompt.time = 40
         default:
             prompt.time = 60
@@ -64,9 +68,6 @@ final class MainViewModel {
         prompt.ingredients.remove(at: index)
     }
     
-
-   
- 
     func toggleSavedRecipe(with recipe: Recipe) {
         if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
             savedRecipes.remove(at: index)
@@ -76,7 +77,7 @@ final class MainViewModel {
     }
     
     func updateAllRecipes(with recipe: Recipe) {
-        allRecipes.append(recipe)
+        allRecipes.insert(recipe, at: 0)
     }
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {

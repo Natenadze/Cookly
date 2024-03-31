@@ -22,12 +22,6 @@ struct RecipeServiceKey: InjectionKey {
     static var currentValue: RecipeProviding = RecipeService()
 }
 
-
-//TODO: - create viewModels in coordinator and use init dependency injection
-struct MainViewModelKey: InjectionKey {
-    static var currentValue: MainViewModel = MainViewModel()
-}
-
 struct SupabaseClientKey: InjectionKey {
     static var currentValue = SupabaseClient(
         supabaseURL: URL(string: APIConstants.supaUrl)!,

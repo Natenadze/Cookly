@@ -18,6 +18,7 @@ struct RegistrationView: View {
     
     @ObservedObject private var viewModel: RegistrationViewModel
     
+    // MARK: - LifeCycle
     init(viewModel: RegistrationViewModel) {
         self.viewModel = viewModel
     }
@@ -65,7 +66,8 @@ private extension RegistrationView {
     }
     
     var signUpButton: some View {
-        AuthButton(title: "Sign Up", action: SignUpButtonTapped)
+        Button("Sign Up", action: SignUpButtonTapped)
+            .buttonStyle(AuthButtonStyle())
     }
 }
 
