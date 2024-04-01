@@ -28,6 +28,7 @@ final class ProfileViewModel {
     func signOut() async throws {
         do {
             try await userService.signOut()
+            coordinator?.logoutUser()
         } catch {
             throw AuthError.serverError
         }
@@ -36,6 +37,7 @@ final class ProfileViewModel {
     func handleDeleteUserButtonTapped() async throws {
         do {
             try await userService.deleteUser()
+            coordinator?.logoutUser()
         } catch {
             throw AuthError.serverError
         }

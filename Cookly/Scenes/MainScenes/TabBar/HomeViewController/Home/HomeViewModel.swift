@@ -13,16 +13,13 @@ final class HomeViewModel {
     
     weak var coordinator: Coordinator?
     
-    var allRecipes = [Recipe]() {
-        didSet {
-            recipeStorage.saveRecipes()
-        }
+    var allRecipes:[Recipe] {
+        recipeStorage.fetchRecentRecipes()
     }
     
     // MARK: - LifeCycle
     init(coordinator: Coordinator?) {
         self.coordinator = coordinator
-        allRecipes = recipeStorage.loadRecentRecipes()
     }
     
 }

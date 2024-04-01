@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 final class RecipeStorage {
     
     
@@ -21,6 +22,15 @@ final class RecipeStorage {
     
     func fetchSavedRecipes() -> [Recipe] {
         savedRecipes
+    }  
+    
+    func fetchRecentRecipes() -> [Recipe] {
+        recentRecipes
+    } 
+    
+    func updateRecentRecipes(with recipe: Recipe)  {
+        recentRecipes.insert(recipe, at: 0)
+        saveRecipes(.recent)
     }
     
     func toggleSavedRecipe(with recipe: Recipe) {
@@ -29,16 +39,24 @@ final class RecipeStorage {
         } else {
             savedRecipes.insert(recipe, at: 0)
         }
-        saveRecipes()
+        saveRecipes(.favorite)
     }
     
     
-    //TODO: - save all recipes as well
-    func saveRecipes() {
+    func saveRecipes(_ type: RecipeStorageType) {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(savedRecipes) {
-            UserDefaults.standard.set(encoded, forKey: "savedRecipes")
+        
+        switch type {
+        case .recent:
+            if let encoded = try? encoder.encode(recentRecipes) {
+                UserDefaults.standard.set(encoded, forKey: "recentRecipes")
+            }
+        case .favorite:
+            if let encoded = try? encoder.encode(savedRecipes) {
+                UserDefaults.standard.set(encoded, forKey: "savedRecipes")
+            }
         }
+        
     }
     
     
