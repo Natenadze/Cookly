@@ -7,32 +7,24 @@
 
 import Foundation
 
-//TODO: - remove MainViewModel
+enum RecipeStorageType {
+    case recent, favorite
+}
+
 final class PromptViewModel {
     
     // MARK: - Properties
     @Injected(\.recipeProvider) var recipeProvider: RecipeProviding
-    weak var coordinator: Coordinator?
+    @Injected(\.recipeStorage) var recipeStorage: RecipeStorage
     
-    let storage = RecipeStorage()
+    weak var coordinator: Coordinator?
     var prompt = Prompt()
     
-    var allRecipes = [Recipe]() {
-        didSet {
-            storage.saveRecipes()
-        }
-    }
-    var savedRecipes = [Recipe]() {
-        didSet {
-            storage.saveRecipes()
-        }
-    }
     
     // MARK: - Init
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
-        allRecipes = storage.loadRecentRecipes()
-        savedRecipes = storage.loadSavedRecipes()
+        
     }
     
     // MARK: - Methods
@@ -68,16 +60,9 @@ final class PromptViewModel {
         prompt.ingredients.remove(at: index)
     }
     
-    func toggleSavedRecipe(with recipe: Recipe) {
-        if let index = savedRecipes.firstIndex(where: { $0.name == recipe.name }) {
-            savedRecipes.remove(at: index)
-        } else {
-            savedRecipes.append(recipe)
-        }
-    }
     
     func updateAllRecipes(with recipe: Recipe) {
-        allRecipes.insert(recipe, at: 0)
+        recipeStorage.updateRecentRecipes(with: recipe)
     }
     
     func generateRecipe(completion: @escaping (Recipe?) -> Void) {

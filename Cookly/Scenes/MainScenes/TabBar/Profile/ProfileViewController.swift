@@ -131,7 +131,6 @@ private extension ProfileViewController {
         Task {
             do {
                 try await viewModel.signOut()
-                viewModel.coordinator?.logoutUser()
             } catch {
                 print("Error logout")
             }
@@ -142,7 +141,6 @@ private extension ProfileViewController {
         Task {
             do {
                 try await viewModel.handleDeleteUserButtonTapped()
-                viewModel.coordinator?.logoutUser()
             } catch {
                 //TODO: - ???
                 print("Error delete user")
